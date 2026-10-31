@@ -482,7 +482,7 @@ function platformPage(){
   return shero(art('hero-fortune'),'MAX DAY LIFE PLATFORM','하나의 카드로 이어지는<br>맥스데이 플랫폼.','콘텐츠·매장·장비·교육까지, 맥스데이 라이프 카드와 '+COIN+' 코인으로 연결됩니다.')+`<div class="page">
   <section class="section">${H2('PLATFORMS','맥스데이 플랫폼','맥스데이 라이프가 직접 운영하는 플랫폼입니다.')}${SV(S)}</section><section class="section">${H2('CONTENTS · STORE','콘텐츠·매장 서비스','플랫폼과 함께 쓰는 콘텐츠, 랜덤박스, 키오스크·POS 서비스입니다.')}${SV(S2)}</section>
   <section class="section two"><div class="card pad"><span class="tag">ONE CARD</span><h2 style="margin-top:12px">맥스데이 라이프 카드 하나로</h2>${ROW('운세·TV·게임','결제 혜택 + '+COIN+' 코인 적립')}${ROW('MAXDAY 랜덤박스','결제금액 기준 등급별 적립 시안')}${ROW('POS 제휴 가맹점','즉시 할인 + 적립')}${ROW('강사 연결','기관 구독료 면제 시안')}${ROW('유학','휴대폰 개통·학비·생활비 결제')}<a class="btn primary" href="#cards" style="margin-top:16px">카드 혜택 보기</a></div>
-  <div class="card pad"><span class="tag warm">INVITE</span><h2 style="margin-top:12px">친구초대 리워드</h2><p class="muted">내가 직접 초대한 친구가 MAXDAY 랜덤박스·운세·POS 가맹점을 이용하면 이용금액의 일부를 적립해 드립니다.</p>${ROW('적립','친구 이용금액의 3% (예시)')}${ROW('기간·한도','가입 후 6개월 · 월 한도 적용')}${ROW('지급','맥스데이 포인트 또는 '+COIN+' 코인')}${ROW('초대받은 친구','첫 결제 할인')}<p class="tiny muted" style="margin-top:10px">직접 초대한 친구 1단계에만 적용됩니다. 비율·기간은 시안 예시입니다.</p></div></section></div>`;
+  <div class="card pad"><span class="tag warm">INVITE</span><h2 style="margin-top:12px">친구초대 리워드</h2><p class="muted">내가 직접 초대한 친구가 MAXDAY 랜덤박스·운세·POS 가맹점을 이용하면 이용금액의 일부를 적립해 드립니다.</p>${ROW('적립','친구 이용금액의 3% (예시)')}${ROW('기간·한도','가입 후 6개월 · 월 한도 적용')}${ROW('지급','맥스데이 포인트 또는 '+COIN+' 코인')}${ROW('초대받은 친구','첫 결제 할인')}<p class="tiny muted" style="margin-top:10px">직접 초대한 친구 1단계에만 적용됩니다. 비율·기간은 시안 예시입니다.</p><a class="btn" href="#invite" style="margin-top:12px">친구초대 리워드 자세히 보기</a></div></section></div>`;
 }
 
 /* ---------- MAXDAY 랜덤박스 ---------- */
@@ -798,9 +798,66 @@ function addHomePlatforms(app){
   const html=`<div class="page mxp-home"><section class="section">${H2('MAX DAY LIFE PLATFORMS','맥스데이 라이프가 운영하는 플랫폼','하나의 맥스데이 라이프 카드와 MAX 코인으로 연결됩니다. 운영 중인 사이트는 바로 열어 보세요.')}
   <div class="mxp-grid">${HOME_PLAT.map(([h,t,d,img,site,tags])=>`<article class="card mxp-pc"><a class="mxp-img" href="#${h}"><img src="${img()}" alt="${t} 화면" loading="lazy">${site?'<span class="mxp-live">운영 사이트</span>':''}</a><div class="pad"><h3>${t}</h3><p class="muted tiny">${d}</p><div class="mxp-tags">${tags.map(x=>`<span>${x}</span>`).join('')}</div><div class="mxp-btns"><a class="btn" href="#${h}">소개 보기</a>${site?`<a class="btn primary" href="${site}" target="_blank" rel="noopener">사이트 보기 ↗</a>`:''}</div></div></article>`).join('')}</div></section>
   <section class="section">${H2('CONTENTS · STORE','콘텐츠·매장 서비스')}<div class="mxp-svc4">${HOME_SVC.map(([h,t,d,img])=>`<a class="card mxp-sc" href="#${h}"><img src="${img()}" alt="${t}" loading="lazy"><div><b>${t}</b><span class="muted tiny">${d}</span></div></a>`).join('')}</div>
-  <div class="mxp-all"><a class="btn" href="#platform">플랫폼·서비스 전체 보기</a></div></section></div>`;
+  <a class="mxp-inv" href="#invite"><span class="tag warm">친구초대 리워드</span><b>친구를 초대하면, 친구가 쓸 때마다 나에게 적립</b><span class="muted tiny">매장에 초대 QR을 걸면 손님의 랜덤박스·운세 이용금액까지 매장에 적립됩니다 →</span></a><div class="mxp-all"><a class="btn" href="#platform">플랫폼·서비스 전체 보기</a></div></section></div>`;
   if(hero)hero.insertAdjacentHTML('afterend',html);else app.insertAdjacentHTML('afterbegin',html);
 }
+/* ---------- 친구초대 리워드 (전 서비스 공통) ---------- */
+const MXR={
+  box:['MAXDAY 랜덤박스','랜덤박스를 열 때마다',3,'30,000원'],
+  fortune:['MAXDAY 운세','유료 운세·사주·타로를 볼 때마다',5,'15,000원'],
+  play:['MAXDAY 게임','게임 이용권을 살 때마다',3,'10,000원'],
+  connect:['MAXDAY 인연','프리미엄·인연 콘텐츠를 쓸 때마다',5,'20,000원'],
+  funding:['MAXDAY 제작 후원','작품을 후원할 때마다',2,'50,000원'],
+  tv:['MAXDAY TV','영상·월간 패스를 결제할 때마다',5,'9,900원'],
+  kiosk:['MAXDAY 키오스크','키오스크 프로그램을 이용할 때마다',3,'10,000원'],
+  'kiosk/pos':['MAXDAY POS 가맹점','제휴 매장에서 결제할 때마다',1,'100,000원'],
+  study:['MAXDAY 유학','카드로 학비·생활비를 결제할 때마다',1,'500,000원'],
+  tutor:['MAXDAY 교육','기관이 구독·채용 서비스를 결제할 때마다',3,'99,000원'],
+  events:['MAXDAY 행사 비교견적','행사를 계약할 때마다',1,'2,000,000원'],
+  stay:['MAXDAY 스테이','수련원·행사 패키지를 예약할 때마다',1,'3,000,000원'],
+  biseo:['MAXDAY 비서','비서 구독료를 결제할 때마다',10,'9,900원'],
+  platform:['맥스데이 라이프 서비스','어느 서비스든 결제할 때마다',3,'30,000원']
+};
+const MXR_RATES=[['MAXDAY 랜덤박스',3],['MAXDAY 운세',5],['MAXDAY TV',5],['MAXDAY 인연',5],['MAXDAY 게임',3],['MAXDAY 키오스크',3],['MAXDAY 제작 후원',2],['MAXDAY POS 가맹점',1],['MAXDAY 유학 (카드 결제)',1],['MAXDAY 교육',3],['MAXDAY 행사 비교견적',1],['MAXDAY 스테이',1],['MAXDAY 비서',10]];
+function mxrNum(s){return parseInt(String(s).replace(/[^0-9]/g,''),10)||0}
+function mxrSteps(svc,act){return `<div class="mxr-steps">${[
+  ['01','내 초대 QR 받기','마이페이지에서 나만의 초대 QR·링크를 받습니다. 매장을 운영하면 매장 전용 QR 포스터도 받을 수 있습니다.'],
+  ['02','친구가 가입','친구·손님이 QR을 찍고 맥스데이 라이프에 가입하면 나와 연결됩니다. 친구는 첫 이용 혜택을 받습니다.'],
+  ['03','친구가 이용',`친구가 ${act} 이용금액이 기록됩니다. 다른 맥스데이 서비스를 써도 똑같이 기록됩니다.`],
+  ['04','나에게 적립','친구 이용금액의 정해진 비율이 MAX 코인 또는 포인트로 나에게 적립됩니다.']
+ ].map(([n,t,d])=>`<div><small>${n}</small><b>${t}</b><span>${d}</span></div>`).join('')}</div>`}
+function mxrBlock(key){
+  const c=MXR[key]||MXR.platform;const [svc,act,rate,amt]=c;const a=mxrNum(amt);const per=Math.round(a*rate/100);
+  return `<div class="page mxr-wrap"><section class="section mxr"><span class="eyebrow">FRIEND INVITE REWARD · 시안</span><h2>친구를 초대하면, 친구가 ${svc}${/[가-힣]/.test(svc.slice(-1))&&((svc.slice(-1).charCodeAt(0)-44032)%28)?'을':'를'} 쓸 때마다<br>나에게 적립됩니다</h2><p class="muted">내 초대 QR로 가입한 친구가 ${act} 이용금액의 <b>${rate}%</b>가 초대한 사람에게 쌓입니다.</p>
+  ${mxrSteps(svc,act)}
+  <div class="mxr-two"><div class="mxr-calc"><span class="tag">예시 계산</span><b>친구 10명이 ${svc}에서 한 달에 ${amt}씩 쓰면</b><div class="mxr-eq"><span>${amt} × ${rate}% × 10명</span><strong>= 매달 ${(per*10).toLocaleString('ko-KR')}원 적립</strong></div><small>비율·기간·한도는 시안 예시입니다.</small></div>
+  <div class="mxr-store"><span class="tag warm">매장 사장님이라면</span><b>매장에 초대 QR을 걸어 두세요</b><ol><li>매장 카운터·테이블에 <em>초대 QR 포스터</em> 비치</li><li>손님이 QR로 가입하면 매장 혜택 제공 <em>(예: 소주 1병 서비스)</em></li><li>그 손님이 집에 가서 ${svc}${/[가-힣]/.test(svc.slice(-1))&&((svc.slice(-1).charCodeAt(0)-44032)%28)?'을':'를'} 이용해도</li><li>이용금액의 ${rate}%가 <em>매장에 계속 적립</em></li></ol></div></div>
+  <div class="mxr-foot"><span>직접 초대한 1단계까지만 적립 · 본인·중복 계정 제외 · 가입 후 6개월 · 월 한도 적용 (시안)</span><a class="btn" href="#invite">친구초대 리워드 자세히 보기</a></div></section></div>`}
+function invitePage(){
+  return shero(art('hero-connect'),'FRIEND INVITE REWARD','친구를 초대하면,<br>친구가 쓸 때마다 나에게 적립.','내 초대 QR로 가입한 친구가 랜덤박스·운세·TV·POS 가맹점 등 맥스데이 서비스를 이용하면, 이용금액의 일정 비율을 초대한 사람에게 MAX 코인으로 돌려드립니다.')+`<div class="page">
+  <section class="section">${H2('HOW IT WORKS','이렇게 적립됩니다','초대 → 가입 → 이용 → 적립. 한 번 연결되면 친구가 어느 서비스를 쓰든 적립됩니다.')}${mxrSteps('맥스데이 서비스','랜덤박스·운세·TV 등 어느 서비스든 결제할 때마다')}</section>
+  <section class="section">${H2('TWO WAYS','회원도, 매장도 초대할 수 있습니다')}<div class="mxr-two">
+   <div class="mxr-store" style="background:#fff"><span class="tag">일반 회원</span><b>친구에게 링크를 보내세요</b><ol><li>마이페이지 → <em>내 초대 링크 복사</em></li><li>카카오톡·문자로 친구에게 공유</li><li>친구 가입 시 친구에게 <em>첫 이용 할인</em></li><li>친구가 이용할 때마다 <em>나에게 적립</em></li></ol></div>
+   <div class="mxr-store"><span class="tag warm">매장 운영자</span><b>매장에 초대 QR을 걸어 두세요</b><ol><li>매장 전용 <em>초대 QR 포스터</em> 발급</li><li>손님이 QR로 가입하면 매장 혜택 <em>(예: 소주 1병 서비스)</em></li><li>손님이 집에서 랜덤박스·운세를 이용해도</li><li>이용금액의 일부가 <em>매장에 계속 적립</em></li></ol></div></div></section>
+  <section class="section"><div class="mxr-poster-row"><div class="mxr-poster"><img class="lg" src="assets/plat/logo-h.webp" alt="MAX DAY LIFE"><b>QR 찍고 가입하면</b><strong>소주 1병 서비스</strong><img class="qr" src="assets/invite/qr.png" alt="초대 QR 예시"><span>맥스데이 라이프 가입 후 직원에게 보여 주세요</span><small>매장 초대 QR 포스터 예시 · 혜택은 매장이 정합니다</small></div>
+   <div>${H2('STORE POSTER','매장에 이렇게 걸립니다','손님은 매장 혜택을 받고, 매장은 그 손님의 이후 이용금액까지 적립받습니다. 손님이 다시 오지 않아도 온라인 이용분이 매장에 쌓입니다.')}
+   <div class="mxr-calc" style="margin-top:18px"><span class="tag">매장 예시 계산</span><b>한 달에 손님 50명이 가입하고, 1인당 월 3만원씩 이용하면</b><div class="mxr-eq"><span>30,000원 × 3% × 50명</span><strong>= 매달 45,000원 적립</strong></div><small>가입 손님이 늘수록 매달 적립이 쌓입니다. 비율은 시안 예시입니다.</small></div></div></div></section>
+  <section class="section">${H2('RATES','서비스별 적립 비율 (시안)','친구 이용금액 기준입니다. 실제 비율은 서비스·제휴 조건에 따라 정해집니다.')}<div class="mxr-rates">${MXR_RATES.map(([n,r])=>`<div><span>${n}</span><b>${r}%</b></div>`).join('')}</div></section>
+  <section class="section two"><div class="card pad"><span class="tag">RULES</span><h2 style="margin-top:12px">적립 기준</h2>${ROW('적립 대상','내가 직접 초대한 친구 (1단계)')}${ROW('적립 기간','친구 가입 후 6개월')}${ROW('적립 한도','월 한도 적용')}${ROW('지급','MAX 코인 또는 맥스데이 포인트')}${ROW('제외','본인·중복 계정, 환불·취소 금액')}</div>
+  <div class="card pad"><span class="tag warm">FAQ</span><h2 style="margin-top:12px">자주 묻는 질문</h2>${ROW('친구의 친구도 적립되나요?','아니요, 직접 초대 1단계만')}${ROW('적립금은 어디에 쓰나요?','맥스데이 서비스 결제 · 카드 충전')}${ROW('매장 혜택은 누가 정하나요?','각 매장이 직접 정합니다')}${ROW('초대 QR은 어디서?','마이페이지 · 매장 관리자')}</div></section></div>`}
+function mxrRun(){
+  const app=document.getElementById('app');if(!app)return;
+  const [r,id]=(location.hash.slice(1)||'home').split('/');
+  const key=(r==='kiosk'&&id==='pos')?'kiosk/pos':(r==='market'?'events':r);
+  if(!MXR[key]||(id&&key!=='kiosk/pos'))return;
+  if(app.querySelector('.mxr-wrap'))return;
+  const html=mxrBlock(key);
+  if(key==='box'){const t=app.querySelector('.mlx-live')?.closest('.page')||app.querySelector('.mlx-card-join.top')||app.querySelector('.subhero,.hero');if(t){t.insertAdjacentHTML('afterend',html);return}}
+  const bot=app.querySelector('.mlx-card-join.bottom');if(bot)bot.insertAdjacentHTML('beforebegin',html);else app.insertAdjacentHTML('beforeend',html);
+}
+addEventListener('hashchange',()=>setTimeout(mxrRun,120));
+if(document.readyState==='loading')addEventListener('DOMContentLoaded',()=>setTimeout(mxrRun,200));else setTimeout(mxrRun,200);
+
 function patch(){
   try{vids()}catch(e){}
   if(pl.classList.contains('on'))close();
@@ -808,8 +865,8 @@ function patch(){
   const [r,id]=(location.hash.slice(1)||'home').split('/');
   navFix(r,id);
   if(r==='home')try{addHomePlatforms(app)}catch(e){console.error(e)}
-  const PG={platform:[platformPage,'맥스데이 플랫폼'],box:[boxPage,'MAXDAY 랜덤박스'],kiosk:[()=>kioskPage(id),'키오스크·POS'],tutor:[tutorPage,'MAXDAY 교육'],study:[studyPage,'MAXDAY 유학'],market:[marketPage,'MAXDAY 행사 비교견적'],events:[marketPage,'MAXDAY 행사 비교견적'],stay:[stayPage,'MAXDAY 스테이'],biseo:[biseoPage,'MAXDAY 비서']};
-  if(PG[r]){app.innerHTML=PG[r][0]();tblLabels();document.title='MAX DAY LIFE · '+PG[r][1];if(r==='tutor')addTutorScreens(app);if(r==='platform')addCardJoin(app,'platform');if(r==='stay'||r==='biseo')addCardJoin(app,r);if(r==='market'||r==='events')addCardJoin(app,'market');if(['market','events','study'].includes(r))addServiceScreensV2(app,r,id);if(r==='kiosk'){initPOSGallery(app);addGalleryDetails(app);const pos=app.querySelector('#mlx-pos');if(pos)pos.querySelectorAll('.mlx-gal figure').forEach(fig=>{if(fig.querySelector('.mlx-screen-detail'))return;const im=fig.querySelector('img'),src=im?.getAttribute('src'),k=Object.keys(IMG).find(x=>IMG[x]===src),p=document.createElement('p');p.className='mlx-screen-detail';p.textContent=SCREEN_DETAIL[k]||'POS 주문·운영·정산 화면을 확인합니다.';fig.appendChild(p)});addCardJoin(app,id==='pos'?'pos':'kiosk')}if(r==='box'){addGalleryDetails(app);addCardJoin(app,'box')}if(id!=='pos')scrollTo(0,0);try{vids()}catch(e){}return}
+  const PG={platform:[platformPage,'맥스데이 플랫폼'],box:[boxPage,'MAXDAY 랜덤박스'],kiosk:[()=>kioskPage(id),'키오스크·POS'],tutor:[tutorPage,'MAXDAY 교육'],study:[studyPage,'MAXDAY 유학'],market:[marketPage,'MAXDAY 행사 비교견적'],events:[marketPage,'MAXDAY 행사 비교견적'],stay:[stayPage,'MAXDAY 스테이'],biseo:[biseoPage,'MAXDAY 비서'],invite:[invitePage,'친구초대 리워드']};
+  if(PG[r]){app.innerHTML=PG[r][0]();tblLabels();document.title='MAX DAY LIFE · '+PG[r][1];if(r==='tutor')addTutorScreens(app);if(r==='platform')addCardJoin(app,'platform');if(r==='stay'||r==='biseo')addCardJoin(app,r);if(r==='invite')addCardJoin(app,'platform');if(r==='market'||r==='events')addCardJoin(app,'market');if(['market','events','study'].includes(r))addServiceScreensV2(app,r,id);if(r==='kiosk'){initPOSGallery(app);addGalleryDetails(app);const pos=app.querySelector('#mlx-pos');if(pos)pos.querySelectorAll('.mlx-gal figure').forEach(fig=>{if(fig.querySelector('.mlx-screen-detail'))return;const im=fig.querySelector('img'),src=im?.getAttribute('src'),k=Object.keys(IMG).find(x=>IMG[x]===src),p=document.createElement('p');p.className='mlx-screen-detail';p.textContent=SCREEN_DETAIL[k]||'POS 주문·운영·정산 화면을 확인합니다.';fig.appendChild(p)});addCardJoin(app,id==='pos'?'pos':'kiosk')}if(r==='box'){addGalleryDetails(app);addCardJoin(app,'box')}if(id!=='pos')scrollTo(0,0);try{vids()}catch(e){}return}
   if(r==='business'){app.innerHTML=bizPage();bizExtra(app);addBusinessEvents(app);tblLabels();document.title='MAX DAY LIFE · 비즈니스';scrollTo(0,0);try{vids()}catch(e){}return}
   if(r==='fortune'){try{fortuneExtra(app)}catch(e){}}
   if(r==='home'&&!document.getElementById('mlx-bizban')){const host=app.querySelector('.homebody')||app;const d=document.createElement('section');d.id='mlx-bizban';d.className='section banner';d.innerHTML='<div><span class="eyebrow">MAX DAY LIFE BUSINESS</span><h3>콘텐츠 · 카드 · 장비 · 랜덤박스까지</h3><p class="tiny muted">맥스데이 라이프가 하는 일과 투자·제휴 문의</p></div><a class="btn primary" href="#business">비즈니스 보기</a>';host.appendChild(d)}
@@ -922,7 +979,7 @@ addEventListener('hashchange',()=>setTimeout(run,120));setTimeout(run,300);})();
 #bottom.mlx-b5>button{font-size:9px!important;color:rgb(116,126,141)!important;font-weight:400}
 </style>
 <script>(function(){
-const G=[['플랫폼',[['study','MAXDAY 유학'],['tutor','MAXDAY 교육'],['events','MAXDAY 행사 비교견적'],['stay','MAXDAY 스테이'],['biseo','MAXDAY 비서'],['tv','MAXDAY TV']]],['콘텐츠',[['fortune','MAXDAY 운세'],['play','MAXDAY 게임'],['connect','MAXDAY 인연'],['funding','MAXDAY 제작 후원']]],['매장·장비',[['box','MAXDAY 랜덤박스'],['kiosk','MAXDAY 키오스크'],['kiosk/pos','MAXDAY POS']]],['맥스데이 라이프',[['home','홈'],['platform','플랫폼 전체'],['cards','카드·코인'],['business','비즈니스'],['mypage','마이페이지']]]];
+const G=[['플랫폼',[['study','MAXDAY 유학'],['tutor','MAXDAY 교육'],['events','MAXDAY 행사 비교견적'],['stay','MAXDAY 스테이'],['biseo','MAXDAY 비서'],['tv','MAXDAY TV']]],['콘텐츠',[['fortune','MAXDAY 운세'],['play','MAXDAY 게임'],['connect','MAXDAY 인연'],['funding','MAXDAY 제작 후원']]],['매장·장비',[['box','MAXDAY 랜덤박스'],['kiosk','MAXDAY 키오스크'],['kiosk/pos','MAXDAY POS']]],['맥스데이 라이프',[['home','홈'],['platform','플랫폼 전체'],['invite','친구초대 리워드'],['cards','카드·코인'],['business','비즈니스'],['mypage','마이페이지']]]];
 window.mlxMenu=function(){const cur=location.hash.slice(1)||'home';const d=document.createElement('div');d.className='mlx-mnav-sheet';d.onclick=e=>{if(e.target===d||e.target.closest('a'))d.remove()};
 d.innerHTML='<div><div class="hd"><b>전체 메뉴</b><button type="button" onclick="this.closest(\'.mlx-mnav-sheet\').remove()">닫기</button></div>'+G.map(([t,l])=>'<h4>'+t+'</h4><div class="g">'+l.map(([h,n])=>'<a href="#'+h+'" class="'+(cur===h?'on':'')+'">'+n+'</a>').join('')+'</div>').join('')+'</div>';document.body.appendChild(d)};
 const MI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>';
@@ -934,7 +991,37 @@ function fix(){const bt=document.getElementById('bottom');if(!bt||busy)return;co
  busy=true;bt.innerHTML=want.map(([h,n,a])=>{const ic=a?(a.querySelector('.genicon,svg,img')||{}).outerHTML||'':'';const on=(grp[h]||[h]).includes(r)&&!(h==='platform'&&r==='kiosk');return '<a href="#'+h+'" class="'+(on?'on':'')+'">'+ic+n+'</a>'}).join('')+'<button type="button" data-mx="1" onclick="mlxMenu()">'+MI+'전체</button>';
  bt.classList.add('mlx-b5');bt.dataset.h=location.hash;busy=false}
 function hook(){const bt=document.getElementById('bottom');if(!bt)return setTimeout(hook,300);new MutationObserver(()=>{if(!busy)setTimeout(fix,0)}).observe(bt,{childList:true});fix()}
-addEventListener('hashchange',()=>setTimeout(fix,150));hook();})();</script><style id="mlx-plat-css">.mxp-svc4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:18px}
+addEventListener('hashchange',()=>setTimeout(fix,150));hook();})();</script><style id="mlx-plat-css">.mxr{border-top:1px solid #e6eaf0}
+.mxr h2{font-size:clamp(24px,3vw,36px);letter-spacing:-.04em;line-height:1.25;margin:8px 0 10px}
+.mxr-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:22px 0}
+.mxr-steps>div{background:#f5f7fc;border-radius:16px;padding:20px;position:relative}
+.mxr-steps small{font-size:12px;font-weight:800;color:#2454c8;letter-spacing:.08em}
+.mxr-steps b{display:block;font-size:17px;margin:6px 0;letter-spacing:-.02em}
+.mxr-steps span{display:block;font-size:13.5px;color:#5b6576;line-height:1.6;word-break:keep-all}
+.mxr-steps>div:not(:last-child):after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:#9fb0d6;font-weight:800;z-index:2}
+.mxr-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.mxr-calc,.mxr-store{border:1px solid #e3e8f0;border-radius:18px;padding:22px 24px;background:#fff}
+.mxr-store{background:#fffaf2;border-color:#f3e2c4}
+.mxr-calc b,.mxr-store b{display:block;font-size:18px;margin:10px 0 8px;letter-spacing:-.02em}
+.mxr-eq{background:#0f1f46;color:#fff;border-radius:12px;padding:14px 16px;margin:6px 0 8px}
+.mxr-eq span{display:block;font-size:13px;color:#c7d2ea}.mxr-eq strong{display:block;font-size:22px;letter-spacing:-.03em}
+.mxr-calc small,.mxr-store small{font-size:12px;color:#7a86a0}
+.mxr-store ol{margin:4px 0 0;padding-left:20px;display:grid;gap:6px;font-size:14.5px}
+.mxr-store em{font-style:normal;font-weight:800;color:#b35c00}
+.mxr-foot{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;margin-top:16px;font-size:12.5px;color:#7a86a0}
+.mxr-rates{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:18px}
+.mxr-rates>div{display:flex;justify-content:space-between;align-items:center;border:1px solid #e3e8f0;border-radius:12px;padding:14px 16px;font-size:14px}
+.mxr-rates b{font-size:20px;color:#2454c8}
+.mxr-poster-row{display:grid;grid-template-columns:320px minmax(0,1fr);gap:40px;align-items:center}
+.mxr-poster{background:linear-gradient(170deg,#0f1f46,#2454c8);color:#fff;border-radius:22px;padding:28px 24px;text-align:center;box-shadow:0 24px 50px rgba(15,31,70,.25)}
+.mxr-poster .lg{height:40px;width:auto;margin:0 auto 14px;background:#fff;border-radius:8px;padding:4px 8px}
+.mxr-poster b{display:block;font-size:17px;color:#c9d5f2}.mxr-poster strong{display:block;font-size:34px;letter-spacing:-.04em;margin:2px 0 16px;color:#ffe27a}
+.mxr-poster .qr{width:170px;height:170px;margin:0 auto 12px;border-radius:12px;background:#fff;padding:8px}
+.mxr-poster span{display:block;font-size:13px;color:#dfe7ff}.mxr-poster small{display:block;font-size:11px;color:#9fb0d6;margin-top:10px}
+@media(max-width:1000px){.mxr-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.mxr-steps>div:after{display:none}.mxr-rates{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.mxr-two,.mxr-poster-row{grid-template-columns:1fr}.mxr-steps{grid-template-columns:1fr}.mxr-rates{grid-template-columns:1fr}.mxr-poster{max-width:320px;margin:0 auto}}
+.mxp-inv{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:18px;border:1px solid #f3e2c4;background:#fffaf2;border-radius:16px;padding:18px 22px;text-decoration:none;color:inherit}.mxp-inv b{font-size:17px;letter-spacing:-.02em}
+.mxp-svc4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:18px}
 .mxp-sc{display:flex;gap:12px;align-items:center;padding:12px;text-decoration:none;color:inherit;min-width:0}
 .mxp-sc img{width:72px;height:72px;border-radius:12px;object-fit:cover;object-position:top;flex:none}
 .mxp-sc b{display:block;font-size:15px}.mxp-sc span{display:block}
