@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>수집 소스 · MAXDAY 유학 관리자</title>
+<link rel="stylesheet" href="../assets/admin.css">
+</head>
+<body class=""><div id="demo-bar" style="position:sticky;top:0;z-index:99999;background:#0f1f46;color:#fff;font:600 12px/1.4 system-ui,sans-serif;text-align:center;padding:7px 12px">MAXDAY 유학 · 시연용 보기 전용 화면 (저장·로그인·결제 동작 없음)</div>
+<header class="topbar">
+  <a class="brand" href="index.php.html">MAXDAY 유학<span>ADMIN</span></a>
+  <div class="spacer"></div>
+  <span class="who">운영자</span>
+  <a class="btn ghost sm" href="#">로그아웃</a>
+</header>
+<div class="shell">
+  <aside class="side">
+          <div class="navgroup">대시보드</div>
+              <a class="navitem" href="index.php.html">운영 현황</a>
+                <div class="navgroup">대학 · 전형</div>
+              <a class="navitem" href="universities.php.html">대학 관리</a>
+              <a class="navitem" href="programs.php.html">외국인전형</a>
+                <div class="navgroup">수집 · AI</div>
+              <a class="navitem on" href="crawl_sources.php.html">수집 소스</a>
+              <a class="navitem" href="review.php.html">검수 큐</a>
+              <a class="navitem" href="ai_features.php.html">AI 기능</a>
+                <div class="navgroup">대학 협력</div>
+              <a class="navitem" href="b2b.php.html">파트너십 문의</a>
+                <div class="navgroup">시스템</div>
+              <a class="navitem" href="rules.php.html">기준 데이터</a>
+              <a class="navitem" href="audit.php.html">감사 로그</a>
+            </aside>
+  <main class="main">
+    <div class="pagehead"><div><h1>수집 소스</h1><p class="sub">robots.txt를 준수하고 도메인당 동시 1요청·3초 간격으로 수집합니다.</p></div><div class="acts"></div></div><div class="chips">
+  <a class="chip on" href="crawl_sources.php.html">전체</a>
+  <a class="chip" href="crawl_sources.php.html">연속 실패</a>
+</div>
+
+<div class="empty">등록된 수집 소스가 없습니다.</div>
+<div class="card" style="margin-top:16px">
+  <h2>소스 추가</h2>
+  <form method="post">
+    <input type="hidden" name="_csrf" value="8a290cfca3681638888647c15da3dd92">    <div class="row">
+      <div class="field"><label>대학</label>
+        <select name="university_id" required>
+                      <option value="1">고려대학교</option>
+                      <option value="2">부산대학교</option>
+                      <option value="3">샘플대학교</option>
+          </select></div>
+      <div class="field"><label>소스명</label><input type="text" name="name" required placeholder="국제처 공지"></div>
+      <div class="field"><label>유형</label>
+        <select name="source_type">
+          <option value="html_list">목록 페이지</option>
+          <option value="html_page">단일 페이지</option>
+          <option value="board">게시판</option>
+          <option value="pdf_direct">PDF 직접</option>
+        </select></div>
+      <div class="field"><label>렌더링</label>
+        <select name="render_mode"><option value="none">없음</option><option value="headless">헤드리스</option></select></div>
+    </div>
+    <div class="field"><label>URL</label><input type="url" name="url" required placeholder="https://"></div>
+    <div class="row">
+      <div class="field"><label>점검 주기(분)</label><input type="number" name="check_interval_min" value="1440">
+        <span class="hint">시즌(3~5월·8~10월)에는 60분 권장</span></div>
+      <div class="field"><label>robots.txt 확인일</label><input type="date" name="robots_checked_at"></div>
+    </div>
+    <label class="check"><input type="checkbox" name="robots_allowed" checked> robots.txt 상 수집 허용됨</label>
+    <label class="check"><input type="checkbox" name="is_active" checked> 활성</label>
+    <button class="btn" type="submit">추가</button>
+  </form>
+</div>
+  </main>
+</div>
+<script src="../assets/admin.js"></script>
+<script>document.addEventListener("submit",function(e){e.preventDefault();alert("시연용 화면입니다. 실제 저장되지 않습니다.")},true);</script></body>
+</html>

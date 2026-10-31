@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>감사 로그 · MAXDAY 유학 관리자</title>
+<link rel="stylesheet" href="../assets/admin.css">
+</head>
+<body class=""><div id="demo-bar" style="position:sticky;top:0;z-index:99999;background:#0f1f46;color:#fff;font:600 12px/1.4 system-ui,sans-serif;text-align:center;padding:7px 12px">MAXDAY 유학 · 시연용 보기 전용 화면 (저장·로그인·결제 동작 없음)</div>
+<header class="topbar">
+  <a class="brand" href="index.php.html">MAXDAY 유학<span>ADMIN</span></a>
+  <div class="spacer"></div>
+  <span class="who">운영자</span>
+  <a class="btn ghost sm" href="#">로그아웃</a>
+</header>
+<div class="shell">
+  <aside class="side">
+          <div class="navgroup">대시보드</div>
+              <a class="navitem" href="index.php.html">운영 현황</a>
+                <div class="navgroup">대학 · 전형</div>
+              <a class="navitem" href="universities.php.html">대학 관리</a>
+              <a class="navitem" href="programs.php.html">외국인전형</a>
+                <div class="navgroup">수집 · AI</div>
+              <a class="navitem" href="crawl_sources.php.html">수집 소스</a>
+              <a class="navitem" href="review.php.html">검수 큐</a>
+              <a class="navitem" href="ai_features.php.html">AI 기능</a>
+                <div class="navgroup">대학 협력</div>
+              <a class="navitem" href="b2b.php.html">파트너십 문의</a>
+                <div class="navgroup">시스템</div>
+              <a class="navitem" href="rules.php.html">기준 데이터</a>
+              <a class="navitem on" href="audit.php.html">감사 로그</a>
+            </aside>
+  <main class="main">
+    <div class="pagehead"><div><h1>감사 로그</h1><p class="sub">민감 데이터 접근은 사유와 함께 영구 보관됩니다.</p></div><div class="acts"></div></div><div class="card tight"><table class="tbl">
+  <thead><tr><th>일시</th><th>수행자</th><th>행위</th><th>대상</th><th>사유</th></tr></thead>
+  <tbody>    <tr><td class="small mono">2026.10.31 09:30:00</td>
+      <td class="small">운영자</td>
+      <td class="small mono">admin.login</td>
+      <td class="small"></td>
+      <td class="small muted"></td></tr>
+      <tr><td class="small mono">2026.10.30 22:23:09</td>
+      <td class="small">운영자</td>
+      <td class="small mono">admin.login</td>
+      <td class="small"></td>
+      <td class="small muted"></td></tr>
+  </tbody></table></div>
+  </main>
+</div>
+<script src="../assets/admin.js"></script>
+<script>document.addEventListener("submit",function(e){e.preventDefault();alert("시연용 화면입니다. 실제 저장되지 않습니다.")},true);</script></body>
+</html>

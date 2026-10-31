@@ -1,0 +1,217 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>대시보드 · MAXDAY 교육 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--p:#4320C7;--acc:#FB5640;--ink:#241B3C;--mut:#6E6885;--line:#E7E3F2;--bg:#F7F6FB}
+*{box-sizing:border-box}body{margin:0;font-family:'IBM Plex Sans KR',system-ui,sans-serif;background:var(--bg);color:var(--ink);display:flex;min-height:100vh}
+a{color:var(--p);text-decoration:none}
+.side{width:220px;flex:none;background:var(--ink);color:#fff;display:flex;flex-direction:column;padding:20px 12px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.side .lg{padding:2px 4px 16px}
+.side .lg .logobox{background:#fff;border-radius:11px;padding:11px 12px;display:flex;align-items:center;justify-content:center}
+.side .lg .logobox img{height:26px;width:auto;display:block;max-width:100%}
+.side .lg .cap{display:block;text-align:center;color:#9088AE;font-size:11px;letter-spacing:.14em;margin-top:7px}
+.side a.nav{display:block;padding:9px 11px;border-radius:9px;color:#BDB5D4;font-size:13px;margin-bottom:2px}
+.side a.nav:hover{background:rgba(255,255,255,.06);color:#fff}
+.side a.nav.on{background:rgba(255,255,255,.12);color:#fff;font-weight:600}
+/* 대메뉴 펼침(아코디언) */
+.side details.grp{margin-bottom:2px}
+.side details.grp>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:9px 11px;border-radius:9px;color:#CFC8E4;font-size:12px;font-weight:700;letter-spacing:.01em}
+.side details.grp>summary::-webkit-details-marker{display:none}
+.side details.grp>summary::after{content:'⌄';font-size:13px;line-height:1;opacity:.55;transform:translateY(-2px);transition:transform .18s}
+.side details.grp[open]>summary::after{transform:translateY(1px) rotate(180deg)}
+.side details.grp>summary:hover{background:rgba(255,255,255,.06);color:#fff}
+.side a.nav.sub{padding:8px 11px 8px 20px;font-size:12.5px;margin-bottom:1px}
+.side a.nav.sub.on{background:rgba(255,255,255,.14)}
+.side .out{margin-top:auto;padding-top:14px;font-size:12px}
+.main{flex:1;min-width:0;padding:28px 32px 60px}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;flex-wrap:wrap;gap:12px}
+.top h1{font-size:22px;margin:0}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+.kpi .l{font-size:12.5px;color:var(--mut)}.kpi .v{font-size:26px;font-weight:600;margin-top:6px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.card h2{font-size:16px;margin:0 0 14px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:11px 10px;border-bottom:1px solid #F2EFF8}
+th{font-size:11.5px;color:#9A93B0;font-weight:600;background:#FAF9FD}
+tr:hover td{background:#FAF9FD}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 15px;border-radius:9px;background:var(--p);color:#fff;border:0;font-size:13px;font-weight:600;cursor:pointer}
+.btn.ghost{background:#fff;border:1px solid var(--line);color:var(--p)}
+.btn.sm{padding:6px 11px;font-size:12px}
+.btn.danger{background:#C43F26}
+label{display:block;font-size:12.5px;font-weight:600;margin:12px 0 5px}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid #DFDBEC;border-radius:9px;font-size:13.5px;font-family:inherit;color:var(--ink)}
+textarea{min-height:90px}
+.row{display:flex;gap:14px;flex-wrap:wrap}.row>div{flex:1;min-width:160px}
+.badge{padding:3px 9px;border-radius:6px;font-size:11.5px;font-weight:600}
+.b-new{background:#FDEBE6;color:#C43F26}.b-ok{background:#EAF3EE;color:#2E7150}.b-mut{background:#F1EEF9;color:#6E6885}
+.flash{padding:11px 15px;border-radius:9px;font-size:13.5px;margin-bottom:16px}
+.flash.ok{background:#EAF3EE;color:#2E7150}.flash.err{background:#FDEBE6;color:#C43F26}
+.tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.tabs a{padding:8px 13px;border-radius:8px;background:#fff;border:1px solid var(--line);font-size:13px;color:var(--mut)}
+.tabs a.on{background:var(--p);color:#fff;border-color:var(--p)}
+@media(max-width:820px){body{flex-direction:column}.side{width:100%;height:auto;position:static;flex-direction:row;flex-wrap:wrap;gap:4px}.side .lg{width:100%}.side .out{margin:0}.kpis{grid-template-columns:repeat(2,1fr)}}
+</style><style id="demo-fit">html,body{max-width:100%;overflow-x:hidden}img,video{max-width:100%;height:auto}@media(max-width:760px){table{display:block;max-width:100%;overflow-x:auto}}</style></head><body><div id="demo-bar" style="position:sticky;top:0;z-index:99999;background:#0f1f46;color:#fff;font:600 12px/1.4 system-ui,sans-serif;text-align:center;padding:7px 12px">MAXDAY 교육 · 시연용 보기 전용 화면 (저장·로그인·결제 동작 없음)</div>
+<nav class="side">
+  <div class="lg"><div class="logobox"><img src="../assets/img/logo.png" alt="MAXDAY 교육"></div><span class="cap">관리자</span></div>
+            <a class="nav on" href="index.php.html">대시보드</a>
+                <details class="grp" >
+        <summary>공고·지원</summary>
+                  <a class="nav sub " href="jobs.php.html">공고 관리</a>
+                  <a class="nav sub " href="collect.php.html">수집 공고</a>
+                  <a class="nav sub " href="collect_sources.php.html">수집처 디렉토리</a>
+                  <a class="nav sub " href="applications.php.html">지원 현황</a>
+              </details>
+                <details class="grp" >
+        <summary>회원·신뢰</summary>
+                  <a class="nav sub " href="members.php.html">회원 관리</a>
+                  <a class="nav sub " href="reviews.php.html">후기·신뢰지표</a>
+                  <a class="nav sub " href="branches.php.html">지사·수익배분</a>
+              </details>
+                <details class="grp" >
+        <summary>강사 콘텐츠</summary>
+                  <a class="nav sub " href="certifications.php.html">자격증 안내</a>
+                  <a class="nav sub " href="subsidies.php.html">지원금 안내</a>
+                  <a class="nav sub " href="benefits.php.html">강사 혜택</a>
+                  <a class="nav sub " href="partners.php.html">제휴 할인업체</a>
+              </details>
+                <details class="grp" >
+        <summary>마케팅·노출</summary>
+                  <a class="nav sub " href="#">메인 이미지</a>
+                  <a class="nav sub " href="#">팝업 관리</a>
+                  <a class="nav sub " href="#">SEO 키워드</a>
+                  <a class="nav sub " href="#">pSEO 자동랜딩</a>
+              </details>
+                <details class="grp" >
+        <summary>운영·설정</summary>
+                  <a class="nav sub " href="inquiries.php.html">문의 접수</a>
+                  <a class="nav sub " href="analytics.php.html">통계보기</a>
+                  <a class="nav sub " href="settlement.php.html">수익 정산</a>
+                  <a class="nav sub " href="#">사이트 설정</a>
+              </details>
+        <div class="out"><a class="nav" href="#" target="_blank">사이트 보기</a><a class="nav" href="#">로그아웃</a></div>
+</nav>
+<div class="main">
+<div class="top"><h1>📊 대시보드</h1>
+  <div><a class="btn ghost" href="analytics.php.html">📈 통계 자세히</a>
+       <a class="btn" href="jobs.php.html">＋ 공고 관리</a></div></div>
+
+<div class="kpis">
+  <div class="kpi"><div class="l">오늘 방문</div><div class="v">0</div></div>
+  <div class="kpi"><div class="l">오늘 신규 회원</div><div class="v">0</div></div>
+  <div class="kpi"><div class="l">전체 공고</div><div class="v">109</div></div>
+  <div class="kpi"><div class="l">신규 문의</div><div class="v">0</div></div>
+</div>
+
+<div class="card">
+  <h2>최근 문의</h2>
+  <table>
+    <thead><tr><th>이름</th><th>분류</th><th>상태</th><th>접수</th></tr></thead>
+    <tbody>
+          <tr><td colspan="4" style="color:#9A93B0">접수된 문의가 없습니다.</td></tr>
+        </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h2>최근 공고</h2>
+  <table>
+    <thead><tr><th>제목</th><th>출처</th><th>기관</th><th>마감</th><th>상태</th><th>지원</th></tr></thead>
+    <tbody>
+          <tr>
+        <td><a href="#">영산대학교 평생교육원 양산캠퍼스 강사 모집</a></td>
+        <td><span class="badge b-mut">공공기관</span></td>
+        <td>영산대학교 평생교육원 양산캠퍼스</td>
+        <td>D-27</td>
+        <td>open</td>
+        <td>0</td>
+      </tr>
+          <tr>
+        <td><a href="#">마산대학교 평생교육원 강사 모집</a></td>
+        <td><span class="badge b-mut">공공기관</span></td>
+        <td>마산대학교 평생교육원</td>
+        <td>D-26</td>
+        <td>open</td>
+        <td>0</td>
+      </tr>
+          <tr>
+        <td><a href="#">인제대학교 미래교육원 강사 모집</a></td>
+        <td><span class="badge b-mut">공공기관</span></td>
+        <td>인제대학교 미래교육원</td>
+        <td>D-25</td>
+        <td>open</td>
+        <td>0</td>
+      </tr>
+          <tr>
+        <td><a href="#">경상국립대학교 평생교육원 강사 모집</a></td>
+        <td><span class="badge b-mut">공공기관</span></td>
+        <td>경상국립대학교 평생교육원</td>
+        <td>D-24</td>
+        <td>open</td>
+        <td>0</td>
+      </tr>
+          <tr>
+        <td><a href="#">창신대학교 평생교육원 강사 모집</a></td>
+        <td><span class="badge b-mut">공공기관</span></td>
+        <td>창신대학교 평생교육원</td>
+        <td>D-23</td>
+        <td>open</td>
+        <td>0</td>
+      </tr>
+        </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h2>최근 지원</h2>
+  <table>
+    <thead><tr><th>공고</th><th>지원자</th><th>단계</th><th>지원일</th></tr></thead>
+    <tbody>
+          <tr>
+        <td><a href="applications.php.html">방과후 미술 강사 모집 (2026 2학기)</a></td>
+        <td>최유진</td>
+        <td><span class="badge b-mut">보류</span></td>
+        <td>11시간 전</td>
+      </tr>
+          <tr>
+        <td><a href="applications.php.html">방과후 미술 강사 모집 (2026 2학기)</a></td>
+        <td>정민아</td>
+        <td><span class="badge b-mut">최종합격</span></td>
+        <td>11시간 전</td>
+      </tr>
+          <tr>
+        <td><a href="applications.php.html">방과후 미술 강사 모집 (2026 2학기)</a></td>
+        <td>한지우</td>
+        <td><span class="badge b-mut">면접예정</span></td>
+        <td>11시간 전</td>
+      </tr>
+          <tr>
+        <td><a href="applications.php.html">방과후 미술 강사 모집 (2026 2학기)</a></td>
+        <td>이하람</td>
+        <td><span class="badge b-mut">서류검토</span></td>
+        <td>11시간 전</td>
+      </tr>
+          <tr>
+        <td><a href="applications.php.html">방과후 미술 강사 모집 (2026 2학기)</a></td>
+        <td>김서연</td>
+        <td><span class="badge b-mut">서류검토</span></td>
+        <td>11시간 전</td>
+      </tr>
+        </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h2>빠른 링크</h2>
+  <div class="tabs">
+    <a href="jobs.php.html">공고 관리</a>
+    <a href="collect.php.html">수집 공고</a>
+    <a href="applications.php.html">지원 현황</a>
+    <a href="members.php.html">회원 관리</a>
+    <a href="reviews.php.html">후기·신뢰지표</a>
+    <a href="inquiries.php.html">문의 접수</a>
+    <a href="analytics.php.html">접속 통계</a>
+    <a href="#">사이트 설정</a>
+  </div>
+</div>
+</div><script>document.addEventListener("submit",function(e){e.preventDefault();alert("시연용 화면입니다. 실제 저장되지 않습니다.")},true);</script></body></html>

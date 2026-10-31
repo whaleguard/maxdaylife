@@ -1,0 +1,2415 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>수집처 디렉토리 · MAXDAY 교육 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--p:#4320C7;--acc:#FB5640;--ink:#241B3C;--mut:#6E6885;--line:#E7E3F2;--bg:#F7F6FB}
+*{box-sizing:border-box}body{margin:0;font-family:'IBM Plex Sans KR',system-ui,sans-serif;background:var(--bg);color:var(--ink);display:flex;min-height:100vh}
+a{color:var(--p);text-decoration:none}
+.side{width:220px;flex:none;background:var(--ink);color:#fff;display:flex;flex-direction:column;padding:20px 12px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.side .lg{padding:2px 4px 16px}
+.side .lg .logobox{background:#fff;border-radius:11px;padding:11px 12px;display:flex;align-items:center;justify-content:center}
+.side .lg .logobox img{height:26px;width:auto;display:block;max-width:100%}
+.side .lg .cap{display:block;text-align:center;color:#9088AE;font-size:11px;letter-spacing:.14em;margin-top:7px}
+.side a.nav{display:block;padding:9px 11px;border-radius:9px;color:#BDB5D4;font-size:13px;margin-bottom:2px}
+.side a.nav:hover{background:rgba(255,255,255,.06);color:#fff}
+.side a.nav.on{background:rgba(255,255,255,.12);color:#fff;font-weight:600}
+/* 대메뉴 펼침(아코디언) */
+.side details.grp{margin-bottom:2px}
+.side details.grp>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:9px 11px;border-radius:9px;color:#CFC8E4;font-size:12px;font-weight:700;letter-spacing:.01em}
+.side details.grp>summary::-webkit-details-marker{display:none}
+.side details.grp>summary::after{content:'⌄';font-size:13px;line-height:1;opacity:.55;transform:translateY(-2px);transition:transform .18s}
+.side details.grp[open]>summary::after{transform:translateY(1px) rotate(180deg)}
+.side details.grp>summary:hover{background:rgba(255,255,255,.06);color:#fff}
+.side a.nav.sub{padding:8px 11px 8px 20px;font-size:12.5px;margin-bottom:1px}
+.side a.nav.sub.on{background:rgba(255,255,255,.14)}
+.side .out{margin-top:auto;padding-top:14px;font-size:12px}
+.main{flex:1;min-width:0;padding:28px 32px 60px}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;flex-wrap:wrap;gap:12px}
+.top h1{font-size:22px;margin:0}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+.kpi .l{font-size:12.5px;color:var(--mut)}.kpi .v{font-size:26px;font-weight:600;margin-top:6px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.card h2{font-size:16px;margin:0 0 14px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:11px 10px;border-bottom:1px solid #F2EFF8}
+th{font-size:11.5px;color:#9A93B0;font-weight:600;background:#FAF9FD}
+tr:hover td{background:#FAF9FD}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 15px;border-radius:9px;background:var(--p);color:#fff;border:0;font-size:13px;font-weight:600;cursor:pointer}
+.btn.ghost{background:#fff;border:1px solid var(--line);color:var(--p)}
+.btn.sm{padding:6px 11px;font-size:12px}
+.btn.danger{background:#C43F26}
+label{display:block;font-size:12.5px;font-weight:600;margin:12px 0 5px}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid #DFDBEC;border-radius:9px;font-size:13.5px;font-family:inherit;color:var(--ink)}
+textarea{min-height:90px}
+.row{display:flex;gap:14px;flex-wrap:wrap}.row>div{flex:1;min-width:160px}
+.badge{padding:3px 9px;border-radius:6px;font-size:11.5px;font-weight:600}
+.b-new{background:#FDEBE6;color:#C43F26}.b-ok{background:#EAF3EE;color:#2E7150}.b-mut{background:#F1EEF9;color:#6E6885}
+.flash{padding:11px 15px;border-radius:9px;font-size:13.5px;margin-bottom:16px}
+.flash.ok{background:#EAF3EE;color:#2E7150}.flash.err{background:#FDEBE6;color:#C43F26}
+.tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.tabs a{padding:8px 13px;border-radius:8px;background:#fff;border:1px solid var(--line);font-size:13px;color:var(--mut)}
+.tabs a.on{background:var(--p);color:#fff;border-color:var(--p)}
+@media(max-width:820px){body{flex-direction:column}.side{width:100%;height:auto;position:static;flex-direction:row;flex-wrap:wrap;gap:4px}.side .lg{width:100%}.side .out{margin:0}.kpis{grid-template-columns:repeat(2,1fr)}}
+</style><style id="demo-fit">html,body{max-width:100%;overflow-x:hidden}img,video{max-width:100%;height:auto}@media(max-width:760px){table{display:block;max-width:100%;overflow-x:auto}}</style></head><body><div id="demo-bar" style="position:sticky;top:0;z-index:99999;background:#0f1f46;color:#fff;font:600 12px/1.4 system-ui,sans-serif;text-align:center;padding:7px 12px">MAXDAY 교육 · 시연용 보기 전용 화면 (저장·로그인·결제 동작 없음)</div>
+<nav class="side">
+  <div class="lg"><div class="logobox"><img src="../assets/img/logo.png" alt="MAXDAY 교육"></div><span class="cap">관리자</span></div>
+            <a class="nav " href="index.php.html">대시보드</a>
+                <details class="grp" open>
+        <summary>공고·지원</summary>
+                  <a class="nav sub " href="jobs.php.html">공고 관리</a>
+                  <a class="nav sub " href="collect.php.html">수집 공고</a>
+                  <a class="nav sub on" href="collect_sources.php.html">수집처 디렉토리</a>
+                  <a class="nav sub " href="applications.php.html">지원 현황</a>
+              </details>
+                <details class="grp" >
+        <summary>회원·신뢰</summary>
+                  <a class="nav sub " href="members.php.html">회원 관리</a>
+                  <a class="nav sub " href="reviews.php.html">후기·신뢰지표</a>
+                  <a class="nav sub " href="branches.php.html">지사·수익배분</a>
+              </details>
+                <details class="grp" >
+        <summary>강사 콘텐츠</summary>
+                  <a class="nav sub " href="certifications.php.html">자격증 안내</a>
+                  <a class="nav sub " href="subsidies.php.html">지원금 안내</a>
+                  <a class="nav sub " href="benefits.php.html">강사 혜택</a>
+                  <a class="nav sub " href="partners.php.html">제휴 할인업체</a>
+              </details>
+                <details class="grp" >
+        <summary>마케팅·노출</summary>
+                  <a class="nav sub " href="#">메인 이미지</a>
+                  <a class="nav sub " href="#">팝업 관리</a>
+                  <a class="nav sub " href="#">SEO 키워드</a>
+                  <a class="nav sub " href="#">pSEO 자동랜딩</a>
+              </details>
+                <details class="grp" >
+        <summary>운영·설정</summary>
+                  <a class="nav sub " href="inquiries.php.html">문의 접수</a>
+                  <a class="nav sub " href="analytics.php.html">통계보기</a>
+                  <a class="nav sub " href="settlement.php.html">수익 정산</a>
+                  <a class="nav sub " href="#">사이트 설정</a>
+              </details>
+        <div class="out"><a class="nav" href="#" target="_blank">사이트 보기</a><a class="nav" href="#">로그아웃</a></div>
+</nav>
+<div class="main">
+<div class="top"><h1>🗺️ 수집처 디렉토리</h1>
+  <div class="badge b-mut">총 95개 · 착수 0개</div>
+</div>
+
+<div class="card" style="background:#F7F6FB">
+  <p style="margin:0;font-size:13px;color:var(--mut);line-height:1.7">
+    부울경 강사공고 <b>수집 대상 마스터</b>입니다(박서현 대표 제공). 담당자가 <b>원문 열기</b>로 게시판을 확인하고,
+    실제 강사 공고가 있으면 <b>공고 초안 만들기</b>로 <b>수집 공고</b>에 등록한 뒤 내용을 채워 게시하세요.
+    (자동 크롤링은 호스팅 크론 제약으로 별도 — 현재는 수동 수집 기준.)
+  </p>
+</div>
+
+<div class="card">
+  <form method="get" class="row" style="align-items:flex-end">
+    <div><label>지역</label>
+      <select name="region"><option value="">전체</option>
+        <option >부산</option><option >울산</option><option >경남</option><option >부울경</option>      </select></div>
+    <div><label>우선순위</label>
+      <select name="priority"><option value="">전체</option>
+        <option >상</option><option >중</option><option >하</option>      </select></div>
+    <div><label>상태</label>
+      <select name="status"><option value="">전체</option>
+        <option >미착수</option><option >진행중</option><option >완료</option><option >보류</option>      </select></div>
+    <div style="flex:2"><label>검색(기관명·검색어·메모)</label><input name="q" value=""></div>
+    <div style="flex:none"><button class="btn">검색</button>
+      <a class="btn ghost" href="collect_sources.php.html">초기화</a></div>
+  </form>
+  <div style="margin-top:10px;font-size:12.5px;color:var(--mut)">지역 분포:
+    <span class="badge b-mut" style="margin-right:5px">부산 42</span><span class="badge b-mut" style="margin-right:5px">경남 37</span><span class="badge b-mut" style="margin-right:5px">울산 13</span><span class="badge b-mut" style="margin-right:5px">부울경 3</span>  </div>
+</div>
+
+<div class="card">
+  <table>
+    <thead><tr>
+      <th>지역</th><th>기관명 / 유형</th><th>권장 메뉴 · 검색어</th><th>우선</th><th>등급</th><th>상태</th><th style="text-align:right">작업</th>
+    </tr></thead>
+    <tbody>
+          <tr>
+        <td style="white-space:nowrap">부울경</td>
+        <td style="max-width:260px">
+          <b>한국대학교육협의회 강사 채용공고</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학 통합</div>
+          <a href="https://www.kcue.or.kr/notice/sub07.php" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 강사 채용공고</div>          <div style="color:#9A93B0">🔎 강사, 겸임, 초빙, 비전임</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="1">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="1">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 대학 강사 공고를 한 번에 확인하는 핵심 통합 출처</td></tr>          <tr>
+        <td style="white-space:nowrap">부울경</td>
+        <td style="max-width:260px">
+          <b>전문대학포털 전문대학소식</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학 통합</div>
+          <a href="https://www.procollege.kr/web/board/28584.do" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 교원(강사·초빙교원 등) 채용</div>          <div style="color:#9A93B0">🔎 강사, 초빙교원, 겸임교원</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="2">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="2">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 전문대 강사 채용 통합 출처</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">광역</span></td>
+        <td style="max-width:260px">
+          <b>부산광역시</b>
+          <div style="font-size:11.5px;color:#9A93B0">공공기관</div>
+          <a href="https://www.busan.go.kr/nbincruit" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 채용·모집</div>          <div style="color:#9A93B0">🔎 강사, 교육강사, 위촉강사, 프로그램 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="4">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="4">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 여성회관·사업소 등 부산시 산하 공고가 재게시되는 경우가 있음</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">광역</span></td>
+        <td style="max-width:260px">
+          <b>부산여성가족과 평생교육진흥원</b>
+          <div style="font-size:11.5px;color:#9A93B0">여성/평생교육</div>
+          <a href="https://www.bgli.re.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항/사업공고</div>          <div style="color:#9A93B0">🔎 평생교육 강사, 강사 모집, 강사풀</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="5">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="5">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 부산 평생교육 관련 광역 허브</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">광역</span></td>
+        <td style="max-width:260px">
+          <b>부산시사회복지관협회</b>
+          <div style="font-size:11.5px;color:#9A93B0">복지 통합</div>
+          <a href="https://www.baswc.org/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 구인게시판</div>          <div style="color:#9A93B0">🔎 강사, 프로그램강사, 프리랜서강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="6">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="6">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 회원 사회복지관 구인 공고 집중</td></tr>          <tr>
+        <td style="white-space:nowrap">울산<br><span style="color:#9A93B0;font-size:11px">광역</span></td>
+        <td style="max-width:260px">
+          <b>울산광역시</b>
+          <div style="font-size:11.5px;color:#9A93B0">공공기관</div>
+          <a href="https://www.ulsan.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고/채용</div>          <div style="color:#9A93B0">🔎 강사, 프로그램강사, 교육강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="8">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="8">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 시청 및 산하 사업소 공고</td></tr>          <tr>
+        <td style="white-space:nowrap">울산<br><span style="color:#9A93B0;font-size:11px">광역</span></td>
+        <td style="max-width:260px">
+          <b>울산광역시사회복지협의회</b>
+          <div style="font-size:11.5px;color:#9A93B0">복지 통합</div>
+          <a href="https://www.wel4u.or.kr/bbs/board.php?bo_table=job01" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 구인</div>          <div style="color:#9A93B0">🔎 강사, 프로그램강사, 치료강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="9">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="9">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 울산 복지기관 구인 통합 채널</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">광역</span></td>
+        <td style="max-width:260px">
+          <b>경상남도인재평생교육진흥원</b>
+          <div style="font-size:11.5px;color:#9A93B0">평생교육</div>
+          <a href="https://www.gndamoa.or.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항/사업공고</div>          <div style="color:#9A93B0">🔎 평생교육강사, 강사풀, 강사 모집</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="10">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="10">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 2026 디지털·AI 평생교육강사 인력풀 공고 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">광역</span></td>
+        <td style="max-width:260px">
+          <b>경상남도교육청 통합공공도서관</b>
+          <div style="font-size:11.5px;color:#9A93B0">도서관/평생교육</div>
+          <a href="https://gnelib.gne.go.kr/menu.es?mid=a10506000000" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 경남평생학습관현황</div>          <div style="color:#9A93B0">🔎 강사 모집, 평생학습, 문화강좌</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="11">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="11">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 도교육청 소속 도서관/평생학습관으로 확장하는 허브</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">중구</span></td>
+        <td style="max-width:260px">
+          <b>부산 중구청</b>
+          <div style="font-size:11.5px;color:#9A93B0">구·군/평생학습</div>
+          <a href="https://www.bsjunggu.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·공지사항·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 평생학습 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="12">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="12">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 구·군 산하 동 행정복지센터 공고도 함께 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">서구</span></td>
+        <td style="max-width:260px">
+          <b>부산 서구청</b>
+          <div style="font-size:11.5px;color:#9A93B0">구·군/평생학습</div>
+          <a href="https://www.bsseogu.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·공지사항·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 평생학습 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="13">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="13">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 구·군 산하 동 행정복지센터 공고도 함께 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">동구</span></td>
+        <td style="max-width:260px">
+          <b>부산 동구청</b>
+          <div style="font-size:11.5px;color:#9A93B0">구·군/평생학습</div>
+          <a href="https://www.bsdonggu.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·공지사항·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 평생학습 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="14">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="14">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 구·군 산하 동 행정복지센터 공고도 함께 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">영도구</span></td>
+        <td style="max-width:260px">
+          <b>부산 영도구청</b>
+          <div style="font-size:11.5px;color:#9A93B0">구·군/평생학습</div>
+          <a href="https://www.yeongdo.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·공지사항·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 평생학습 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="15">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="15">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 구·군 산하 동 행정복지센터 공고도 함께 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">부산진구</span></td>
+        <td style="max-width:260px">
+          <b>부산진구청</b>
+          <div style="font-size:11.5px;color:#9A93B0">구·군/평생학습</div>
+          <a href="https://www.busanjin.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·공지사항·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 평생학습 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="16">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="16">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 구·군 산하 동 행정복지센터 공고도 함께 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">동래구</span></td>
+        <td style="max-width:260px">
+          <b>부산 동래구청</b>
+          <div style="font-size:11.5px;color:#9A93B0">구·군/평생학습</div>
+          <a href="https://www.dongnae.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·공지사항·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 평생학습 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="17">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="17">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 구·군 산하 동 행정복지센터 공고도 함께 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">남구</span></td>
+        <td style="max-width:260px">
+          <b>부산 남구청</b>
+          <div style="font-size:11.5px;color:#9A93B0">구·군/평생학습</div>
+          <a href="https://www.bsnamgu.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·공지사항·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 평생학습 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="18">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="18">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 구·군 산하 동 행정복지센터 공고도 함께 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">북구</span></td>
+        <td style="max-width:260px">
+          <b>부산 북구 평생학습관</b>
+          <div style="font-size:11.5px;color:#9A93B0">구·군/평생학습</div>
+          <a href="https://www.bsbukgu.go.kr/edu/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·공지사항·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 평생학습 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="19">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="19">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 구·군 산하 동 행정복지센터 공고도 함께 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">해운대구</span></td>
+        <td style="max-width:260px">
+          <b>해운대구청</b>
+          <div style="font-size:11.5px;color:#9A93B0">구·군/평생학습</div>
+          <a href="https://www.haeundae.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·공지사항·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 평생학습 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="20">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="20">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 구·군 산하 동 행정복지센터 공고도 함께 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">사하구</span></td>
+        <td style="max-width:260px">
+          <b>사하구청</b>
+          <div style="font-size:11.5px;color:#9A93B0">구·군/평생학습</div>
+          <a href="https://www.saha.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·공지사항·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 평생학습 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="21">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="21">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 구·군 산하 동 행정복지센터 공고도 함께 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">금정구</span></td>
+        <td style="max-width:260px">
+          <b>금정구청</b>
+          <div style="font-size:11.5px;color:#9A93B0">구·군/평생학습</div>
+          <a href="https://www.geumjeong.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·공지사항·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 평생학습 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="22">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="22">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 구·군 산하 동 행정복지센터 공고도 함께 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">강서구</span></td>
+        <td style="max-width:260px">
+          <b>부산강서평생학습</b>
+          <div style="font-size:11.5px;color:#9A93B0">구·군/평생학습</div>
+          <a href="https://bsgangseo.go.kr/lll/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·공지사항·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 평생학습 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="23">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="23">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 구·군 산하 동 행정복지센터 공고도 함께 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">연제구</span></td>
+        <td style="max-width:260px">
+          <b>연제구청</b>
+          <div style="font-size:11.5px;color:#9A93B0">구·군/평생학습</div>
+          <a href="https://www.yeonje.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·공지사항·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 평생학습 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="24">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="24">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 구·군 산하 동 행정복지센터 공고도 함께 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">수영구</span></td>
+        <td style="max-width:260px">
+          <b>수영구청</b>
+          <div style="font-size:11.5px;color:#9A93B0">구·군/평생학습</div>
+          <a href="https://www.suyeong.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·공지사항·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 평생학습 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="25">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="25">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 구·군 산하 동 행정복지센터 공고도 함께 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">사상구</span></td>
+        <td style="max-width:260px">
+          <b>사상평생학습관</b>
+          <div style="font-size:11.5px;color:#9A93B0">구·군/평생학습</div>
+          <a href="https://www.sasang.go.kr/lll" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·공지사항·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 평생학습 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="26">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="26">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 구·군 산하 동 행정복지센터 공고도 함께 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">기장군</span></td>
+        <td style="max-width:260px">
+          <b>기장군청</b>
+          <div style="font-size:11.5px;color:#9A93B0">구·군/평생학습</div>
+          <a href="https://www.gijang.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·공지사항·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 평생학습 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="27">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="27">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 구·군 산하 동 행정복지센터 공고도 함께 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">울산<br><span style="color:#9A93B0;font-size:11px">중구</span></td>
+        <td style="max-width:260px">
+          <b>울산 중구 평생학습관</b>
+          <div style="font-size:11.5px;color:#9A93B0">구·군/평생학습</div>
+          <a href="https://www.junggu.ulsan.kr/edu/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항·강사은행·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 배달강사, 주민자치 강사, 평생학습 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="28">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="28">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 5개 구·군은 상시 모니터링 권장</td></tr>          <tr>
+        <td style="white-space:nowrap">울산<br><span style="color:#9A93B0;font-size:11px">남구</span></td>
+        <td style="max-width:260px">
+          <b>울산 남구 평생학습</b>
+          <div style="font-size:11.5px;color:#9A93B0">구·군/평생학습</div>
+          <a href="https://www.ulsannamgu.go.kr/edu/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항·강사은행·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 배달강사, 주민자치 강사, 평생학습 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="29">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="29">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 5개 구·군은 상시 모니터링 권장</td></tr>          <tr>
+        <td style="white-space:nowrap">울산<br><span style="color:#9A93B0;font-size:11px">동구</span></td>
+        <td style="max-width:260px">
+          <b>울산 동구 평생학습포털</b>
+          <div style="font-size:11.5px;color:#9A93B0">구·군/평생학습</div>
+          <a href="https://www.donggu.ulsan.kr/edu/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항·강사은행·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 배달강사, 주민자치 강사, 평생학습 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="30">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="30">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 5개 구·군은 상시 모니터링 권장</td></tr>          <tr>
+        <td style="white-space:nowrap">울산<br><span style="color:#9A93B0;font-size:11px">북구</span></td>
+        <td style="max-width:260px">
+          <b>울산 북구 평생학습관</b>
+          <div style="font-size:11.5px;color:#9A93B0">구·군/평생학습</div>
+          <a href="https://www.bukgu.ulsan.kr/edu/index.do" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항·강사은행·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 배달강사, 주민자치 강사, 평생학습 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="31">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="31">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 5개 구·군은 상시 모니터링 권장</td></tr>          <tr>
+        <td style="white-space:nowrap">울산<br><span style="color:#9A93B0;font-size:11px">울주군</span></td>
+        <td style="max-width:260px">
+          <b>울주군청</b>
+          <div style="font-size:11.5px;color:#9A93B0">구·군/평생학습</div>
+          <a href="https://www.ulju.ulsan.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항·강사은행·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 배달강사, 주민자치 강사, 평생학습 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="32">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="32">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 5개 구·군은 상시 모니터링 권장</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">창원시</span></td>
+        <td style="max-width:260px">
+          <b>창원시 평생학습정보망</b>
+          <div style="font-size:11.5px;color:#9A93B0">시·군/평생학습</div>
+          <a href="https://www.changwon.go.kr/lll/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 성인문해, 배달강좌</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="33">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="33">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 시·군청과 읍면동 공고를 함께 검색</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">진주시</span></td>
+        <td style="max-width:260px">
+          <b>진주시 평생학습관</b>
+          <div style="font-size:11.5px;color:#9A93B0">시·군/평생학습</div>
+          <a href="https://www.jinju.go.kr/06146/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 성인문해, 배달강좌</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="34">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="34">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 시·군청과 읍면동 공고를 함께 검색</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">통영시</span></td>
+        <td style="max-width:260px">
+          <b>통영시청</b>
+          <div style="font-size:11.5px;color:#9A93B0">시·군/평생학습</div>
+          <a href="https://www.tongyeong.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 성인문해, 배달강좌</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="35">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="35">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 시·군청과 읍면동 공고를 함께 검색</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">사천시</span></td>
+        <td style="max-width:260px">
+          <b>사천시청</b>
+          <div style="font-size:11.5px;color:#9A93B0">시·군/평생학습</div>
+          <a href="https://www.sacheon.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 성인문해, 배달강좌</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="36">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="36">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 시·군청과 읍면동 공고를 함께 검색</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">김해시</span></td>
+        <td style="max-width:260px">
+          <b>김해시 평생학습관</b>
+          <div style="font-size:11.5px;color:#9A93B0">시·군/평생학습</div>
+          <a href="https://www.gimhae.go.kr/05912/05913.web" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 성인문해, 배달강좌</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="37">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="37">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 시·군청과 읍면동 공고를 함께 검색</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">밀양시</span></td>
+        <td style="max-width:260px">
+          <b>밀양시청</b>
+          <div style="font-size:11.5px;color:#9A93B0">시·군/평생학습</div>
+          <a href="https://www.miryang.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 성인문해, 배달강좌</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="38">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="38">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 시·군청과 읍면동 공고를 함께 검색</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">거제시</span></td>
+        <td style="max-width:260px">
+          <b>거제시청</b>
+          <div style="font-size:11.5px;color:#9A93B0">시·군/평생학습</div>
+          <a href="https://www.geoje.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 성인문해, 배달강좌</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="39">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="39">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 시·군청과 읍면동 공고를 함께 검색</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">양산시</span></td>
+        <td style="max-width:260px">
+          <b>양산시청</b>
+          <div style="font-size:11.5px;color:#9A93B0">시·군/평생학습</div>
+          <a href="https://www.yangsan.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 성인문해, 배달강좌</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="40">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="40">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 시·군청과 읍면동 공고를 함께 검색</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">의령군</span></td>
+        <td style="max-width:260px">
+          <b>의령군청</b>
+          <div style="font-size:11.5px;color:#9A93B0">시·군/평생학습</div>
+          <a href="https://www.uiryeong.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 성인문해, 배달강좌</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="41">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="41">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 시·군청과 읍면동 공고를 함께 검색</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">함안군</span></td>
+        <td style="max-width:260px">
+          <b>함안군 평생학습센터</b>
+          <div style="font-size:11.5px;color:#9A93B0">시·군/평생학습</div>
+          <a href="https://www.haman.go.kr/01246/01250/01282.web" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 성인문해, 배달강좌</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="42">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="42">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 시·군청과 읍면동 공고를 함께 검색</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">창녕군</span></td>
+        <td style="max-width:260px">
+          <b>창녕군청</b>
+          <div style="font-size:11.5px;color:#9A93B0">시·군/평생학습</div>
+          <a href="https://www.cng.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 성인문해, 배달강좌</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="43">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="43">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 시·군청과 읍면동 공고를 함께 검색</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">고성군</span></td>
+        <td style="max-width:260px">
+          <b>고성군청</b>
+          <div style="font-size:11.5px;color:#9A93B0">시·군/평생학습</div>
+          <a href="https://www.goseong.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 성인문해, 배달강좌</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="44">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="44">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 시·군청과 읍면동 공고를 함께 검색</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">남해군</span></td>
+        <td style="max-width:260px">
+          <b>남해군청</b>
+          <div style="font-size:11.5px;color:#9A93B0">시·군/평생학습</div>
+          <a href="https://www.namhae.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 성인문해, 배달강좌</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="45">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="45">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 시·군청과 읍면동 공고를 함께 검색</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">하동군</span></td>
+        <td style="max-width:260px">
+          <b>하동군청</b>
+          <div style="font-size:11.5px;color:#9A93B0">시·군/평생학습</div>
+          <a href="https://www.hadong.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 성인문해, 배달강좌</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="46">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="46">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 시·군청과 읍면동 공고를 함께 검색</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">산청군</span></td>
+        <td style="max-width:260px">
+          <b>산청군청</b>
+          <div style="font-size:11.5px;color:#9A93B0">시·군/평생학습</div>
+          <a href="https://www.sancheong.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 성인문해, 배달강좌</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="47">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="47">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 시·군청과 읍면동 공고를 함께 검색</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">함양군</span></td>
+        <td style="max-width:260px">
+          <b>함양군청</b>
+          <div style="font-size:11.5px;color:#9A93B0">시·군/평생학습</div>
+          <a href="https://www.hygn.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 성인문해, 배달강좌</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="48">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="48">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 시·군청과 읍면동 공고를 함께 검색</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">거창군</span></td>
+        <td style="max-width:260px">
+          <b>거창군청</b>
+          <div style="font-size:11.5px;color:#9A93B0">시·군/평생학습</div>
+          <a href="https://www.geochang.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 성인문해, 배달강좌</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="49">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="49">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 시·군청과 읍면동 공고를 함께 검색</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">합천군</span></td>
+        <td style="max-width:260px">
+          <b>합천군청</b>
+          <div style="font-size:11.5px;color:#9A93B0">시·군/평생학습</div>
+          <a href="https://www.hc.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 고시공고·평생학습·주민자치</div>          <div style="color:#9A93B0">🔎 강사모집, 프로그램 강사, 주민자치 강사, 성인문해, 배달강좌</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="50">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="50">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 시·군청과 읍면동 공고를 함께 검색</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">남구</span></td>
+        <td style="max-width:260px">
+          <b>부산광역시 여성회관</b>
+          <div style="font-size:11.5px;color:#9A93B0">여성회관</div>
+          <a href="https://www.busan.go.kr/woman/whnotice" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항</div>          <div style="color:#9A93B0">🔎 교육강사 공개모집</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="51">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="51">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 반기별 교육강사 공고 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">울산<br><span style="color:#9A93B0;font-size:11px">남구</span></td>
+        <td style="max-width:260px">
+          <b>울산여성인력개발센터</b>
+          <div style="font-size:11.5px;color:#9A93B0">여성인력개발</div>
+          <a href="https://www.usw.or.kr/main/mainPage.do" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 알림사항/채용공고</div>          <div style="color:#9A93B0">🔎 강사, 전문강사, 직업교육강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="56">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="56">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+                <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">창원시</span></td>
+        <td style="max-width:260px">
+          <b>창원여성인력개발센터</b>
+          <div style="font-size:11.5px;color:#9A93B0">여성인력개발</div>
+          <a href="https://www.cwcenter.or.kr/kor/program/teacher.html" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 강사지원</div>          <div style="color:#9A93B0">🔎 강사, 전문강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="57">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="57">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 상시 강사지원 채널 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">연제구</span></td>
+        <td style="max-width:260px">
+          <b>부산광역시노인종합복지관</b>
+          <div style="font-size:11.5px;color:#9A93B0">노인복지관</div>
+          <a href="https://www.youngsilver.or.kr/bbs/board.php?bo_table=recruit&amp;sca=%EA%B0%95%EC%82%AC" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 강사 채용</div>          <div style="color:#9A93B0">🔎 노년사회화, 프로그램 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="58">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="58">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 2026 하반기 프로그램 강사 공고 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">동래구</span></td>
+        <td style="max-width:260px">
+          <b>사직종합사회복지관</b>
+          <div style="font-size:11.5px;color:#9A93B0">종합사회복지관</div>
+          <a href="https://www.sjcwc.org/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지/채용</div>          <div style="color:#9A93B0">🔎 프리랜서 강사, 사회교육 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="59">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="59">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 사회교육 프로그램 프리랜서 강사 공고 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">동래구</span></td>
+        <td style="max-width:260px">
+          <b>부산박물관</b>
+          <div style="font-size:11.5px;color:#9A93B0">박물관</div>
+          <a href="https://museum.busan.go.kr/busan/bsopboard" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항</div>          <div style="color:#9A93B0">🔎 교육강사, 전시교육 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="61">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="61">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 2026 교육강사 공개모집 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">창원시</span></td>
+        <td style="max-width:260px">
+          <b>경남종합사회복지관</b>
+          <div style="font-size:11.5px;color:#9A93B0">종합사회복지관</div>
+          <a href="https://www.knsw.or.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항/채용</div>          <div style="color:#9A93B0">🔎 강사, 교육문화, 프로그램 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="66">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="66">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+                <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">함양군</span></td>
+        <td style="max-width:260px">
+          <b>함양군종합사회복지관</b>
+          <div style="font-size:11.5px;color:#9A93B0">종합사회복지관</div>
+          <a href="https://www.hygn.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 군청 고시공고</div>          <div style="color:#9A93B0">🔎 복지관 강사, 프로그램 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="67">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="67">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 2026 하반기 프로그램 강사 모집 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">창원시</span></td>
+        <td style="max-width:260px">
+          <b>창원시 도서관사업소</b>
+          <div style="font-size:11.5px;color:#9A93B0">도서관</div>
+          <a href="https://lib.changwon.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 문화강좌/공지사항</div>          <div style="color:#9A93B0">🔎 문화강좌 강사, 독서 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="69">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="69">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 2026 마산합포도서관 문화강좌 강사 공고 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">광역</span></td>
+        <td style="max-width:260px">
+          <b>경상남도교육청 통합공공도서관</b>
+          <div style="font-size:11.5px;color:#9A93B0">도서관</div>
+          <a href="https://gnelib.gne.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 열린마당/개별도서관</div>          <div style="color:#9A93B0">🔎 강사모집, 평생학습 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="70">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="70">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 개별 공공도서관으로 확장 가능</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">남구</span></td>
+        <td style="max-width:260px">
+          <b>부산예술대학교 평생교육원</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학부설 평생교육원</div>
+          <a href="https://pia-edu.com/notice" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항 &gt; 개설강좌 및 강사모집</div>          <div style="color:#9A93B0">🔎 개설강좌 및 강사모집, 평생교육원 강사, 여름학기 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="73">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="73">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 2025~2026 학기·여름학기 강사모집 반복 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">금정구</span></td>
+        <td style="max-width:260px">
+          <b>부산대학교 미래시민교육원 부산캠퍼스</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학부설 평생교육원</div>
+          <a href="https://sce.pusan.ac.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항 + 강사진모드 &gt; 강좌개설신청</div>          <div style="color:#9A93B0">🔎 강좌 공모, 강좌개설 신청, 신규강좌, 책임강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="74">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="74">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 2026-2학기 강좌 공모 확인; 강사가 홈페이지에서 직접 응모</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">서구</span></td>
+        <td style="max-width:260px">
+          <b>동아대학교 평생교육원</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학부설 평생교육원</div>
+          <a href="https://donga-edu.donga.ac.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 일반과정 &gt; 강좌개설신청 + 공지사항</div>          <div style="color:#9A93B0">🔎 강좌개설 신청, 일반과정 강사, 교강사 모집</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="75">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="75">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 일반과정 강좌개설신청 메뉴 운영</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">부산진구</span></td>
+        <td style="max-width:260px">
+          <b>동의대학교 미래교육원</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학부설 평생교육원</div>
+          <a href="https://lifelong.deu.ac.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항 + 일반과정 강좌개설 신청</div>          <div style="color:#9A93B0">🔎 학점은행제 강사, 교강사, 일반강좌 개설 신청</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="76">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="76">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 학점은행제 강사 모집과 일반강좌 개설신청 사례 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">사상구</span></td>
+        <td style="max-width:260px">
+          <b>부산디지털대학교 평생교육원</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학부설 평생교육원</div>
+          <a href="https://www.bdu.ac.kr/edulife/sub07_04.do" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 커뮤니티 &gt; 강좌개설상담</div>          <div style="color:#9A93B0">🔎 강좌개설 상담, 강사 제안, 자격증과정, 전문가과정</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="77">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="77">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 연중 강좌개설 상담·접수 안내</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">광역</span></td>
+        <td style="max-width:260px">
+          <b>부산평생학습플랫폼 평생교육기관 소식</b>
+          <div style="font-size:11.5px;color:#9A93B0">평생교육 통합</div>
+          <a href="https://lll.busan.go.kr/lll/index.do?menu_id=00004673" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 평생교육기관 소식</div>          <div style="color:#9A93B0">🔎 대학교 미래시민교육원, 강좌개설 공모, 강사 모집</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="82">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="82">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 부산대 미래시민교육원 강좌공모 등 재게시 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">울산<br><span style="color:#9A93B0;font-size:11px">동구</span></td>
+        <td style="max-width:260px">
+          <b>울산과학대학교 평생교육원 공지사항</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학부설 평생교육원</div>
+          <a href="https://www.uc.ac.kr/edu/CMS/Board/Board.do?mCode=MN075&amp;mgr_seq=388" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 정보광장 &gt; 공지사항</div>          <div style="color:#9A93B0">🔎 평생교육원 강사 모집, 신규 강사, 테니스 강사, 필라테스 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="83">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="83">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 2026 필라테스 신규강사 초빙 등 실제 공고 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">울산<br><span style="color:#9A93B0;font-size:11px">동구</span></td>
+        <td style="max-width:260px">
+          <b>울산과학대학교 프로그램 개설제안</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학부설 평생교육원</div>
+          <a href="https://edu.uc.ac.kr/edu/CMS/Board/Board.do?mCode=MN080" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 정보광장 &gt; 프로그램 개설제안</div>          <div style="color:#9A93B0">🔎 프로그램 개설제안, 신규강좌, 강사 제안</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="84">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="84">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 강사가 직접 프로그램을 제안하는 별도 게시판</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">양산시</span></td>
+        <td style="max-width:260px">
+          <b>부산대학교 미래시민교육원 양산캠퍼스</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학부설 평생교육원</div>
+          <a href="https://sce.pusan.ac.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항 + 강사진모드 &gt; 강좌개설신청</div>          <div style="color:#9A93B0">🔎 강좌 공모, 강좌개설 신청, 신규강좌, 책임강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="86">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="86">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 부산캠퍼스와 동일 공모에서 양산캠퍼스 선택 가능</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">밀양시</span></td>
+        <td style="max-width:260px">
+          <b>부산대학교 미래시민교육원 밀양캠퍼스</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학부설 평생교육원</div>
+          <a href="https://sce.pusan.ac.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항 + 강사진모드 &gt; 강좌개설신청</div>          <div style="color:#9A93B0">🔎 강좌 공모, 강좌개설 신청, 신규강좌, 책임강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="87">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="87">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 부산캠퍼스와 동일 공모에서 밀양캠퍼스 선택 가능</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">양산시</span></td>
+        <td style="max-width:260px">
+          <b>동원과학기술대학교 평생교육원</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학부설 평생교육원</div>
+          <a href="https://career.dist.ac.kr/center/CMS/Board/Board.do?mCode=MN052&amp;mgr_seq=12" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 커뮤니티 &gt; 공지사항/자료실</div>          <div style="color:#9A93B0">🔎 신규강좌 및 강사 모집, 시민평생교육 강사, 학점은행제 강사</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="88">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="88">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 시민강좌 신규강좌·강사 및 학점은행제 강사모집 사례 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">남해군</span></td>
+        <td style="max-width:260px">
+          <b>국립창원대학교 남해캠퍼스 평생교육원</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학부설 평생교육원</div>
+          <a href="https://lifelong.namhae.ac.kr/bbs/board.php?bo_table=recruit" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 열린게시판 &gt; 강사모집 게시판</div>          <div style="color:#9A93B0">🔎 강사모집, 강좌개설, 강의계획서, 신규임용</div>        </td>
+        <td><span class="badge b-new">상</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="89">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="89">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 강사모집·강좌개설 전용 게시판 운영</td></tr>          <tr>
+        <td style="white-space:nowrap">부울경</td>
+        <td style="max-width:260px">
+          <b>진학프로 강사 채용</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학 통합</div>
+          <a href="https://www.jinhakpro.com/recruit/list?recruitTypeCode=L" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 채용정보 &gt; 강사</div>          <div style="color:#9A93B0">🔎 강사, 비전임, 겸임</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="3">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="3">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 민간 집계 서비스. 반드시 원문 링크 병기 권장</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">광역</span></td>
+        <td style="max-width:260px">
+          <b>부산광역시 여성인력개발센터 현황</b>
+          <div style="font-size:11.5px;color:#9A93B0">여성 통합</div>
+          <a href="https://www.busan.go.kr/depart/woman030103" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 센터 현황</div>          <div style="color:#9A93B0">🔎 강사, 직업교육, 전문강사</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="7">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="7">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 개별 여성인력개발센터 링크 탐색용</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">부산진구</span></td>
+        <td style="max-width:260px">
+          <b>부산진여성인력개발센터</b>
+          <div style="font-size:11.5px;color:#9A93B0">여성인력개발</div>
+          <a href="https://www.bswoman.or.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항/교육프로그램</div>          <div style="color:#9A93B0">🔎 강사, 교육강사, 직업훈련강사</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="52">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="52">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+                <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">동래구</span></td>
+        <td style="max-width:260px">
+          <b>동래여성인력개발센터</b>
+          <div style="font-size:11.5px;color:#9A93B0">여성인력개발</div>
+          <a href="https://www.womancenter.or.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항/교육</div>          <div style="color:#9A93B0">🔎 강사, 교육강사</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="53">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="53">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+                <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">사상구</span></td>
+        <td style="max-width:260px">
+          <b>사상여성인력개발센터</b>
+          <div style="font-size:11.5px;color:#9A93B0">여성인력개발</div>
+          <a href="https://www.bbwoman.or.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항</div>          <div style="color:#9A93B0">🔎 강사, 직업교육 강사</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="54">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="54">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+                <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">동구</span></td>
+        <td style="max-width:260px">
+          <b>동구여성인력개발센터</b>
+          <div style="font-size:11.5px;color:#9A93B0">여성인력개발</div>
+          <a href="https://www.ewoman.or.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항/프로그램</div>          <div style="color:#9A93B0">🔎 강사, 전문강사</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="55">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="55">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+                <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">연제구</span></td>
+        <td style="max-width:260px">
+          <b>연제구연산종합사회복지관</b>
+          <div style="font-size:11.5px;color:#9A93B0">종합사회복지관</div>
+          <a href="https://yjys8638360.or.kr/sub4_1" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항</div>          <div style="color:#9A93B0">🔎 강사, 프로그램 강사</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="60">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="60">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+                <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">서구</span></td>
+        <td style="max-width:260px">
+          <b>임시수도기념관</b>
+          <div style="font-size:11.5px;color:#9A93B0">박물관</div>
+          <a href="https://www.busan.go.kr/monument/mmboard" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항</div>          <div style="color:#9A93B0">🔎 교육강사, 역사교육</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="62">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="62">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 2026 신규 교육강사 공고 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">광역</span></td>
+        <td style="max-width:260px">
+          <b>부산도서관</b>
+          <div style="font-size:11.5px;color:#9A93B0">도서관</div>
+          <a href="https://library.busan.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항</div>          <div style="color:#9A93B0">🔎 강사, 독서문화 강사, 프로그램 강사</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="63">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="63">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+                <tr>
+        <td style="white-space:nowrap">울산<br><span style="color:#9A93B0;font-size:11px">광역</span></td>
+        <td style="max-width:260px">
+          <b>울산도서관</b>
+          <div style="font-size:11.5px;color:#9A93B0">도서관</div>
+          <a href="https://library.ulsan.go.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항</div>          <div style="color:#9A93B0">🔎 강사, 독서문화, 프로그램 강사</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="64">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="64">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+                <tr>
+        <td style="white-space:nowrap">울산<br><span style="color:#9A93B0;font-size:11px">북구</span></td>
+        <td style="max-width:260px">
+          <b>어울림복지재단/북구종합사회복지관</b>
+          <div style="font-size:11.5px;color:#9A93B0">종합사회복지관</div>
+          <a href="https://www.bukgusw.or.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항/채용</div>          <div style="color:#9A93B0">🔎 강사, 프로그램 강사</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="65">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="65">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+                <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">김해시</span></td>
+        <td style="max-width:260px">
+          <b>김해시종합사회복지관</b>
+          <div style="font-size:11.5px;color:#9A93B0">종합사회복지관</div>
+          <a href="https://gcwc.or.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항/채용</div>          <div style="color:#9A93B0">🔎 강사, 교육문화 강사</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="68">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="68">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+                <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">창원시</span></td>
+        <td style="max-width:260px">
+          <b>국립창원대학교 평생교육원</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학부설 평생교육원</div>
+          <a href="https://www.changwon.ac.kr/lifelong/na/ntt/selectNttList.do?bbsId=1790&amp;mi=4780" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 구인구직</div>          <div style="color:#9A93B0">🔎 강사, 방과후, 특강, 평생교육원 구인</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="71">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="71">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 기존 수집처. 평생교육원 전용 시트에도 포함</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">광역</span></td>
+        <td style="max-width:260px">
+          <b>부산외국인주민지원센터</b>
+          <div style="font-size:11.5px;color:#9A93B0">외국인지원</div>
+          <a href="https://www.bfwc.or.kr/kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항</div>          <div style="color:#9A93B0">🔎 한국어 강사, 외국어 전문강사, 사회통합</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>A</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="72">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="72">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 2026 외국어 전문강사 공고 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">북구</span></td>
+        <td style="max-width:260px">
+          <b>부산과학기술대학교 평생교육원</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학부설 평생교육원</div>
+          <a href="https://life.bist.ac.kr/main/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 평생교육원 소식 &gt; 공지사항</div>          <div style="color:#9A93B0">🔎 강사 모집, 교강사, 신규강좌, 방과후 강사</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="78">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="78">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 공식 평생교육원 홈페이지; 세부 모집 URL 추가 확인 권장</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">사상구</span></td>
+        <td style="max-width:260px">
+          <b>신라대학교 평생교육원</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학부설 평생교육원</div>
+          <a href="https://soc.silla.ac.kr/Home/Sub02/LifelongEducation0102.aspx" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 평생교육과정 &gt; 공지/모집요강</div>          <div style="color:#9A93B0">🔎 강사 모집, 신규강좌, 시민대학, 교강사</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="79">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="79">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 부산시민대학·문화예술·자격과정 운영</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">연제구</span></td>
+        <td style="max-width:260px">
+          <b>부산경상대학교 평생교육원</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학부설 평생교육원</div>
+          <a href="https://lifeedu.bsks.ac.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 일반교육과정 + 공지사항</div>          <div style="color:#9A93B0">🔎 강사 모집, 개설강좌, 프로그램 강사</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="80">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="80">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 공식 평생교육원 사이트; 공지 게시판 구조 확인 필요</td></tr>          <tr>
+        <td style="white-space:nowrap">부산<br><span style="color:#9A93B0;font-size:11px">해운대구</span></td>
+        <td style="max-width:260px">
+          <b>영산대학교 평생교육원 해운대캠퍼스</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학부설 평생교육원</div>
+          <a href="https://bsedu.ysu.ac.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 일반과정 &gt; 공지사항/모집안내</div>          <div style="color:#9A93B0">🔎 교강사 모집, 일반과정 강사, 신규강좌</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="81">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="81">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 일반과정·학점은행제 공지 분리 모니터링</td></tr>          <tr>
+        <td style="white-space:nowrap">울산<br><span style="color:#9A93B0;font-size:11px">남구</span></td>
+        <td style="max-width:260px">
+          <b>울산대학교 평생교육원</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학부설 평생교육원</div>
+          <a href="https://cec.ulsan.ac.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 게시판 &gt; 공지사항 + 개설강좌</div>          <div style="color:#9A93B0">🔎 강사 모집, 신규강좌, 강좌개설, 교강사</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="85">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="85">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 학기·단기특강 공지 활발; 강사모집 키워드 별도 감시</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">창원시</span></td>
+        <td style="max-width:260px">
+          <b>경남대학교 평생교육원</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학부설 평생교육원</div>
+          <a href="https://www.kyungnam.ac.kr/sites/cce/index.do" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 NEWS ROOM &gt; 공지사항</div>          <div style="color:#9A93B0">🔎 강사 모집, 신규강좌, 평생학습과정, 창원시 위탁강좌</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="90">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="90">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 공지 활발; 강사모집 세부 공고는 키워드 검색 필요</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">창원시</span></td>
+        <td style="max-width:260px">
+          <b>창신대학교 평생교육원</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학부설 평생교육원</div>
+          <a href="https://ice.cs.ac.kr/hakjeom/basiccourses" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항 + 일반과정</div>          <div style="color:#9A93B0">🔎 강사 모집, 신규강좌, 일반과정, 창원시 위탁과정</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="91">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="91">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 상·하반기 일반과정 운영; 2월·8월 집중 확인</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">진주시</span></td>
+        <td style="max-width:260px">
+          <b>경상국립대학교 평생교육원</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학부설 평생교육원</div>
+          <a href="https://longlife.gnu.ac.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항/강좌 안내</div>          <div style="color:#9A93B0">🔎 강사 모집, 신규강좌, 강좌개설, 평생교육원</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="92">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="92">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 가좌·칠암캠퍼스 강좌 운영; 세부 모집 URL 확정 권장</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">김해시</span></td>
+        <td style="max-width:260px">
+          <b>인제대학교 미래교육원</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학부설 평생교육원</div>
+          <a href="https://soc.inje.ac.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항 + 교육원 자체/특별과정</div>          <div style="color:#9A93B0">🔎 강사 모집, 신규강좌, 교강사, 특별과정</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="93">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="93">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 공식 미래교육원 홈페이지</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">창원시</span></td>
+        <td style="max-width:260px">
+          <b>마산대학교 평생교육원</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학부설 평생교육원</div>
+          <a href="https://lifelong.masan.ac.kr/board/000001/8" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항</div>          <div style="color:#9A93B0">🔎 강사 모집, 신규강좌, 위탁과정, 평생직업교육 강사</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="94">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="94">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 평생직업·지자체 위탁과정 공지 모니터링</td></tr>          <tr>
+        <td style="white-space:nowrap">경남<br><span style="color:#9A93B0;font-size:11px">양산시</span></td>
+        <td style="max-width:260px">
+          <b>영산대학교 평생교육원 양산캠퍼스</b>
+          <div style="font-size:11.5px;color:#9A93B0">대학부설 평생교육원</div>
+          <a href="https://ysedu.ysu.ac.kr/" target="_blank" rel="noopener" style="font-size:11.5px">원문 열기 ↗</a>        </td>
+        <td style="max-width:280px;font-size:12px;color:#544C6E">
+          <div>📁 공지사항 + 일반과정</div>          <div style="color:#9A93B0">🔎 교강사 모집, 일반과정 강사, 학점은행제 강사</div>        </td>
+        <td><span class="badge b-mut">중</span></td>
+        <td>B</td>
+        <td>
+          <form method="post" action="#" style="margin:0">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="95">
+            <select name="status" onchange="this.form.submit()" style="width:auto;padding:5px 8px;font-size:12px">
+              <option selected>미착수</option><option >진행중</option><option >완료</option><option >보류</option>            </select>
+          </form>
+        </td>
+        <td style="text-align:right;white-space:nowrap">
+          <form method="post" action="#" style="display:inline;margin:0" onsubmit="return confirm('이 수집처를 공공기관 공고로 등록(게시)할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="to_job"><input type="hidden" name="id" value="95">
+            <button class="btn sm">공고로 등록</button>
+          </form>
+        </td>
+      </tr>
+      <tr><td></td><td colspan="6" style="padding-top:0;font-size:11.5px;color:#9A93B0">비고: 일반과정·학점은행제·보수교육 공지 운영</td></tr>        </tbody>
+  </table>
+</div>
+</div><script>document.addEventListener("submit",function(e){e.preventDefault();alert("시연용 화면입니다. 실제 저장되지 않습니다.")},true);</script></body></html>

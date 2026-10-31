@@ -1,0 +1,1761 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>수집 공고 · MAXDAY 교육 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--p:#4320C7;--acc:#FB5640;--ink:#241B3C;--mut:#6E6885;--line:#E7E3F2;--bg:#F7F6FB}
+*{box-sizing:border-box}body{margin:0;font-family:'IBM Plex Sans KR',system-ui,sans-serif;background:var(--bg);color:var(--ink);display:flex;min-height:100vh}
+a{color:var(--p);text-decoration:none}
+.side{width:220px;flex:none;background:var(--ink);color:#fff;display:flex;flex-direction:column;padding:20px 12px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.side .lg{padding:2px 4px 16px}
+.side .lg .logobox{background:#fff;border-radius:11px;padding:11px 12px;display:flex;align-items:center;justify-content:center}
+.side .lg .logobox img{height:26px;width:auto;display:block;max-width:100%}
+.side .lg .cap{display:block;text-align:center;color:#9088AE;font-size:11px;letter-spacing:.14em;margin-top:7px}
+.side a.nav{display:block;padding:9px 11px;border-radius:9px;color:#BDB5D4;font-size:13px;margin-bottom:2px}
+.side a.nav:hover{background:rgba(255,255,255,.06);color:#fff}
+.side a.nav.on{background:rgba(255,255,255,.12);color:#fff;font-weight:600}
+/* 대메뉴 펼침(아코디언) */
+.side details.grp{margin-bottom:2px}
+.side details.grp>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:9px 11px;border-radius:9px;color:#CFC8E4;font-size:12px;font-weight:700;letter-spacing:.01em}
+.side details.grp>summary::-webkit-details-marker{display:none}
+.side details.grp>summary::after{content:'⌄';font-size:13px;line-height:1;opacity:.55;transform:translateY(-2px);transition:transform .18s}
+.side details.grp[open]>summary::after{transform:translateY(1px) rotate(180deg)}
+.side details.grp>summary:hover{background:rgba(255,255,255,.06);color:#fff}
+.side a.nav.sub{padding:8px 11px 8px 20px;font-size:12.5px;margin-bottom:1px}
+.side a.nav.sub.on{background:rgba(255,255,255,.14)}
+.side .out{margin-top:auto;padding-top:14px;font-size:12px}
+.main{flex:1;min-width:0;padding:28px 32px 60px}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;flex-wrap:wrap;gap:12px}
+.top h1{font-size:22px;margin:0}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+.kpi .l{font-size:12.5px;color:var(--mut)}.kpi .v{font-size:26px;font-weight:600;margin-top:6px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.card h2{font-size:16px;margin:0 0 14px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:11px 10px;border-bottom:1px solid #F2EFF8}
+th{font-size:11.5px;color:#9A93B0;font-weight:600;background:#FAF9FD}
+tr:hover td{background:#FAF9FD}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 15px;border-radius:9px;background:var(--p);color:#fff;border:0;font-size:13px;font-weight:600;cursor:pointer}
+.btn.ghost{background:#fff;border:1px solid var(--line);color:var(--p)}
+.btn.sm{padding:6px 11px;font-size:12px}
+.btn.danger{background:#C43F26}
+label{display:block;font-size:12.5px;font-weight:600;margin:12px 0 5px}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid #DFDBEC;border-radius:9px;font-size:13.5px;font-family:inherit;color:var(--ink)}
+textarea{min-height:90px}
+.row{display:flex;gap:14px;flex-wrap:wrap}.row>div{flex:1;min-width:160px}
+.badge{padding:3px 9px;border-radius:6px;font-size:11.5px;font-weight:600}
+.b-new{background:#FDEBE6;color:#C43F26}.b-ok{background:#EAF3EE;color:#2E7150}.b-mut{background:#F1EEF9;color:#6E6885}
+.flash{padding:11px 15px;border-radius:9px;font-size:13.5px;margin-bottom:16px}
+.flash.ok{background:#EAF3EE;color:#2E7150}.flash.err{background:#FDEBE6;color:#C43F26}
+.tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.tabs a{padding:8px 13px;border-radius:8px;background:#fff;border:1px solid var(--line);font-size:13px;color:var(--mut)}
+.tabs a.on{background:var(--p);color:#fff;border-color:var(--p)}
+@media(max-width:820px){body{flex-direction:column}.side{width:100%;height:auto;position:static;flex-direction:row;flex-wrap:wrap;gap:4px}.side .lg{width:100%}.side .out{margin:0}.kpis{grid-template-columns:repeat(2,1fr)}}
+</style><style id="demo-fit">html,body{max-width:100%;overflow-x:hidden}img,video{max-width:100%;height:auto}@media(max-width:760px){table{display:block;max-width:100%;overflow-x:auto}}</style></head><body><div id="demo-bar" style="position:sticky;top:0;z-index:99999;background:#0f1f46;color:#fff;font:600 12px/1.4 system-ui,sans-serif;text-align:center;padding:7px 12px">MAXDAY 교육 · 시연용 보기 전용 화면 (저장·로그인·결제 동작 없음)</div>
+<nav class="side">
+  <div class="lg"><div class="logobox"><img src="../assets/img/logo.png" alt="MAXDAY 교육"></div><span class="cap">관리자</span></div>
+            <a class="nav " href="index.php.html">대시보드</a>
+                <details class="grp" open>
+        <summary>공고·지원</summary>
+                  <a class="nav sub " href="jobs.php.html">공고 관리</a>
+                  <a class="nav sub on" href="collect.php.html">수집 공고</a>
+                  <a class="nav sub " href="collect_sources.php.html">수집처 디렉토리</a>
+                  <a class="nav sub " href="applications.php.html">지원 현황</a>
+              </details>
+                <details class="grp" >
+        <summary>회원·신뢰</summary>
+                  <a class="nav sub " href="members.php.html">회원 관리</a>
+                  <a class="nav sub " href="reviews.php.html">후기·신뢰지표</a>
+                  <a class="nav sub " href="branches.php.html">지사·수익배분</a>
+              </details>
+                <details class="grp" >
+        <summary>강사 콘텐츠</summary>
+                  <a class="nav sub " href="certifications.php.html">자격증 안내</a>
+                  <a class="nav sub " href="subsidies.php.html">지원금 안내</a>
+                  <a class="nav sub " href="benefits.php.html">강사 혜택</a>
+                  <a class="nav sub " href="partners.php.html">제휴 할인업체</a>
+              </details>
+                <details class="grp" >
+        <summary>마케팅·노출</summary>
+                  <a class="nav sub " href="#">메인 이미지</a>
+                  <a class="nav sub " href="#">팝업 관리</a>
+                  <a class="nav sub " href="#">SEO 키워드</a>
+                  <a class="nav sub " href="#">pSEO 자동랜딩</a>
+              </details>
+                <details class="grp" >
+        <summary>운영·설정</summary>
+                  <a class="nav sub " href="inquiries.php.html">문의 접수</a>
+                  <a class="nav sub " href="analytics.php.html">통계보기</a>
+                  <a class="nav sub " href="settlement.php.html">수익 정산</a>
+                  <a class="nav sub " href="#">사이트 설정</a>
+              </details>
+        <div class="out"><a class="nav" href="#" target="_blank">사이트 보기</a><a class="nav" href="#">로그아웃</a></div>
+</nav>
+<div class="main">
+<div class="top"><h1>🏛️ 수집 공고 관리</h1>
+  <div><a class="btn" href="#">＋ 수동 추가</a></div></div>
+
+<div class="card" style="background:#FAF9FD;border-color:#E0D9F2">
+  <h2>자동 수집 정책 안내</h2>
+  <p style="font-size:13.5px;color:var(--ink);margin:0 0 6px"><b>부산(pen.go.kr)</b> 은 매시간 자동 확인이 가능합니다.</p>
+  <p style="font-size:13.5px;color:var(--mut);margin:0"><b>경남·울산</b> 은 사이트 robots 정책상 자동수집 대신 담당자 확인·수동 등록 또는 공식 오픈API 연동이 필요합니다. 아래에서 직접 추가·관리하세요.</p>
+</div>
+
+
+<div class="card">
+  <h2>수집 공고 목록 (103건)</h2>
+  <table>
+    <thead><tr><th>ID</th><th>제목</th><th>지역</th><th>기관</th><th>마감</th><th>출처사이트</th><th>원문</th><th></th></tr></thead>
+    <tbody>
+          <tr>
+        <td>211</td>
+        <td><a href="#">부산외국인주민지원센터 강사 모집</a></td>
+        <td>부산 광역</td>
+        <td>부산외국인주민지원센터</td>
+        <td>D-4</td>
+        <td>부산 · 외국인지원</td>
+        <td><a target="_blank" rel="noopener" href="https://www.bfwc.or.kr/kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="211">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>171</td>
+        <td><a href="#">울주군청 강사 모집</a></td>
+        <td>울산 울주군</td>
+        <td>울주군청</td>
+        <td>D-4</td>
+        <td>울산 · 구·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.ulju.ulsan.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="171">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>212</td>
+        <td><a href="#">부산예술대학교 평생교육원 강사 모집</a></td>
+        <td>부산 남구</td>
+        <td>부산예술대학교 평생교육원</td>
+        <td>D-5</td>
+        <td>부산 · 대학부설 평생교육원</td>
+        <td><a target="_blank" rel="noopener" href="https://pia-edu.com/notice">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="212">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>172</td>
+        <td><a href="#">창원시 평생학습정보망 강사 모집</a></td>
+        <td>경남 창원시</td>
+        <td>창원시 평생학습정보망</td>
+        <td>D-5</td>
+        <td>경남 · 시·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.changwon.go.kr/lll/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="172">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>213</td>
+        <td><a href="#">부산대학교 미래시민교육원 부산캠퍼스 강사 모집</a></td>
+        <td>부산 금정구</td>
+        <td>부산대학교 미래시민교육원 부산캠퍼스</td>
+        <td>D-6</td>
+        <td>부산 · 대학부설 평생교육원</td>
+        <td><a target="_blank" rel="noopener" href="https://sce.pusan.ac.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="213">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>173</td>
+        <td><a href="#">진주시 평생학습관 강사 모집</a></td>
+        <td>경남 진주시</td>
+        <td>진주시 평생학습관</td>
+        <td>D-6</td>
+        <td>경남 · 시·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.jinju.go.kr/06146/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="173">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>138</td>
+        <td><a href="#">다운중학교 AI교육 코디네이터 채용</a></td>
+        <td>울산 중구</td>
+        <td>다운중학교</td>
+        <td>D-6</td>
+        <td>울산광역시교육청</td>
+        <td><a target="_blank" rel="noopener" href="https://use.go.kr/job/user/bbs/BD_selectBbsList.do?q_bbsSn=2249&amp;q_clsfNo=2">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="138">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>134</td>
+        <td><a href="#">2026학년도 찾아가는 한국어교육 시간강사 채용</a></td>
+        <td>경남 창원시</td>
+        <td>경상남도교육청</td>
+        <td>D-6</td>
+        <td>경상남도교육청</td>
+        <td><a target="_blank" rel="noopener" href="https://www.gne.go.kr/works/index.do">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="134">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>214</td>
+        <td><a href="#">동아대학교 평생교육원 강사 모집</a></td>
+        <td>부산 서구</td>
+        <td>동아대학교 평생교육원</td>
+        <td>D-7</td>
+        <td>부산 · 대학부설 평생교육원</td>
+        <td><a target="_blank" rel="noopener" href="https://donga-edu.donga.ac.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="214">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>174</td>
+        <td><a href="#">통영시청 강사 모집</a></td>
+        <td>경남 통영시</td>
+        <td>통영시청</td>
+        <td>D-7</td>
+        <td>경남 · 시·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.tongyeong.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="174">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>215</td>
+        <td><a href="#">동의대학교 미래교육원 강사 모집</a></td>
+        <td>부산 부산진구</td>
+        <td>동의대학교 미래교육원</td>
+        <td>D-8</td>
+        <td>부산 · 대학부설 평생교육원</td>
+        <td><a target="_blank" rel="noopener" href="https://lifelong.deu.ac.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="215">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>175</td>
+        <td><a href="#">사천시청 강사 모집</a></td>
+        <td>경남 사천시</td>
+        <td>사천시청</td>
+        <td>D-8</td>
+        <td>경남 · 시·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.sacheon.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="175">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>133</td>
+        <td><a href="#">2026학년도 학교스포츠클럽 스포츠강사(맨손체조) 채용</a></td>
+        <td>부산 전역</td>
+        <td>부산광역시교육청</td>
+        <td>D-8</td>
+        <td>부산광역시교육청</td>
+        <td><a target="_blank" rel="noopener" href="https://www.pen.go.kr/main/na/ntt/selectNttList.do?mi=30367&amp;bbsId=2364">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="133">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>216</td>
+        <td><a href="#">부산디지털대학교 평생교육원 강사 모집</a></td>
+        <td>부산 사상구</td>
+        <td>부산디지털대학교 평생교육원</td>
+        <td>D-9</td>
+        <td>부산 · 대학부설 평생교육원</td>
+        <td><a target="_blank" rel="noopener" href="https://www.bdu.ac.kr/edulife/sub07_04.do">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="216">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>176</td>
+        <td><a href="#">김해시 평생학습관 강사 모집</a></td>
+        <td>경남 김해시</td>
+        <td>김해시 평생학습관</td>
+        <td>D-9</td>
+        <td>경남 · 시·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.gimhae.go.kr/05912/05913.web">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="176">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>137</td>
+        <td><a href="#">2026학년도 서생초 방과후(축구) 개인위탁 외부강사(3차…</a></td>
+        <td>울산 울주군</td>
+        <td>서생초등학교</td>
+        <td>D-9</td>
+        <td>울산광역시교육청</td>
+        <td><a target="_blank" rel="noopener" href="https://use.go.kr/job/user/bbs/BD_selectBbsList.do?q_bbsSn=2249&amp;q_clsfNo=2">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="137">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>136</td>
+        <td><a href="#">진영제일고 계약직 교원(기간제교사, 영양) 채용</a></td>
+        <td>경남 김해시</td>
+        <td>진영제일고등학교</td>
+        <td>D-9</td>
+        <td>경상남도교육청</td>
+        <td><a target="_blank" rel="noopener" href="https://www.gne.go.kr/works/index.do">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="136">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>135</td>
+        <td><a href="#">위림초 방과후학교 축구 프로그램 외부강사 모집</a></td>
+        <td>경남 함양군</td>
+        <td>위림초등학교</td>
+        <td>D-9</td>
+        <td>경상남도교육청</td>
+        <td><a target="_blank" rel="noopener" href="https://www.gne.go.kr/works/index.do">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="135">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>217</td>
+        <td><a href="#">부산과학기술대학교 평생교육원 강사 모집</a></td>
+        <td>부산 북구</td>
+        <td>부산과학기술대학교 평생교육원</td>
+        <td>D-10</td>
+        <td>부산 · 대학부설 평생교육원</td>
+        <td><a target="_blank" rel="noopener" href="https://life.bist.ac.kr/main/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="217">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>177</td>
+        <td><a href="#">밀양시청 강사 모집</a></td>
+        <td>경남 밀양시</td>
+        <td>밀양시청</td>
+        <td>D-10</td>
+        <td>경남 · 시·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.miryang.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="177">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>218</td>
+        <td><a href="#">신라대학교 평생교육원 강사 모집</a></td>
+        <td>부산 사상구</td>
+        <td>신라대학교 평생교육원</td>
+        <td>D-11</td>
+        <td>부산 · 대학부설 평생교육원</td>
+        <td><a target="_blank" rel="noopener" href="https://soc.silla.ac.kr/Home/Sub02/LifelongEducation0102.aspx">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="218">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>178</td>
+        <td><a href="#">거제시청 강사 모집</a></td>
+        <td>경남 거제시</td>
+        <td>거제시청</td>
+        <td>D-11</td>
+        <td>경남 · 시·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.geoje.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="178">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>132</td>
+        <td><a href="#">2026년 부산교육역사관 기간제 교육공무직원(학예인력) 추…</a></td>
+        <td>부산 부산진구</td>
+        <td>부산교육역사관</td>
+        <td>D-11</td>
+        <td>부산광역시교육청</td>
+        <td><a target="_blank" rel="noopener" href="https://www.pen.go.kr/main/na/ntt/selectNttList.do?mi=30367&amp;bbsId=2364">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="132">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>219</td>
+        <td><a href="#">부산경상대학교 평생교육원 강사 모집</a></td>
+        <td>부산 연제구</td>
+        <td>부산경상대학교 평생교육원</td>
+        <td>D-12</td>
+        <td>부산 · 대학부설 평생교육원</td>
+        <td><a target="_blank" rel="noopener" href="https://lifeedu.bsks.ac.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="219">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>179</td>
+        <td><a href="#">양산시청 강사 모집</a></td>
+        <td>경남 양산시</td>
+        <td>양산시청</td>
+        <td>D-12</td>
+        <td>경남 · 시·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.yangsan.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="179">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>220</td>
+        <td><a href="#">영산대학교 평생교육원 해운대캠퍼스 강사 모집</a></td>
+        <td>부산 해운대구</td>
+        <td>영산대학교 평생교육원 해운대캠퍼스</td>
+        <td>D-13</td>
+        <td>부산 · 대학부설 평생교육원</td>
+        <td><a target="_blank" rel="noopener" href="https://bsedu.ysu.ac.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="220">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>180</td>
+        <td><a href="#">의령군청 강사 모집</a></td>
+        <td>경남 의령군</td>
+        <td>의령군청</td>
+        <td>D-13</td>
+        <td>경남 · 시·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.uiryeong.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="180">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>140</td>
+        <td><a href="#">한국대학교육협의회 강사 채용공고 강사 모집</a></td>
+        <td>부울경</td>
+        <td>한국대학교육협의회 강사 채용공고</td>
+        <td>D-13</td>
+        <td>부울경 · 대학 통합</td>
+        <td><a target="_blank" rel="noopener" href="https://www.kcue.or.kr/notice/sub07.php">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="140">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>221</td>
+        <td><a href="#">부산평생학습플랫폼 평생교육기관 소식 강사 모집</a></td>
+        <td>부산 광역</td>
+        <td>부산평생학습플랫폼 평생교육기관 소식</td>
+        <td>D-14</td>
+        <td>부산 · 평생교육 통합</td>
+        <td><a target="_blank" rel="noopener" href="https://lll.busan.go.kr/lll/index.do?menu_id=00004673">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="221">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>181</td>
+        <td><a href="#">함안군 평생학습센터 강사 모집</a></td>
+        <td>경남 함안군</td>
+        <td>함안군 평생학습센터</td>
+        <td>D-14</td>
+        <td>경남 · 시·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.haman.go.kr/01246/01250/01282.web">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="181">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>141</td>
+        <td><a href="#">전문대학포털 전문대학소식 강사 모집</a></td>
+        <td>부울경</td>
+        <td>전문대학포털 전문대학소식</td>
+        <td>D-14</td>
+        <td>부울경 · 대학 통합</td>
+        <td><a target="_blank" rel="noopener" href="https://www.procollege.kr/web/board/28584.do">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="141">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>222</td>
+        <td><a href="#">울산과학대학교 평생교육원 공지사항 강사 모집</a></td>
+        <td>울산 동구</td>
+        <td>울산과학대학교 평생교육원 공지사항</td>
+        <td>D-15</td>
+        <td>울산 · 대학부설 평생교육원</td>
+        <td><a target="_blank" rel="noopener" href="https://www.uc.ac.kr/edu/CMS/Board/Board.do?mCode=MN075&amp;mgr_seq=388">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="222">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>182</td>
+        <td><a href="#">창녕군청 강사 모집</a></td>
+        <td>경남 창녕군</td>
+        <td>창녕군청</td>
+        <td>D-15</td>
+        <td>경남 · 시·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.cng.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="182">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>142</td>
+        <td><a href="#">진학프로 강사 채용 강사 모집</a></td>
+        <td>부울경</td>
+        <td>진학프로 강사 채용</td>
+        <td>D-15</td>
+        <td>부울경 · 대학 통합</td>
+        <td><a target="_blank" rel="noopener" href="https://www.jinhakpro.com/recruit/list?recruitTypeCode=L">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="142">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>223</td>
+        <td><a href="#">울산과학대학교 프로그램 개설제안 강사 모집</a></td>
+        <td>울산 동구</td>
+        <td>울산과학대학교 프로그램 개설제안</td>
+        <td>D-16</td>
+        <td>울산 · 대학부설 평생교육원</td>
+        <td><a target="_blank" rel="noopener" href="https://edu.uc.ac.kr/edu/CMS/Board/Board.do?mCode=MN080">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="223">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>183</td>
+        <td><a href="#">고성군청 강사 모집</a></td>
+        <td>경남 고성군</td>
+        <td>고성군청</td>
+        <td>D-16</td>
+        <td>경남 · 시·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.goseong.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="183">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>143</td>
+        <td><a href="#">부산광역시 강사 모집</a></td>
+        <td>부산 광역</td>
+        <td>부산광역시</td>
+        <td>D-16</td>
+        <td>부산 · 공공기관</td>
+        <td><a target="_blank" rel="noopener" href="https://www.busan.go.kr/nbincruit">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="143">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>224</td>
+        <td><a href="#">울산대학교 평생교육원 강사 모집</a></td>
+        <td>울산 남구</td>
+        <td>울산대학교 평생교육원</td>
+        <td>D-17</td>
+        <td>울산 · 대학부설 평생교육원</td>
+        <td><a target="_blank" rel="noopener" href="https://cec.ulsan.ac.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="224">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>184</td>
+        <td><a href="#">남해군청 강사 모집</a></td>
+        <td>경남 남해군</td>
+        <td>남해군청</td>
+        <td>D-17</td>
+        <td>경남 · 시·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.namhae.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="184">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>144</td>
+        <td><a href="#">부산여성가족과 평생교육진흥원 강사 모집</a></td>
+        <td>부산 광역</td>
+        <td>부산여성가족과 평생교육진흥원</td>
+        <td>D-17</td>
+        <td>부산 · 여성/평생교육</td>
+        <td><a target="_blank" rel="noopener" href="https://www.bgli.re.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="144">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>225</td>
+        <td><a href="#">부산대학교 미래시민교육원 양산캠퍼스 강사 모집</a></td>
+        <td>경남 양산시</td>
+        <td>부산대학교 미래시민교육원 양산캠퍼스</td>
+        <td>D-18</td>
+        <td>경남 · 대학부설 평생교육원</td>
+        <td><a target="_blank" rel="noopener" href="https://sce.pusan.ac.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="225">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>185</td>
+        <td><a href="#">하동군청 강사 모집</a></td>
+        <td>경남 하동군</td>
+        <td>하동군청</td>
+        <td>D-18</td>
+        <td>경남 · 시·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.hadong.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="185">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>145</td>
+        <td><a href="#">부산시사회복지관협회 강사 모집</a></td>
+        <td>부산 광역</td>
+        <td>부산시사회복지관협회</td>
+        <td>D-18</td>
+        <td>부산 · 복지 통합</td>
+        <td><a target="_blank" rel="noopener" href="https://www.baswc.org/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="145">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>226</td>
+        <td><a href="#">부산대학교 미래시민교육원 밀양캠퍼스 강사 모집</a></td>
+        <td>경남 밀양시</td>
+        <td>부산대학교 미래시민교육원 밀양캠퍼스</td>
+        <td>D-19</td>
+        <td>경남 · 대학부설 평생교육원</td>
+        <td><a target="_blank" rel="noopener" href="https://sce.pusan.ac.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="226">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>186</td>
+        <td><a href="#">산청군청 강사 모집</a></td>
+        <td>경남 산청군</td>
+        <td>산청군청</td>
+        <td>D-19</td>
+        <td>경남 · 시·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.sancheong.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="186">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>146</td>
+        <td><a href="#">부산광역시 여성인력개발센터 현황 강사 모집</a></td>
+        <td>부산 광역</td>
+        <td>부산광역시 여성인력개발센터 현황</td>
+        <td>D-19</td>
+        <td>부산 · 여성 통합</td>
+        <td><a target="_blank" rel="noopener" href="https://www.busan.go.kr/depart/woman030103">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="146">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>139</td>
+        <td><a href="#">늘봄학교 초등방과후 여름방학 특강 프로그램 강사 모집</a></td>
+        <td>울산 남구</td>
+        <td>장생포초등학교</td>
+        <td>D-19</td>
+        <td>울산광역시교육청</td>
+        <td><a target="_blank" rel="noopener" href="https://use.go.kr/job/user/bbs/BD_selectBbsList.do?q_bbsSn=2249&amp;q_clsfNo=2">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="139">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>227</td>
+        <td><a href="#">동원과학기술대학교 평생교육원 강사 모집</a></td>
+        <td>경남 양산시</td>
+        <td>동원과학기술대학교 평생교육원</td>
+        <td>D-20</td>
+        <td>경남 · 대학부설 평생교육원</td>
+        <td><a target="_blank" rel="noopener" href="https://career.dist.ac.kr/center/CMS/Board/Board.do?mCode=MN052&amp;mgr_seq=12">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="227">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>187</td>
+        <td><a href="#">함양군청 강사 모집</a></td>
+        <td>경남 함양군</td>
+        <td>함양군청</td>
+        <td>D-20</td>
+        <td>경남 · 시·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.hygn.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="187">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>147</td>
+        <td><a href="#">울산광역시 강사 모집</a></td>
+        <td>울산 광역</td>
+        <td>울산광역시</td>
+        <td>D-20</td>
+        <td>울산 · 공공기관</td>
+        <td><a target="_blank" rel="noopener" href="https://www.ulsan.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="147">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>228</td>
+        <td><a href="#">국립창원대학교 남해캠퍼스 평생교육원 강사 모집</a></td>
+        <td>경남 남해군</td>
+        <td>국립창원대학교 남해캠퍼스 평생교육원</td>
+        <td>D-21</td>
+        <td>경남 · 대학부설 평생교육원</td>
+        <td><a target="_blank" rel="noopener" href="https://lifelong.namhae.ac.kr/bbs/board.php?bo_table=recruit">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="228">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>188</td>
+        <td><a href="#">거창군청 강사 모집</a></td>
+        <td>경남 거창군</td>
+        <td>거창군청</td>
+        <td>D-21</td>
+        <td>경남 · 시·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.geochang.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="188">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>148</td>
+        <td><a href="#">울산광역시사회복지협의회 강사 모집</a></td>
+        <td>울산 광역</td>
+        <td>울산광역시사회복지협의회</td>
+        <td>D-21</td>
+        <td>울산 · 복지 통합</td>
+        <td><a target="_blank" rel="noopener" href="https://www.wel4u.or.kr/bbs/board.php?bo_table=job01">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="148">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>229</td>
+        <td><a href="#">경남대학교 평생교육원 강사 모집</a></td>
+        <td>경남 창원시</td>
+        <td>경남대학교 평생교육원</td>
+        <td>D-22</td>
+        <td>경남 · 대학부설 평생교육원</td>
+        <td><a target="_blank" rel="noopener" href="https://www.kyungnam.ac.kr/sites/cce/index.do">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="229">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>189</td>
+        <td><a href="#">합천군청 강사 모집</a></td>
+        <td>경남 합천군</td>
+        <td>합천군청</td>
+        <td>D-22</td>
+        <td>경남 · 시·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.hc.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="189">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>149</td>
+        <td><a href="#">경상남도인재평생교육진흥원 강사 모집</a></td>
+        <td>경남 광역</td>
+        <td>경상남도인재평생교육진흥원</td>
+        <td>D-22</td>
+        <td>경남 · 평생교육</td>
+        <td><a target="_blank" rel="noopener" href="https://www.gndamoa.or.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="149">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>230</td>
+        <td><a href="#">창신대학교 평생교육원 강사 모집</a></td>
+        <td>경남 창원시</td>
+        <td>창신대학교 평생교육원</td>
+        <td>D-23</td>
+        <td>경남 · 대학부설 평생교육원</td>
+        <td><a target="_blank" rel="noopener" href="https://ice.cs.ac.kr/hakjeom/basiccourses">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="230">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>190</td>
+        <td><a href="#">부산광역시 여성회관 강사 모집</a></td>
+        <td>부산 남구</td>
+        <td>부산광역시 여성회관</td>
+        <td>D-23</td>
+        <td>부산 · 여성회관</td>
+        <td><a target="_blank" rel="noopener" href="https://www.busan.go.kr/woman/whnotice">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="190">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>150</td>
+        <td><a href="#">경상남도교육청 통합공공도서관 강사 모집</a></td>
+        <td>경남 광역</td>
+        <td>경상남도교육청 통합공공도서관</td>
+        <td>D-23</td>
+        <td>경남 · 도서관/평생교육</td>
+        <td><a target="_blank" rel="noopener" href="https://gnelib.gne.go.kr/menu.es?mid=a10506000000">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="150">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>231</td>
+        <td><a href="#">경상국립대학교 평생교육원 강사 모집</a></td>
+        <td>경남 진주시</td>
+        <td>경상국립대학교 평생교육원</td>
+        <td>D-24</td>
+        <td>경남 · 대학부설 평생교육원</td>
+        <td><a target="_blank" rel="noopener" href="https://longlife.gnu.ac.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="231">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>191</td>
+        <td><a href="#">부산진여성인력개발센터 강사 모집</a></td>
+        <td>부산 부산진구</td>
+        <td>부산진여성인력개발센터</td>
+        <td>D-24</td>
+        <td>부산 · 여성인력개발</td>
+        <td><a target="_blank" rel="noopener" href="https://www.bswoman.or.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="191">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>151</td>
+        <td><a href="#">부산 중구청 강사 모집</a></td>
+        <td>부산 중구</td>
+        <td>부산 중구청</td>
+        <td>D-24</td>
+        <td>부산 · 구·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.bsjunggu.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="151">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>232</td>
+        <td><a href="#">인제대학교 미래교육원 강사 모집</a></td>
+        <td>경남 김해시</td>
+        <td>인제대학교 미래교육원</td>
+        <td>D-25</td>
+        <td>경남 · 대학부설 평생교육원</td>
+        <td><a target="_blank" rel="noopener" href="https://soc.inje.ac.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="232">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>192</td>
+        <td><a href="#">동래여성인력개발센터 강사 모집</a></td>
+        <td>부산 동래구</td>
+        <td>동래여성인력개발센터</td>
+        <td>D-25</td>
+        <td>부산 · 여성인력개발</td>
+        <td><a target="_blank" rel="noopener" href="https://www.womancenter.or.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="192">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>152</td>
+        <td><a href="#">부산 서구청 강사 모집</a></td>
+        <td>부산 서구</td>
+        <td>부산 서구청</td>
+        <td>D-25</td>
+        <td>부산 · 구·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.bsseogu.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="152">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>233</td>
+        <td><a href="#">마산대학교 평생교육원 강사 모집</a></td>
+        <td>경남 창원시</td>
+        <td>마산대학교 평생교육원</td>
+        <td>D-26</td>
+        <td>경남 · 대학부설 평생교육원</td>
+        <td><a target="_blank" rel="noopener" href="https://lifelong.masan.ac.kr/board/000001/8">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="233">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>193</td>
+        <td><a href="#">사상여성인력개발센터 강사 모집</a></td>
+        <td>부산 사상구</td>
+        <td>사상여성인력개발센터</td>
+        <td>D-26</td>
+        <td>부산 · 여성인력개발</td>
+        <td><a target="_blank" rel="noopener" href="https://www.bbwoman.or.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="193">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>153</td>
+        <td><a href="#">부산 동구청 강사 모집</a></td>
+        <td>부산 동구</td>
+        <td>부산 동구청</td>
+        <td>D-26</td>
+        <td>부산 · 구·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.bsdonggu.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="153">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>234</td>
+        <td><a href="#">영산대학교 평생교육원 양산캠퍼스 강사 모집</a></td>
+        <td>경남 양산시</td>
+        <td>영산대학교 평생교육원 양산캠퍼스</td>
+        <td>D-27</td>
+        <td>경남 · 대학부설 평생교육원</td>
+        <td><a target="_blank" rel="noopener" href="https://ysedu.ysu.ac.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="234">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>194</td>
+        <td><a href="#">동구여성인력개발센터 강사 모집</a></td>
+        <td>부산 동구</td>
+        <td>동구여성인력개발센터</td>
+        <td>D-27</td>
+        <td>부산 · 여성인력개발</td>
+        <td><a target="_blank" rel="noopener" href="https://www.ewoman.or.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="194">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>154</td>
+        <td><a href="#">부산 영도구청 강사 모집</a></td>
+        <td>부산 영도구</td>
+        <td>부산 영도구청</td>
+        <td>D-27</td>
+        <td>부산 · 구·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.yeongdo.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="154">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>195</td>
+        <td><a href="#">울산여성인력개발센터 강사 모집</a></td>
+        <td>울산 남구</td>
+        <td>울산여성인력개발센터</td>
+        <td>D-28</td>
+        <td>울산 · 여성인력개발</td>
+        <td><a target="_blank" rel="noopener" href="https://www.usw.or.kr/main/mainPage.do">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="195">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>155</td>
+        <td><a href="#">부산진구청 강사 모집</a></td>
+        <td>부산 부산진구</td>
+        <td>부산진구청</td>
+        <td>D-28</td>
+        <td>부산 · 구·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.busanjin.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="155">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>196</td>
+        <td><a href="#">창원여성인력개발센터 강사 모집</a></td>
+        <td>경남 창원시</td>
+        <td>창원여성인력개발센터</td>
+        <td>D-29</td>
+        <td>경남 · 여성인력개발</td>
+        <td><a target="_blank" rel="noopener" href="https://www.cwcenter.or.kr/kor/program/teacher.html">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="196">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>156</td>
+        <td><a href="#">부산 동래구청 강사 모집</a></td>
+        <td>부산 동래구</td>
+        <td>부산 동래구청</td>
+        <td>D-29</td>
+        <td>부산 · 구·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.dongnae.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="156">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>197</td>
+        <td><a href="#">부산광역시노인종합복지관 강사 모집</a></td>
+        <td>부산 연제구</td>
+        <td>부산광역시노인종합복지관</td>
+        <td>D-30</td>
+        <td>부산 · 노인복지관</td>
+        <td><a target="_blank" rel="noopener" href="https://www.youngsilver.or.kr/bbs/board.php?bo_table=recruit&amp;sca=%EA%B0%95%EC%82%AC">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="197">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>157</td>
+        <td><a href="#">부산 남구청 강사 모집</a></td>
+        <td>부산 남구</td>
+        <td>부산 남구청</td>
+        <td>D-30</td>
+        <td>부산 · 구·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.bsnamgu.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="157">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>198</td>
+        <td><a href="#">사직종합사회복지관 강사 모집</a></td>
+        <td>부산 동래구</td>
+        <td>사직종합사회복지관</td>
+        <td>D-31</td>
+        <td>부산 · 종합사회복지관</td>
+        <td><a target="_blank" rel="noopener" href="https://www.sjcwc.org/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="198">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>158</td>
+        <td><a href="#">부산 북구 평생학습관 강사 모집</a></td>
+        <td>부산 북구</td>
+        <td>부산 북구 평생학습관</td>
+        <td>D-31</td>
+        <td>부산 · 구·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.bsbukgu.go.kr/edu/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="158">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>199</td>
+        <td><a href="#">연제구연산종합사회복지관 강사 모집</a></td>
+        <td>부산 연제구</td>
+        <td>연제구연산종합사회복지관</td>
+        <td>D-32</td>
+        <td>부산 · 종합사회복지관</td>
+        <td><a target="_blank" rel="noopener" href="https://yjys8638360.or.kr/sub4_1">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="199">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>159</td>
+        <td><a href="#">해운대구청 강사 모집</a></td>
+        <td>부산 해운대구</td>
+        <td>해운대구청</td>
+        <td>D-32</td>
+        <td>부산 · 구·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.haeundae.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="159">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>200</td>
+        <td><a href="#">부산박물관 강사 모집</a></td>
+        <td>부산 동래구</td>
+        <td>부산박물관</td>
+        <td>D-33</td>
+        <td>부산 · 박물관</td>
+        <td><a target="_blank" rel="noopener" href="https://museum.busan.go.kr/busan/bsopboard">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="200">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>160</td>
+        <td><a href="#">사하구청 강사 모집</a></td>
+        <td>부산 사하구</td>
+        <td>사하구청</td>
+        <td>D-33</td>
+        <td>부산 · 구·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.saha.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="160">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>201</td>
+        <td><a href="#">임시수도기념관 강사 모집</a></td>
+        <td>부산 서구</td>
+        <td>임시수도기념관</td>
+        <td>D-34</td>
+        <td>부산 · 박물관</td>
+        <td><a target="_blank" rel="noopener" href="https://www.busan.go.kr/monument/mmboard">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="201">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>161</td>
+        <td><a href="#">금정구청 강사 모집</a></td>
+        <td>부산 금정구</td>
+        <td>금정구청</td>
+        <td>D-34</td>
+        <td>부산 · 구·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.geumjeong.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="161">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>202</td>
+        <td><a href="#">부산도서관 강사 모집</a></td>
+        <td>부산 광역</td>
+        <td>부산도서관</td>
+        <td>D-35</td>
+        <td>부산 · 도서관</td>
+        <td><a target="_blank" rel="noopener" href="https://library.busan.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="202">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>162</td>
+        <td><a href="#">부산강서평생학습 강사 모집</a></td>
+        <td>부산 강서구</td>
+        <td>부산강서평생학습</td>
+        <td>D-35</td>
+        <td>부산 · 구·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://bsgangseo.go.kr/lll/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="162">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>203</td>
+        <td><a href="#">울산도서관 강사 모집</a></td>
+        <td>울산 광역</td>
+        <td>울산도서관</td>
+        <td>D-36</td>
+        <td>울산 · 도서관</td>
+        <td><a target="_blank" rel="noopener" href="https://library.ulsan.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="203">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>163</td>
+        <td><a href="#">연제구청 강사 모집</a></td>
+        <td>부산 연제구</td>
+        <td>연제구청</td>
+        <td>D-36</td>
+        <td>부산 · 구·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.yeonje.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="163">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>204</td>
+        <td><a href="#">어울림복지재단/북구종합사회복지관 강사 모집</a></td>
+        <td>울산 북구</td>
+        <td>어울림복지재단/북구종합사회복지관</td>
+        <td>D-37</td>
+        <td>울산 · 종합사회복지관</td>
+        <td><a target="_blank" rel="noopener" href="https://www.bukgusw.or.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="204">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>164</td>
+        <td><a href="#">수영구청 강사 모집</a></td>
+        <td>부산 수영구</td>
+        <td>수영구청</td>
+        <td>D-37</td>
+        <td>부산 · 구·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.suyeong.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="164">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>205</td>
+        <td><a href="#">경남종합사회복지관 강사 모집</a></td>
+        <td>경남 창원시</td>
+        <td>경남종합사회복지관</td>
+        <td>D-38</td>
+        <td>경남 · 종합사회복지관</td>
+        <td><a target="_blank" rel="noopener" href="https://www.knsw.or.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="205">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>165</td>
+        <td><a href="#">사상평생학습관 강사 모집</a></td>
+        <td>부산 사상구</td>
+        <td>사상평생학습관</td>
+        <td>D-38</td>
+        <td>부산 · 구·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.sasang.go.kr/lll">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="165">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>206</td>
+        <td><a href="#">함양군종합사회복지관 강사 모집</a></td>
+        <td>경남 함양군</td>
+        <td>함양군종합사회복지관</td>
+        <td>D-39</td>
+        <td>경남 · 종합사회복지관</td>
+        <td><a target="_blank" rel="noopener" href="https://www.hygn.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="206">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>166</td>
+        <td><a href="#">기장군청 강사 모집</a></td>
+        <td>부산 기장군</td>
+        <td>기장군청</td>
+        <td>D-39</td>
+        <td>부산 · 구·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.gijang.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="166">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>207</td>
+        <td><a href="#">김해시종합사회복지관 강사 모집</a></td>
+        <td>경남 김해시</td>
+        <td>김해시종합사회복지관</td>
+        <td>D-40</td>
+        <td>경남 · 종합사회복지관</td>
+        <td><a target="_blank" rel="noopener" href="https://gcwc.or.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="207">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>167</td>
+        <td><a href="#">울산 중구 평생학습관 강사 모집</a></td>
+        <td>울산 중구</td>
+        <td>울산 중구 평생학습관</td>
+        <td>D-40</td>
+        <td>울산 · 구·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.junggu.ulsan.kr/edu/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="167">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>208</td>
+        <td><a href="#">창원시 도서관사업소 강사 모집</a></td>
+        <td>경남 창원시</td>
+        <td>창원시 도서관사업소</td>
+        <td>D-41</td>
+        <td>경남 · 도서관</td>
+        <td><a target="_blank" rel="noopener" href="https://lib.changwon.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="208">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>168</td>
+        <td><a href="#">울산 남구 평생학습 강사 모집</a></td>
+        <td>울산 남구</td>
+        <td>울산 남구 평생학습</td>
+        <td>D-41</td>
+        <td>울산 · 구·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.ulsannamgu.go.kr/edu/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="168">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>209</td>
+        <td><a href="#">경상남도교육청 통합공공도서관 강사 모집</a></td>
+        <td>경남 광역</td>
+        <td>경상남도교육청 통합공공도서관</td>
+        <td>D-42</td>
+        <td>경남 · 도서관</td>
+        <td><a target="_blank" rel="noopener" href="https://gnelib.gne.go.kr/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="209">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>169</td>
+        <td><a href="#">울산 동구 평생학습포털 강사 모집</a></td>
+        <td>울산 동구</td>
+        <td>울산 동구 평생학습포털</td>
+        <td>D-42</td>
+        <td>울산 · 구·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.donggu.ulsan.kr/edu/">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="169">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>210</td>
+        <td><a href="#">국립창원대학교 평생교육원 강사 모집</a></td>
+        <td>경남 창원시</td>
+        <td>국립창원대학교 평생교육원</td>
+        <td>D-43</td>
+        <td>경남 · 대학부설 평생교육원</td>
+        <td><a target="_blank" rel="noopener" href="https://www.changwon.ac.kr/lifelong/na/ntt/selectNttList.do?bbsId=1790&amp;mi=4780">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="210">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+          <tr>
+        <td>170</td>
+        <td><a href="#">울산 북구 평생학습관 강사 모집</a></td>
+        <td>울산 북구</td>
+        <td>울산 북구 평생학습관</td>
+        <td>D-43</td>
+        <td>울산 · 구·군/평생학습</td>
+        <td><a target="_blank" rel="noopener" href="https://www.bukgu.ulsan.kr/edu/index.do">원문 ↗</a></td>
+        <td style="white-space:nowrap">
+          <a class="btn sm ghost" href="#">편집</a>
+          <form method="post" action="collect.php.html" style="display:inline" onsubmit="return confirm('삭제할까요?');">
+            <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="170">
+            <button class="btn sm danger" type="submit">삭제</button>
+          </form>
+        </td>
+      </tr>
+        </tbody>
+  </table>
+</div>
+</div><script>document.addEventListener("submit",function(e){e.preventDefault();alert("시연용 화면입니다. 실제 저장되지 않습니다.")},true);</script></body></html>

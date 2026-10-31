@@ -1,0 +1,93 @@
+/* 키디랜드 리뉴얼 — 공통 디자인 토큰
+   기준: 키디랜드 홈페이지 리뉴얼 기획안 v1.0, 8장 디자인 가이드
+   - 바탕은 흰색/아주 옅은 회색. 브랜드 컬러는 버튼·배지·강조에만
+   - 본문 최소 16px, 모바일 15px 미만 금지 (결정권자 40~60대)
+   - 주 버튼(견적문의)은 사이트 전체에서 한 모양 한 색 */
+:root{
+  /* 바탕 */
+  --kd-bg:#ffffff;
+  --kd-surface:#f6f8fa;
+  --kd-surface-2:#eef1f5;
+  --kd-line:#e3e6ea;
+  --kd-line-strong:#c9cfd6;
+
+  /* 글자 */
+  --kd-fg:#1a1d21;
+  --kd-fg-muted:#5f6772;
+  --kd-fg-invert:#ffffff;
+
+  /* 브랜드 (로고 4색) */
+  --kd-red:#e8342a;
+  --kd-yellow:#ffc61e;
+  --kd-green:#22a45d;
+  --kd-blue:#1a73c8;
+  --kd-navy:#243044;
+
+  /* 역할색 */
+  --kd-primary:var(--kd-red);      /* 주 버튼 = 견적문의. 전 사이트 동일 */
+  --kd-primary-hover:#c92a21;
+  --kd-ok:#137a45;
+  --kd-warn:#b06000;
+  --kd-bad:#c22a20;
+
+  /* 업종 고정색 — 랜딩 5개까지 동일하게 사용 */
+  --kd-biz-kidscafe:#e8342a;
+  --kd-biz-apartment:#1a73c8;
+  --kd-biz-pcbang:#5b4bd6;
+  --kd-biz-event:#e08a00;
+  --kd-biz-startup:#22a45d;
+
+  /* 글자 크기 — 본문 16px 하한 */
+  --kd-fs-body:16px;
+  --kd-fs-sm:14px;      /* 보조 문구에만. 본문 금지 */
+  --kd-fs-lg:18px;
+  --kd-fs-h3:22px;
+  --kd-fs-h2:clamp(26px,2.4vw,34px);
+  --kd-fs-h1:clamp(32px,3.4vw,50px);
+  --kd-lh:1.7;
+
+  /* 간격 8px 배수 */
+  --kd-s1:8px; --kd-s2:16px; --kd-s3:24px; --kd-s4:32px;
+  --kd-s5:48px; --kd-s6:64px; --kd-s7:96px; --kd-s8:128px;
+
+  /* 모양 */
+  --kd-radius:8px;
+  --kd-radius-lg:14px;
+  --kd-shadow:0 1px 2px rgba(16,24,40,.06),0 8px 24px rgba(16,24,40,.06);
+  --kd-maxw:1280px;
+
+  /* 모바일 하단 고정 바 높이 — 전 페이지 공통 */
+  --kd-mobilebar-h:60px;
+}
+
+/* 글꼴: 시스템 한글 우선. 장식 폰트는 제목에만 1종, woff2 서브셋 */
+html{font-size:16px}
+body{
+  margin:0; background:var(--kd-bg); color:var(--kd-fg);
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",
+              "Malgun Gothic","맑은 고딕",system-ui,sans-serif;
+  font-size:var(--kd-fs-body); line-height:var(--kd-lh); word-break:keep-all;
+}
+
+/* 이미지 기본 규칙 — 로딩 중 화면 흔들림 방지 (기획안 9장) */
+img{max-width:100%; height:auto; display:block}
+img[loading="lazy"]{content-visibility:auto}
+
+/* 주 버튼 — 전 사이트에서 이 한 가지만 */
+.kd-btn-primary{
+  display:inline-flex; align-items:center; gap:var(--kd-s1);
+  background:var(--kd-primary); color:#fff; border:0;
+  padding:14px 24px; border-radius:var(--kd-radius);
+  font-size:var(--kd-fs-lg); font-weight:700; cursor:pointer;
+}
+.kd-btn-primary:hover{background:var(--kd-primary-hover)}
+/* 조건 못 채운 버튼은 잠그고 이유를 버튼에 적는다 (기획안 5.7) */
+.kd-btn-primary:disabled{background:var(--kd-line-strong); cursor:not-allowed}
+
+/* 아이콘 — 전부 currentColor. 색은 부모에서 */
+.kd-icon{width:24px; height:24px; flex:none; stroke:currentColor; fill:none}
+
+@media (max-width:900px){
+  :root{ --kd-fs-body:16px; --kd-s7:56px; --kd-s8:72px; }
+  body{padding-bottom:var(--kd-mobilebar-h)}
+}

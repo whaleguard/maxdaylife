@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 기능 · MAXDAY 유학 관리자</title>
+<link rel="stylesheet" href="../assets/admin.css">
+</head>
+<body class=""><div id="demo-bar" style="position:sticky;top:0;z-index:99999;background:#0f1f46;color:#fff;font:600 12px/1.4 system-ui,sans-serif;text-align:center;padding:7px 12px">MAXDAY 유학 · 시연용 보기 전용 화면 (저장·로그인·결제 동작 없음)</div>
+<header class="topbar">
+  <a class="brand" href="index.php.html">MAXDAY 유학<span>ADMIN</span></a>
+  <div class="spacer"></div>
+  <span class="who">운영자</span>
+  <a class="btn ghost sm" href="#">로그아웃</a>
+</header>
+<div class="shell">
+  <aside class="side">
+          <div class="navgroup">대시보드</div>
+              <a class="navitem" href="index.php.html">운영 현황</a>
+                <div class="navgroup">대학 · 전형</div>
+              <a class="navitem" href="universities.php.html">대학 관리</a>
+              <a class="navitem" href="programs.php.html">외국인전형</a>
+                <div class="navgroup">수집 · AI</div>
+              <a class="navitem" href="crawl_sources.php.html">수집 소스</a>
+              <a class="navitem" href="review.php.html">검수 큐</a>
+              <a class="navitem on" href="ai_features.php.html">AI 기능</a>
+                <div class="navgroup">대학 협력</div>
+              <a class="navitem" href="b2b.php.html">파트너십 문의</a>
+                <div class="navgroup">시스템</div>
+              <a class="navitem" href="rules.php.html">기준 데이터</a>
+              <a class="navitem" href="audit.php.html">감사 로그</a>
+            </aside>
+  <main class="main">
+    <div class="pagehead"><div><h1>AI 기능</h1><p class="sub">기능별 ON/OFF와 모델을 소스 수정 없이 변경합니다. OFF일 때의 대체 동작이 정의되어 있습니다.</p></div><div class="acts"></div></div><form method="post">
+<input type="hidden" name="_csrf" value="8a290cfca3681638888647c15da3dd92"><div class="card tight">
+<table class="tbl">
+  <thead><tr><th>기능</th><th>사용</th><th>모델</th><th>월 예산(원)</th><th>30일 사용</th><th>OFF일 때</th></tr></thead>
+  <tbody>
+      <tr>
+      <td><input type="hidden" name="code[]" value="auto_publish">
+        <strong>자동 게시</strong>
+        <div class="small muted mono">auto_publish</div>
+        <div class="small muted">검수 없이 발행</div></td>
+      <td><label class="check" style="margin:0">
+        <input type="checkbox" name="enabled[auto_publish]" >
+        <span class="badge b-alert">위험</span></label></td>
+      <td><select name="model[auto_publish]" style="min-width:150px">
+        <option value="">—</option>
+                  <option value="1" >
+            claude-haiku (light)</option>
+                  <option value="2" >
+            claude-sonnet (mid)</option>
+                  <option value="3" >
+            claude-opus (heavy)</option>
+        </select></td>
+      <td><input type="number" name="budget[auto_publish]" value="" style="max-width:130px"></td>
+      <td class="num">0        </td>
+      <td class="small muted">항상 사람 승인</td>
+    </tr>
+      <tr>
+      <td><input type="hidden" name="code[]" value="classify_doc">
+        <strong>문서 사전분류</strong>
+        <div class="small muted mono">classify_doc</div>
+        <div class="small muted">외국인전형 여부 판별. AI 호출 전 필터</div></td>
+      <td><label class="check" style="margin:0">
+        <input type="checkbox" name="enabled[classify_doc]" checked>
+        </label></td>
+      <td><select name="model[classify_doc]" style="min-width:150px">
+        <option value="">—</option>
+                  <option value="1" selected>
+            claude-haiku (light)</option>
+                  <option value="2" >
+            claude-sonnet (mid)</option>
+                  <option value="3" >
+            claude-opus (heavy)</option>
+        </select></td>
+      <td><input type="number" name="budget[classify_doc]" value="300000" style="max-width:130px"></td>
+      <td class="num">0        </td>
+      <td class="small muted">룰 기반 키워드 필터만 적용</td>
+    </tr>
+      <tr>
+      <td><input type="hidden" name="code[]" value="extract_guide">
+        <strong>모집요강 분석</strong>
+        <div class="small muted mono">extract_guide</div>
+        <div class="small muted">PDF/HWP → 구조화 JSON</div></td>
+      <td><label class="check" style="margin:0">
+        <input type="checkbox" name="enabled[extract_guide]" checked>
+        </label></td>
+      <td><select name="model[extract_guide]" style="min-width:150px">
+        <option value="">—</option>
+                  <option value="1" >
+            claude-haiku (light)</option>
+                  <option value="2" selected>
+            claude-sonnet (mid)</option>
+                  <option value="3" >
+            claude-opus (heavy)</option>
+        </select></td>
+      <td><input type="number" name="budget[extract_guide]" value="2000000" style="max-width:130px"></td>
+      <td class="num">0        </td>
+      <td class="small muted">수집만 하고 수동 입력 대기로 적재</td>
+    </tr>
+      <tr>
+      <td><input type="hidden" name="code[]" value="faq_answer">
+        <strong>FAQ 자동답변</strong>
+        <div class="small muted mono">faq_answer</div>
+        </td>
+      <td><label class="check" style="margin:0">
+        <input type="checkbox" name="enabled[faq_answer]" >
+        </label></td>
+      <td><select name="model[faq_answer]" style="min-width:150px">
+        <option value="">—</option>
+                  <option value="1" >
+            claude-haiku (light)</option>
+                  <option value="2" selected>
+            claude-sonnet (mid)</option>
+                  <option value="3" >
+            claude-opus (heavy)</option>
+        </select></td>
+      <td><input type="number" name="budget[faq_answer]" value="" style="max-width:130px"></td>
+      <td class="num">0        </td>
+      <td class="small muted">수동 FAQ만</td>
+    </tr>
+      <tr>
+      <td><input type="hidden" name="code[]" value="manager_chat">
+        <strong>AI 유학 매니저</strong>
+        <div class="small muted mono">manager_chat</div>
+        <div class="small muted">대화형 상담</div></td>
+      <td><label class="check" style="margin:0">
+        <input type="checkbox" name="enabled[manager_chat]" >
+        </label></td>
+      <td><select name="model[manager_chat]" style="min-width:150px">
+        <option value="">—</option>
+                  <option value="1" >
+            claude-haiku (light)</option>
+                  <option value="2" >
+            claude-sonnet (mid)</option>
+                  <option value="3" selected>
+            claude-opus (heavy)</option>
+        </select></td>
+      <td><input type="number" name="budget[manager_chat]" value="" style="max-width:130px"></td>
+      <td class="num">0        </td>
+      <td class="small muted">FAQ·가이드 검색으로 대체</td>
+    </tr>
+      <tr>
+      <td><input type="hidden" name="code[]" value="match_explain">
+        <strong>매칭 설명 생성</strong>
+        <div class="small muted mono">match_explain</div>
+        <div class="small muted">판정 사유 문장화</div></td>
+      <td><label class="check" style="margin:0">
+        <input type="checkbox" name="enabled[match_explain]" checked>
+        </label></td>
+      <td><select name="model[match_explain]" style="min-width:150px">
+        <option value="">—</option>
+                  <option value="1" >
+            claude-haiku (light)</option>
+                  <option value="2" selected>
+            claude-sonnet (mid)</option>
+                  <option value="3" >
+            claude-opus (heavy)</option>
+        </select></td>
+      <td><input type="number" name="budget[match_explain]" value="300000" style="max-width:130px"></td>
+      <td class="num">0        </td>
+      <td class="small muted">룰 기반 정형 문장으로 대체</td>
+    </tr>
+      <tr>
+      <td><input type="hidden" name="code[]" value="planner">
+        <strong>유학 로드맵</strong>
+        <div class="small muted mono">planner</div>
+        <div class="small muted">단계별 경로 서술</div></td>
+      <td><label class="check" style="margin:0">
+        <input type="checkbox" name="enabled[planner]" >
+        </label></td>
+      <td><select name="model[planner]" style="min-width:150px">
+        <option value="">—</option>
+                  <option value="1" >
+            claude-haiku (light)</option>
+                  <option value="2" >
+            claude-sonnet (mid)</option>
+                  <option value="3" selected>
+            claude-opus (heavy)</option>
+        </select></td>
+      <td><input type="number" name="budget[planner]" value="" style="max-width:130px"></td>
+      <td class="num">0        </td>
+      <td class="small muted">룰 경로만 표시</td>
+    </tr>
+      <tr>
+      <td><input type="hidden" name="code[]" value="translate_zh">
+        <strong>중국어 번역</strong>
+        <div class="small muted mono">translate_zh</div>
+        <div class="small muted">대학·전형 정보 번역</div></td>
+      <td><label class="check" style="margin:0">
+        <input type="checkbox" name="enabled[translate_zh]" checked>
+        </label></td>
+      <td><select name="model[translate_zh]" style="min-width:150px">
+        <option value="">—</option>
+                  <option value="1" >
+            claude-haiku (light)</option>
+                  <option value="2" selected>
+            claude-sonnet (mid)</option>
+                  <option value="3" >
+            claude-opus (heavy)</option>
+        </select></td>
+      <td><input type="number" name="budget[translate_zh]" value="500000" style="max-width:130px"></td>
+      <td class="num">0        </td>
+      <td class="small muted">원문 표시 + &quot;번역 준비중&quot;</td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<div class="warnbox"><strong>자동 게시(auto_publish)</strong>는 기본 OFF입니다.
+  켜더라도 금액·일정·자격 필드는 항상 사람 승인을 거칩니다.</div>
+<button class="btn" type="submit">저장</button>
+</form>
+  </main>
+</div>
+<script src="../assets/admin.js"></script>
+<script>document.addEventListener("submit",function(e){e.preventDefault();alert("시연용 화면입니다. 실제 저장되지 않습니다.")},true);</script></body>
+</html>

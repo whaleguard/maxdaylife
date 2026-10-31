@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>生活费估算器 · MAXDAY 留学</title>
+<meta name="description" content="学费 + 生活费 = 1 年实际需要多少钱">
+<meta property="og:title" content="生活费估算器 · MAXDAY 留学">
+<meta property="og:description" content="学费 + 生活费 = 1 年实际需要多少钱">
+<meta property="og:type" content="website">
+<link rel="canonical" href="cost.html">
+<link rel="alternate" hreflang="zh-Hans"
+      href="cost.html">
+<link rel="alternate" hreflang="ko"
+      href="../../ko/tools/cost.html">
+<link rel="alternate" hreflang="en"
+      href="../../en/tools/cost.html">
+<link rel="stylesheet" href="../../assets/front.css">
+</head>
+<body class=""><div id="demo-bar" style="position:sticky;top:0;z-index:99999;background:#0f1f46;color:#fff;font:600 12px/1.4 system-ui,sans-serif;text-align:center;padding:7px 12px">MAXDAY 유학 · 시연용 보기 전용 화면 (저장·로그인·결제 동작 없음)</div>
+
+<header class="tp">
+  <a class="tp-logo" href="../index.html">MAXDAY 留学</a>
+  <nav class="tp-lang" aria-label="Language">
+          <a class="on"
+         href="cost.html">简体</a>
+          <a class=""
+         href="../../ko/tools/cost.html">한국</a>
+          <a class=""
+         href="../../en/tools/cost.html">En</a>
+      </nav>
+</header>
+
+<div class="wrap" style="padding-top:16px">
+  <h1 style="margin:0 0 3px;font-size:21px;letter-spacing:-.4px">生活费估算器</h1>
+  <p class="sm muted" style="margin:0 0 14px">学费 + 生活费 = 1 年实际需要多少钱</p>
+
+  <form class="dcard" method="get">
+    <div class="qrow">
+      <span class="qlab">大学</span>
+      <select name="uni" data-autosubmit>
+                  <option value="1" selected>
+            高丽大学 · 首尔</option>
+                  <option value="2" >
+            釜山大学 · 釜山</option>
+                  <option value="3" >
+            样本大学 · 京畿道</option>
+              </select>
+    </div>
+    <div class="qrow">
+      <span class="qlab">居住形态</span>
+      <input type="hidden" name="housing" value="studio">
+      <div class="chips">
+                  <button type="button" class="chip "
+                  data-chip="housing" data-val="dorm" data-auto="1">宿舍</button>
+                  <button type="button" class="chip on"
+                  data-chip="housing" data-val="studio" data-auto="1">单间公寓</button>
+                  <button type="button" class="chip "
+                  data-chip="housing" data-val="share" data-auto="1">合租</button>
+              </div>
+    </div>
+    <div class="qrow" style="margin:0">
+      <span class="qlab">打工</span>
+      <input type="hidden" name="pt" value="1">
+      <div class="chips">
+        <button type="button" class="chip on" data-chip="pt" data-val="1" data-auto="1">计划打工</button>
+        <button type="button" class="chip " data-chip="pt" data-val="0" data-auto="1">不打工</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- 월 고정비 -->
+  <div class="calc-out">
+    <div class="crow" style="background:var(--wash)"><span class="lb" style="font-weight:700">每月固定支出</span></div>
+          <div class="crow">
+        <span class="lb">月租                  </span>
+        <span class="amt">₩500,000<span class="y">¥2,632</span></span>
+      </div>
+          <div class="crow">
+        <span class="lb">管理费                  </span>
+        <span class="amt">₩50,000<span class="y">¥263</span></span>
+      </div>
+          <div class="crow">
+        <span class="lb">水电燃气          <span class="tagline">冬季+</span>        </span>
+        <span class="amt">₩40,000<span class="y">¥211</span></span>
+      </div>
+          <div class="crow">
+        <span class="lb">网络                  </span>
+        <span class="amt">₩25,000<span class="y">¥132</span></span>
+      </div>
+          <div class="crow">
+        <span class="lb">手机                  </span>
+        <span class="amt">₩30,000<span class="y">¥158</span></span>
+      </div>
+          <div class="crow">
+        <span class="lb">健康保险                  </span>
+        <span class="amt">₩58,000<span class="y">¥305</span></span>
+      </div>
+          <div class="crow">
+        <span class="lb">餐费                  </span>
+        <span class="amt">₩400,000<span class="y">¥2,105</span></span>
+      </div>
+          <div class="crow">
+        <span class="lb">交通                  </span>
+        <span class="amt">₩60,000<span class="y">¥316</span></span>
+      </div>
+          <div class="crow">
+        <span class="lb">教材                  </span>
+        <span class="amt">₩30,000<span class="y">¥158</span></span>
+      </div>
+        <div class="crow total">
+      <span class="lb">月合计</span>
+      <span class="amt">₩1,193,000<span class="y">¥6,279</span></span>
+    </div>
+                <div class="crow" style="background:var(--cond-bg)">
+        <span class="lb" style="color:var(--cond)">
+          打工收入 — 暂不计入</span>
+        <span class="amt" style="color:var(--cond);font-size:13px;font-weight:600">
+          当前TOPIK等级不满足打工许可条件</span>
+      </div>
+            <div class="sm muted" style="padding:9px 12px;line-height:1.65">
+        ※ 打工需<b>事先获得出入境许可</b>，入学第一学期通常无法申请。上表按最低时薪 10,320₩ 估算，实际收入因工作而异。无许可打工可能被处罚或勒令出境。                  · <span style="color:var(--cond)">该基准尚未核对官方原文</span>
+              </div>
+      </div>
+
+  <!-- 1년 총액 -->
+  <div class="bigsum">
+    <div class="lb">1 年总额</div>
+    <div class="n">₩22,676,000</div>
+    <div class="y">¥119,347</div>
+    <div class="brk">
+      <span>学费 ₩8,360,000</span>
+      <span>生活费 ₩14,316,000</span>
+    </div>
+  </div>
+
+  <!-- 중국에 없는 3가지 -->
+  <div class="warnbox">
+    <h3><svg class="i" viewBox="0 0 16 16"><path d="M8 3.5v6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="8" cy="12.5" r="1.2" fill="currentColor"/></svg>中国没有的 3 项支出</h3>
+              <div class="wi"><div class="wt"><span>保证金(押金)</span>
+        <span class="amt">₩5,000,000</span></div>
+        <div class="wd">中国没有的概念。退租时返还</div></div>
+              <div class="wi"><div class="wt"><span>冬季取暖费</span>
+        <span class="amt">+₩50,000 / 月</span></div>
+        <div class="wd">12~2月 水电燃气费比平时高出 2~3 倍。南方出身的学生最容易低估这一项。</div></div>
+              <div class="wi"><div class="wt"><span>健康保险</span>
+        <span class="amt">₩58,000 / 月</span></div>
+        <div class="wd">滞留6个月以上必须加入</div></div>
+      </div>
+
+  <!-- 초기 1회 -->
+    <div class="calc-out">
+    <div class="crow" style="background:var(--wash)"><span class="lb" style="font-weight:700">初期一次性费用</span></div>
+          <div class="crow"><span class="lb">保证金(押金)</span>
+        <span class="amt">₩5,000,000<span class="y">¥26,316</span></span></div>
+          <div class="crow"><span class="lb">家电·生活用品</span>
+        <span class="amt">₩600,000<span class="y">¥3,158</span></span></div>
+        <div class="crow total"><span class="lb">合计</span>
+      <span class="amt">₩5,600,000<span class="y">¥29,474</span></span></div>
+  </div>
+  
+  <p style="margin:0 0 6px"><a class="sm" href="finance@uni=1.html">财力证明诊断 →</a></p>
+
+  <p class="legal">本结果仅供参考，实际费用因大学·地区·个人消费习惯而异。    汇率按 ¥1 = ₩190 换算 ·
+    <span class="legal-d">官方资料确认日 2026.10.31</span></p>
+</div>
+
+<div class="tray" id="tray" hidden>
+  <div class="tray-in">
+    <div class="tray-list" id="trayList"></div>
+    <div class="tray-act">
+      <button type="button" id="trayClear">清空</button>
+      <a id="trayGo" href="../compare.html">比较</a>
+    </div>
+  </div>
+</div>
+
+<nav class="tabbar" aria-label="main">
+      <a class="" href="../index.html">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z"/></svg>
+      <span>首页</span>
+    </a>
+      <a class="" href="../universities.html">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zm10 17-5.2-5.2"/></svg>
+      <span>找大学</span>
+    </a>
+      <a class="" href="../ai.html">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M7 7l2 2m6 6 2 2m0-10-2 2m-6 6-2 2"/></svg>
+      <span>AI留学</span>
+    </a>
+      <a class="" href="../my.html">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm-8 9a8 8 0 0 1 16 0"/></svg>
+      <span>我的韩国</span>
+    </a>
+      <a class="" href="../services.html">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <span>服务</span>
+    </a>
+  </nav>
+
+<script src="../../assets/front.js"></script>
+<script>document.addEventListener("submit",function(e){e.preventDefault();alert("시연용 화면입니다. 실제 저장되지 않습니다.")},true);</script></body>
+</html>

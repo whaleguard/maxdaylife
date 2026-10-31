@@ -1,0 +1,238 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>공고 관리 · MAXDAY 교육 기관콘솔</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--p:#4320C7;--p2:#5A44A0;--acc:#FB5640;--ink:#241B3C;--mut:#6E6885;--line:#E7E3F2;--bg:#F7F6FB}
+*{box-sizing:border-box}body{margin:0;font-family:'IBM Plex Sans KR',system-ui,sans-serif;background:var(--bg);color:var(--ink);display:flex;min-height:100vh}
+a{color:var(--p);text-decoration:none}
+.side{width:224px;flex:none;background:var(--ink);color:#fff;display:flex;flex-direction:column;padding:20px 12px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.side .lg{display:flex;align-items:center;gap:9px;padding:0 8px 16px}
+.side .lg .m{width:30px;height:30px;border-radius:8px;background:var(--p);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+.side .who{padding:10px 10px 14px;margin-bottom:8px;border-bottom:1px solid rgba(255,255,255,.08)}
+.side .who .nm{font-size:13.5px;font-weight:600;color:#fff;line-height:1.4}
+.side .who .mt{margin-top:7px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.side .pill{font-size:11px;font-weight:600;padding:3px 8px;border-radius:20px}
+.side .pill.biz{background:#F5C24B;color:#3A2B08}.side .pill.free{background:rgba(255,255,255,.14);color:#D9D2EC}
+.side .pill.cr{background:rgba(255,255,255,.1);color:#E5DEF7}
+.side a.nav{display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:9px;color:#BDB5D4;font-size:13.5px;margin-bottom:2px}
+.side a.nav:hover{background:rgba(255,255,255,.06);color:#fff}
+.side a.nav.on{background:rgba(255,255,255,.13);color:#fff;font-weight:600}
+.side .out{margin-top:auto;padding-top:14px;font-size:12.5px}
+.main{flex:1;min-width:0;padding:0 0 60px}
+.topbar{background:#fff;border-bottom:1px solid var(--line);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;z-index:20}
+.topbar .t1{font-size:14px;font-weight:600}
+.topbar .t2{font-size:13px;color:var(--mut)}
+.topbar .t2 b{color:var(--p)}
+.topbar .plan{display:inline-block;margin-left:6px;font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:20px}
+.topbar .plan.biz{background:#FCEFC7;color:#8A6A0B}.topbar .plan.free{background:#F1EEF9;color:#6E6885}
+.pad{padding:26px 32px 0}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px}
+.top h1{font-size:22px;margin:0}.top .sub{font-size:13px;color:var(--mut);margin-top:4px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+.kpi .l{font-size:12.5px;color:var(--mut)}.kpi .v{font-size:26px;font-weight:600;margin-top:6px}
+.kpi .v small{font-size:14px;color:var(--mut);font-weight:500}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.card h2{font-size:16px;margin:0 0 14px}.card .hint{font-size:12.5px;color:var(--mut);margin:-8px 0 14px}
+.grid2{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:11px 10px;border-bottom:1px solid #F2EFF8;vertical-align:middle}
+th{font-size:11.5px;color:#9A93B0;font-weight:600;background:#FAF9FD}
+tr:hover td{background:#FAF9FD}
+.muted{color:var(--mut)}.small{font-size:12px}.right{text-align:right}.center{text-align:center}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 15px;border-radius:9px;background:var(--p);color:#fff;border:0;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none}
+.btn:hover{background:var(--p2)}
+.btn.ghost{background:#fff;border:1px solid var(--line);color:var(--p)}
+.btn.sm{padding:6px 11px;font-size:12px}
+.btn.danger{background:#C43F26}.btn.danger:hover{background:#a83218}
+.btn.block{width:100%;justify-content:center}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+label{display:block;font-size:12.5px;font-weight:600;margin:14px 0 5px}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid #DFDBEC;border-radius:9px;font-size:13.5px;font-family:inherit;color:var(--ink);background:#fff}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--p2);box-shadow:0 0 0 3px rgba(90,68,160,.12)}
+textarea{min-height:120px;resize:vertical}
+.row{display:flex;gap:14px;flex-wrap:wrap}.row>div{flex:1;min-width:150px}
+.inline{display:inline-block;width:auto}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.chips label{margin:0;cursor:pointer;font-weight:500}
+.chips label input{position:absolute;opacity:0;width:0;height:0}
+.chips label span{display:inline-block;padding:8px 14px;border:1px solid var(--line);border-radius:20px;font-size:13px;color:var(--mut);background:#fff;transition:.12s}
+.chips label input:checked+span{background:var(--p);color:#fff;border-color:var(--p)}
+.checks{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px}
+.checks label{display:flex;align-items:center;gap:7px;margin:0;font-weight:500;font-size:13.5px;cursor:pointer}
+.checks label input{width:auto}
+.badge{display:inline-block;padding:3px 9px;border-radius:6px;font-size:11.5px;font-weight:600}
+.b-open{background:#EAF3EE;color:#2E7150}.b-closed{background:#F1EEF9;color:#6E6885}
+.b-new{background:#FDEBE6;color:#C43F26}.b-mut{background:#F1EEF9;color:#6E6885}
+.b-hi{background:#EAF3EE;color:#2E7150}.b-md{background:#FCF3E2;color:#8A6A0B}.b-lo{background:#FDEBE6;color:#C43F26}
+.flash{padding:11px 15px;border-radius:9px;font-size:13.5px;margin:0 0 16px}
+.flash.ok{background:#EAF3EE;color:#2E7150}.flash.err{background:#FDEBE6;color:#C43F26}
+.tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.tabs a{padding:8px 13px;border-radius:8px;background:#fff;border:1px solid var(--line);font-size:13px;color:var(--mut)}
+.tabs a.on{background:var(--p);color:#fff;border-color:var(--p)}
+.tabs a .n{opacity:.7;font-size:11.5px;margin-left:3px}
+.tcard{border:1px solid var(--line);border-radius:12px;padding:16px;background:#fff}
+.tcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.tcard .hd{display:flex;align-items:center;gap:11px;margin-bottom:10px}
+.tcard .av{width:42px;height:42px;border-radius:11px;background:var(--p);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px}
+.tcard .nm{font-weight:600;font-size:14.5px}.tcard .meta{font-size:12px;color:var(--mut);margin-top:2px}
+.metrics{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--mut);margin:10px 0}
+.metrics b{color:var(--ink)}
+.aibox{font-size:13px}
+.aibox .item{display:flex;gap:8px;padding:9px 0;border-bottom:1px solid #F2EFF8;line-height:1.5}
+.aibox .item:last-child{border-bottom:0}
+.aibox .ic{flex:none;width:18px;text-align:center}
+.aibox .ok .ic{color:#2E7150}.aibox .warn .ic{color:#C43F26}.aibox .warn{color:#8a2f1a}
+.packs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pack{border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+.pack .q{font-size:20px;font-weight:700}.pack .pr{color:var(--mut);font-size:13px;margin:4px 0 10px}.pack .bn{font-size:11.5px;color:#8A6A0B;background:#FCF3E2;border-radius:20px;padding:2px 8px;display:inline-block;margin-bottom:10px}
+@media(max-width:960px){.grid2{grid-template-columns:1fr}.packs{grid-template-columns:1fr}}
+@media(max-width:820px){body{flex-direction:column}.side{width:100%;height:auto;position:static}.kpis{grid-template-columns:repeat(2,1fr)}.topbar{padding:12px 18px}.pad{padding:18px}}
+</style><style id="demo-fit">html,body{max-width:100%;overflow-x:hidden}img,video{max-width:100%;height:auto}@media(max-width:760px){table{display:block;max-width:100%;overflow-x:auto}}</style></head><body><div id="demo-bar" style="position:sticky;top:0;z-index:99999;background:#0f1f46;color:#fff;font:600 12px/1.4 system-ui,sans-serif;text-align:center;padding:7px 12px">MAXDAY 교육 · 시연용 보기 전용 화면 (저장·로그인·결제 동작 없음)</div>
+<nav class="side">
+  <div class="lg"><div class="m">잇</div><b style="font-size:14px">기관 콘솔</b></div>
+  <div class="who">
+    <div class="nm">화곡초등학교 방과후학교</div>
+    <div class="mt">
+      <span class="pill biz">비즈니스</span>
+      <span class="pill cr">크레딧 30</span>
+    </div>
+  </div>
+      <a class="nav " href="index.php.html"><span>📊</span> 대시보드</a>
+      <a class="nav " href="compose.php.html"><span>✏️</span> 공고 등록</a>
+      <a class="nav on" href="jobs.php.html"><span>📋</span> 공고 관리</a>
+      <a class="nav " href="applicants.php.html"><span>🗂️</span> 지원자 관리</a>
+      <a class="nav " href="search.php.html"><span>🔎</span> 강사 검색</a>
+      <a class="nav " href="account.php.html"><span>🏢</span> 기관 정보</a>
+    <div class="out"><a class="nav" href="#" target="_blank">🌐 사이트 보기</a><a class="nav" href="#">↩ 로그아웃</a></div>
+</nav>
+<div class="main">
+  <div class="topbar">
+    <div class="t1">화곡초등학교 방과후학교<span class="plan biz">비즈니스</span></div>
+    <div class="t2">보유 크레딧 <b>30</b> · 이달 공고 <b>0/10</b> · <a href="account.php.html">충전·구독</a></div>
+  </div>
+  <div class="pad">
+<div class="top">
+  <div><h1>공고 관리</h1><div class="sub">직접 등록한 공고를 관리합니다.</div></div>
+  <a class="btn" href="compose.php.html">＋ 새 공고 등록</a>
+</div>
+
+<div class="tabs">
+  <a class="on" href="jobs.php.html">전체<span class="n">6</span></a>  <a class="" href="#">게시중<span class="n">6</span></a>  <a class="" href="#">마감<span class="n">0</span></a></div>
+
+<div class="card">
+    <table>
+    <thead><tr>
+      <th>제목</th><th>분야</th><th>지역</th><th class="center">조회</th><th class="center">지원자</th>
+      <th class="center">마감</th><th class="center">상태</th><th class="right">관리</th>
+    </tr></thead>
+    <tbody>
+          <tr>
+        <td><a href="#" target="_blank"><b>방과후 미술 강사 모집 (2026 2학기)</b></a></td>
+        <td class="small">문화예술</td>
+        <td class="small">서울 강서구</td>
+        <td class="center">3</td>
+        <td class="center">
+                      <a href="#"><b>5</b>명</a>
+                  </td>
+        <td class="center small">마감</td>
+        <td class="center"><span class="badge b-open">게시중</span></td>
+        <td class="right">
+          <form method="post" style="display:inline">
+            <input type="hidden" name="_csrf" value="226fc95aea21b8f90ec78792f8d16403">            <input type="hidden" name="job_id" value="1">
+            <input type="hidden" name="tab" value="all">
+                          <button class="btn ghost sm" name="act" value="close" onclick="return confirm('이 공고를 마감할까요?')">마감</button>
+                      </form>
+        </td>
+      </tr>
+          <tr>
+        <td><a href="#" target="_blank"><b>유치원 체육 놀이수업 강사</b></a></td>
+        <td class="small">유아·놀이</td>
+        <td class="small">경기 고양시</td>
+        <td class="center">1</td>
+        <td class="center">
+          <span class="muted">0</span>        </td>
+        <td class="center small">마감</td>
+        <td class="center"><span class="badge b-open">게시중</span></td>
+        <td class="right">
+          <form method="post" style="display:inline">
+            <input type="hidden" name="_csrf" value="226fc95aea21b8f90ec78792f8d16403">            <input type="hidden" name="job_id" value="2">
+            <input type="hidden" name="tab" value="all">
+                          <button class="btn ghost sm" name="act" value="close" onclick="return confirm('이 공고를 마감할까요?')">마감</button>
+                      </form>
+        </td>
+      </tr>
+          <tr>
+        <td><a href="#" target="_blank"><b>직장인 데이터 리터러시 사내교육 강사</b></a></td>
+        <td class="small">기업교육</td>
+        <td class="small">서울 성동구</td>
+        <td class="center">1</td>
+        <td class="center">
+          <span class="muted">0</span>        </td>
+        <td class="center small">마감</td>
+        <td class="center"><span class="badge b-open">게시중</span></td>
+        <td class="right">
+          <form method="post" style="display:inline">
+            <input type="hidden" name="_csrf" value="226fc95aea21b8f90ec78792f8d16403">            <input type="hidden" name="job_id" value="3">
+            <input type="hidden" name="tab" value="all">
+                          <button class="btn ghost sm" name="act" value="close" onclick="return confirm('이 공고를 마감할까요?')">마감</button>
+                      </form>
+        </td>
+      </tr>
+          <tr>
+        <td><a href="#" target="_blank"><b>중등 수학 보습 강사 (주 3일)</b></a></td>
+        <td class="small">교과·입시</td>
+        <td class="small">서울 양천구</td>
+        <td class="center">1</td>
+        <td class="center">
+          <span class="muted">0</span>        </td>
+        <td class="center small">마감</td>
+        <td class="center"><span class="badge b-open">게시중</span></td>
+        <td class="right">
+          <form method="post" style="display:inline">
+            <input type="hidden" name="_csrf" value="226fc95aea21b8f90ec78792f8d16403">            <input type="hidden" name="job_id" value="4">
+            <input type="hidden" name="tab" value="all">
+                          <button class="btn ghost sm" name="act" value="close" onclick="return confirm('이 공고를 마감할까요?')">마감</button>
+                      </form>
+        </td>
+      </tr>
+          <tr>
+        <td><a href="#" target="_blank"><b>초등 저학년 한글·독서 논술 강사</b></a></td>
+        <td class="small">교과·입시</td>
+        <td class="small">서울 양천구</td>
+        <td class="center">1</td>
+        <td class="center">
+          <span class="muted">0</span>        </td>
+        <td class="center small">마감</td>
+        <td class="center"><span class="badge b-open">게시중</span></td>
+        <td class="right">
+          <form method="post" style="display:inline">
+            <input type="hidden" name="_csrf" value="226fc95aea21b8f90ec78792f8d16403">            <input type="hidden" name="job_id" value="5">
+            <input type="hidden" name="tab" value="all">
+                          <button class="btn ghost sm" name="act" value="close" onclick="return confirm('이 공고를 마감할까요?')">마감</button>
+                      </form>
+        </td>
+      </tr>
+          <tr>
+        <td><a href="#" target="_blank"><b>어린이집 오케스트라 음악 수업 강사</b></a></td>
+        <td class="small">음악</td>
+        <td class="small">서울 구로구</td>
+        <td class="center">1</td>
+        <td class="center">
+          <span class="muted">0</span>        </td>
+        <td class="center small">마감</td>
+        <td class="center"><span class="badge b-open">게시중</span></td>
+        <td class="right">
+          <form method="post" style="display:inline">
+            <input type="hidden" name="_csrf" value="226fc95aea21b8f90ec78792f8d16403">            <input type="hidden" name="job_id" value="6">
+            <input type="hidden" name="tab" value="all">
+                          <button class="btn ghost sm" name="act" value="close" onclick="return confirm('이 공고를 마감할까요?')">마감</button>
+                      </form>
+        </td>
+      </tr>
+        </tbody>
+  </table>
+  </div>
+  </div>
+</div>
+<script>document.addEventListener("submit",function(e){e.preventDefault();alert("시연용 화면입니다. 실제 저장되지 않습니다.")},true);</script></body></html>

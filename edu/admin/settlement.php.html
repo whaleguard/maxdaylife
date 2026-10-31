@@ -1,0 +1,190 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>수익 정산 · MAXDAY 교육 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--p:#4320C7;--acc:#FB5640;--ink:#241B3C;--mut:#6E6885;--line:#E7E3F2;--bg:#F7F6FB}
+*{box-sizing:border-box}body{margin:0;font-family:'IBM Plex Sans KR',system-ui,sans-serif;background:var(--bg);color:var(--ink);display:flex;min-height:100vh}
+a{color:var(--p);text-decoration:none}
+.side{width:220px;flex:none;background:var(--ink);color:#fff;display:flex;flex-direction:column;padding:20px 12px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.side .lg{padding:2px 4px 16px}
+.side .lg .logobox{background:#fff;border-radius:11px;padding:11px 12px;display:flex;align-items:center;justify-content:center}
+.side .lg .logobox img{height:26px;width:auto;display:block;max-width:100%}
+.side .lg .cap{display:block;text-align:center;color:#9088AE;font-size:11px;letter-spacing:.14em;margin-top:7px}
+.side a.nav{display:block;padding:9px 11px;border-radius:9px;color:#BDB5D4;font-size:13px;margin-bottom:2px}
+.side a.nav:hover{background:rgba(255,255,255,.06);color:#fff}
+.side a.nav.on{background:rgba(255,255,255,.12);color:#fff;font-weight:600}
+/* 대메뉴 펼침(아코디언) */
+.side details.grp{margin-bottom:2px}
+.side details.grp>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:9px 11px;border-radius:9px;color:#CFC8E4;font-size:12px;font-weight:700;letter-spacing:.01em}
+.side details.grp>summary::-webkit-details-marker{display:none}
+.side details.grp>summary::after{content:'⌄';font-size:13px;line-height:1;opacity:.55;transform:translateY(-2px);transition:transform .18s}
+.side details.grp[open]>summary::after{transform:translateY(1px) rotate(180deg)}
+.side details.grp>summary:hover{background:rgba(255,255,255,.06);color:#fff}
+.side a.nav.sub{padding:8px 11px 8px 20px;font-size:12.5px;margin-bottom:1px}
+.side a.nav.sub.on{background:rgba(255,255,255,.14)}
+.side .out{margin-top:auto;padding-top:14px;font-size:12px}
+.main{flex:1;min-width:0;padding:28px 32px 60px}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;flex-wrap:wrap;gap:12px}
+.top h1{font-size:22px;margin:0}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+.kpi .l{font-size:12.5px;color:var(--mut)}.kpi .v{font-size:26px;font-weight:600;margin-top:6px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.card h2{font-size:16px;margin:0 0 14px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:11px 10px;border-bottom:1px solid #F2EFF8}
+th{font-size:11.5px;color:#9A93B0;font-weight:600;background:#FAF9FD}
+tr:hover td{background:#FAF9FD}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 15px;border-radius:9px;background:var(--p);color:#fff;border:0;font-size:13px;font-weight:600;cursor:pointer}
+.btn.ghost{background:#fff;border:1px solid var(--line);color:var(--p)}
+.btn.sm{padding:6px 11px;font-size:12px}
+.btn.danger{background:#C43F26}
+label{display:block;font-size:12.5px;font-weight:600;margin:12px 0 5px}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid #DFDBEC;border-radius:9px;font-size:13.5px;font-family:inherit;color:var(--ink)}
+textarea{min-height:90px}
+.row{display:flex;gap:14px;flex-wrap:wrap}.row>div{flex:1;min-width:160px}
+.badge{padding:3px 9px;border-radius:6px;font-size:11.5px;font-weight:600}
+.b-new{background:#FDEBE6;color:#C43F26}.b-ok{background:#EAF3EE;color:#2E7150}.b-mut{background:#F1EEF9;color:#6E6885}
+.flash{padding:11px 15px;border-radius:9px;font-size:13.5px;margin-bottom:16px}
+.flash.ok{background:#EAF3EE;color:#2E7150}.flash.err{background:#FDEBE6;color:#C43F26}
+.tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.tabs a{padding:8px 13px;border-radius:8px;background:#fff;border:1px solid var(--line);font-size:13px;color:var(--mut)}
+.tabs a.on{background:var(--p);color:#fff;border-color:var(--p)}
+@media(max-width:820px){body{flex-direction:column}.side{width:100%;height:auto;position:static;flex-direction:row;flex-wrap:wrap;gap:4px}.side .lg{width:100%}.side .out{margin:0}.kpis{grid-template-columns:repeat(2,1fr)}}
+</style><style id="demo-fit">html,body{max-width:100%;overflow-x:hidden}img,video{max-width:100%;height:auto}@media(max-width:760px){table{display:block;max-width:100%;overflow-x:auto}}</style></head><body><div id="demo-bar" style="position:sticky;top:0;z-index:99999;background:#0f1f46;color:#fff;font:600 12px/1.4 system-ui,sans-serif;text-align:center;padding:7px 12px">MAXDAY 교육 · 시연용 보기 전용 화면 (저장·로그인·결제 동작 없음)</div>
+<nav class="side">
+  <div class="lg"><div class="logobox"><img src="../assets/img/logo.png" alt="MAXDAY 교육"></div><span class="cap">관리자</span></div>
+            <a class="nav " href="index.php.html">대시보드</a>
+                <details class="grp" >
+        <summary>공고·지원</summary>
+                  <a class="nav sub " href="jobs.php.html">공고 관리</a>
+                  <a class="nav sub " href="collect.php.html">수집 공고</a>
+                  <a class="nav sub " href="collect_sources.php.html">수집처 디렉토리</a>
+                  <a class="nav sub " href="applications.php.html">지원 현황</a>
+              </details>
+                <details class="grp" >
+        <summary>회원·신뢰</summary>
+                  <a class="nav sub " href="members.php.html">회원 관리</a>
+                  <a class="nav sub " href="reviews.php.html">후기·신뢰지표</a>
+                  <a class="nav sub " href="branches.php.html">지사·수익배분</a>
+              </details>
+                <details class="grp" >
+        <summary>강사 콘텐츠</summary>
+                  <a class="nav sub " href="certifications.php.html">자격증 안내</a>
+                  <a class="nav sub " href="subsidies.php.html">지원금 안내</a>
+                  <a class="nav sub " href="benefits.php.html">강사 혜택</a>
+                  <a class="nav sub " href="partners.php.html">제휴 할인업체</a>
+              </details>
+                <details class="grp" >
+        <summary>마케팅·노출</summary>
+                  <a class="nav sub " href="#">메인 이미지</a>
+                  <a class="nav sub " href="#">팝업 관리</a>
+                  <a class="nav sub " href="#">SEO 키워드</a>
+                  <a class="nav sub " href="#">pSEO 자동랜딩</a>
+              </details>
+                <details class="grp" open>
+        <summary>운영·설정</summary>
+                  <a class="nav sub " href="inquiries.php.html">문의 접수</a>
+                  <a class="nav sub " href="analytics.php.html">통계보기</a>
+                  <a class="nav sub on" href="settlement.php.html">수익 정산</a>
+                  <a class="nav sub " href="#">사이트 설정</a>
+              </details>
+        <div class="out"><a class="nav" href="#" target="_blank">사이트 보기</a><a class="nav" href="#">로그아웃</a></div>
+</nav>
+<div class="main">
+<style>
+.st-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:6px}
+.st-kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}
+.st-kpi .l{font-size:12px;color:var(--mut)}.st-kpi .v{font-size:22px;font-weight:700;margin-top:5px}
+.st-model{border:2px solid var(--p);border-radius:14px;padding:22px;box-shadow:0 10px 26px rgba(67,32,199,.08)}
+.st-model h3{margin:0 0 4px;font-size:16px}
+.st-model .sub{font-size:12.5px;color:var(--mut);margin-bottom:16px}
+.st-payout{display:flex;gap:12px}
+.st-payout>div{flex:1;background:#F7F6FB;border-radius:10px;padding:16px;text-align:center}
+.st-payout .who{font-size:12.5px;color:var(--mut)}.st-payout .amt{font-size:24px;font-weight:800;margin-top:6px;color:var(--p)}
+.st-bar{height:12px;border-radius:6px;overflow:hidden;display:flex;margin:16px 0 4px;background:#EEE}
+.st-bar i{display:block;height:100%}
+.st-break{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}
+.st-break table{width:100%;border-collapse:collapse;font-size:12.5px}
+.st-break td{padding:6px 4px;border-bottom:1px solid #f0eef7}
+.st-break td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.mixbar{height:14px;border-radius:7px;overflow:hidden;display:flex;background:#eee}
+.mixbar i{display:block;height:100%}
+@media(max-width:820px){.st-grid{grid-template-columns:1fr 1fr}}
+</style>
+
+<div class="top"><h1>수익 정산</h1>
+  <form method="get" style="margin:0"><select name="period" onchange="this.form.submit()" style="width:auto;padding:7px 10px">
+    <option value="2026-10" selected>2026-10</option><option value="2026-09" >2026-09</option><option value="2026-08" >2026-08</option><option value="2026-07" >2026-07</option><option value="2026-06" >2026-06</option><option value="2026-05" >2026-05</option><option value="2026-04" >2026-04</option><option value="2026-03" >2026-03</option><option value="2026-02" >2026-02</option><option value="2026-01" >2026-01</option><option value="2025-12" >2025-12</option><option value="2025-11" >2025-11</option>  </select></form>
+</div>
+
+<div class="card" style="background:#FFF7E9;border-color:#F3E2BE">
+  <p style="margin:0;font-size:13px;color:#7A5B12;line-height:1.7"><b>2026-10</b> 결제 매출 데이터가 아직 없습니다. 결제(포트원·토스) 연동 전에는 아래 <b>매출 입력칸에 예상 금액</b>을 넣어 정산을 미리 계산해 볼 수 있습니다. 연동 후에는 실제 매출이 자동 반영됩니다.</p>
+</div>
+
+<!-- 매출 입력/집계 -->
+<div class="card">
+  <h2>이번 달 매출 (2026-10)</h2>
+  <form method="get" class="row" style="align-items:flex-end">
+    <input type="hidden" name="period" value="2026-10">
+    <div><label>강사 구독</label><input name="rev_sub" type="number" value="0"></div>
+    <div><label>크레딧 판매</label><input name="rev_credit" type="number" value="0"></div>
+    <div><label>광고·제휴</label><input name="rev_ad" type="number" value="0"></div>
+    <div><label>기타</label><input name="rev_etc" type="number" value="0"></div>
+    <div style="flex:none"><button class="btn">계산</button>
+      <a class="btn ghost" href="#">실매출로</a></div>
+  </form>
+  <div class="st-grid" style="margin-top:16px">
+    <div class="st-kpi"><div class="l">총매출</div><div class="v">0원</div></div>
+    <div class="st-kpi"><div class="l">공동비용(서버·운영)</div><div class="v" style="color:#C43F26">-300,000원</div></div>
+    <div class="st-kpi"><div class="l">회원매출(경로귀속)</div><div class="v" style="font-size:18px">0원</div></div>
+    <div class="st-kpi"><div class="l">공통매출(광고·제휴 5:5)</div><div class="v" style="font-size:18px">0원</div></div>
+  </div>
+</div>
+
+<!-- 경로귀속 정산 결과 (단일 모델) -->
+<div class="st-model">
+  <h3>정산 결과 · 경로귀속</h3>
+  <div class="sub">회원매출은 가입 경로로 배분(갑 채널=카톡방 70%, 을 채널=pSEO 70%, 기타 각 50%), 광고·제휴는 5:5, 공동비용은 각 50%씩 차감.</div>
+  <div class="st-payout">
+    <div><div class="who">강사측(갑)</div><div class="amt">-150,000원</div></div>
+    <div><div class="who">개발·운영(을)</div><div class="amt">-150,000원</div></div>
+  </div>
+    <div class="st-bar"><i style="width:0%;background:var(--acc)"></i><i style="width:0%;background:var(--p)"></i></div>
+  <div class="muted" style="font-size:11.5px">강사측(갑) · 개발·운영(을) 순 배분액 (공동비용 각 50% 차감 후)</div>
+
+  <div class="st-break">
+    <table>
+      <tr><td>회원매출 — 갑 채널(카톡방 0%) 중 갑 70%</td><td>0원</td></tr>
+      <tr><td>회원매출 — 을 채널(pSEO 0%) 중 을 70%</td><td>0원</td></tr>
+      <tr><td>회원매출 — 기타·직접(100%) 각 50%</td><td>0원</td></tr>
+      <tr><td>광고·제휴(공통) 5:5</td><td>0원</td></tr>
+      <tr><td>공동비용 차감(각 50%)</td><td style="color:#C43F26">-300,000원</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- 채널 믹스 -->
+<div class="card" style="margin-top:16px">
+  <h2>가입 경로 믹스 <span class="muted" style="font-size:12px">(강사 회원 0명 기준 · 실데이터)</span></h2>
+      <p class="muted" style="font-size:13px;margin:0">아직 가입 경로 데이터가 없습니다. 카톡방 공유 링크에 <code>?ref=코드</code>를 붙이면 여기에 집계됩니다.</p>
+  </div>
+
+<!-- 설정 -->
+<div class="card">
+  <h2>정산 설정</h2>
+  <form method="post">
+    <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728">    <div class="row">
+      <div><label>공동비용(월, 서버·운영)</label><input name="cost_monthly" type="number" value="300000"></div>
+      <div><label>갑 채널(카톡방) 매출 중 갑 몫(%)</label><input name="w_kakao_client" type="number" value="70"></div>
+      <div><label>을 채널(pSEO) 매출 중 을 몫(%)</label><input name="w_pseo_dev" type="number" value="70"></div>
+    </div>
+    <div class="row">
+      <div><label>을(개발·운영) 표시 이름</label><input name="partner_dev_name" value="개발·운영(을)"></div>
+      <div><label>갑(강사측) 표시 이름</label><input name="partner_client_name" value="강사측(갑)"></div>
+    </div>
+    <div style="margin-top:12px"><button class="btn">설정 저장</button></div>
+  </form>
+  <p class="muted" style="font-size:11.5px;margin:12px 0 0">※ 정산 계산 참고용 화면입니다. 실제 지급·세금계산서는 별도 정산 계약에 따릅니다.</p>
+</div>
+</div><script>document.addEventListener("submit",function(e){e.preventDefault();alert("시연용 화면입니다. 실제 저장되지 않습니다.")},true);</script></body></html>

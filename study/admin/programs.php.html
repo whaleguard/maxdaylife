@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>외국인전형 · MAXDAY 유학 관리자</title>
+<link rel="stylesheet" href="../assets/admin.css">
+</head>
+<body class=""><div id="demo-bar" style="position:sticky;top:0;z-index:99999;background:#0f1f46;color:#fff;font:600 12px/1.4 system-ui,sans-serif;text-align:center;padding:7px 12px">MAXDAY 유학 · 시연용 보기 전용 화면 (저장·로그인·결제 동작 없음)</div>
+<header class="topbar">
+  <a class="brand" href="index.php.html">MAXDAY 유학<span>ADMIN</span></a>
+  <div class="spacer"></div>
+  <span class="who">운영자</span>
+  <a class="btn ghost sm" href="#">로그아웃</a>
+</header>
+<div class="shell">
+  <aside class="side">
+          <div class="navgroup">대시보드</div>
+              <a class="navitem" href="index.php.html">운영 현황</a>
+                <div class="navgroup">대학 · 전형</div>
+              <a class="navitem" href="universities.php.html">대학 관리</a>
+              <a class="navitem on" href="programs.php.html">외국인전형</a>
+                <div class="navgroup">수집 · AI</div>
+              <a class="navitem" href="crawl_sources.php.html">수집 소스</a>
+              <a class="navitem" href="review.php.html">검수 큐</a>
+              <a class="navitem" href="ai_features.php.html">AI 기능</a>
+                <div class="navgroup">대학 협력</div>
+              <a class="navitem" href="b2b.php.html">파트너십 문의</a>
+                <div class="navgroup">시스템</div>
+              <a class="navitem" href="rules.php.html">기준 데이터</a>
+              <a class="navitem" href="audit.php.html">감사 로그</a>
+            </aside>
+  <main class="main">
+    <div class="pagehead"><div><h1>외국인전형</h1><p class="sub">전체 3건 · 재외국민전형은 저장하지 않습니다</p></div><div class="acts"><a class="btn" href="#">＋ 전형 추가</a></div></div>
+<div class="chips">
+      <a class="chip on" href="programs.php.html">전체</a>
+      <a class="chip" href="programs.php.html">발행</a>
+      <a class="chip" href="programs.php.html">미발행</a>
+      <a class="chip" href="programs.php.html">검수 대기</a>
+      <a class="chip" href="programs.php.html">갱신 필요</a>
+  </div>
+
+<form class="filters" method="get">
+    <div class="field"><label>학년도</label>
+    <select name="year"><option value="">전체</option>
+              <option value="2027" >2027</option>
+      </select></div>
+  <div class="field"><label>입학 학기</label>
+    <select name="term"><option value="">전체</option>
+      <option value="mar" >3월</option>
+      <option value="sep" >9월</option>
+    </select></div>
+  <button class="btn ghost" type="submit">필터</button>
+</form>
+
+<div class="card tight">
+<table class="tbl">
+  <thead><tr>
+    <th>대학 · 전형</th><th>학년도</th><th>과정</th><th>TOPIK</th><th>등록금</th>
+    <th>모집</th><th>마감</th><th>상태</th><th></th>
+  </tr></thead>
+  <tbody>
+      <tr>
+      <td><a href="#"><strong>고려대학교</strong></a>
+        <div class="small muted">외국인특별전형</div></td>
+      <td class="small mono">2027        <div class="muted">3월</div></td>
+      <td class="small">학부        <div class="muted">신입</div></td>
+      <td class="num">4급        </td>
+      <td class="num small">4,180,000~5,940,000        <div class="muted">¥22,000</div></td>
+      <td class="num">25명</td>
+      <td class="small mono">09.15        </td>
+      <td>
+        <span class="badge b-ok">공식 확인 · 2026.08.07</span>        <div class="small" style="margin-top:3px"><span class="badge b-warn">미검수 6</span></div>              </td>
+      <td class="right"><a class="btn ghost sm" href="#">편집</a></td>
+    </tr>
+      <tr>
+      <td><a href="#"><strong>부산대학교</strong></a>
+        <div class="small muted">외국인특별전형</div></td>
+      <td class="small mono">2027        <div class="muted">3월</div></td>
+      <td class="small">학부        <div class="muted">신입</div></td>
+      <td class="num">3급        <div class="small muted">조건부</div></td>
+      <td class="num small">1,790,000~2,410,000        <div class="muted">¥9,421</div></td>
+      <td class="num">20명</td>
+      <td class="small mono">09.22        </td>
+      <td>
+        <span class="badge b-ok">공식 확인 · 2026.08.07</span>                      </td>
+      <td class="right"><a class="btn ghost sm" href="#">편집</a></td>
+    </tr>
+      <tr>
+      <td><a href="#"><strong>샘플대학교</strong></a>
+        <div class="small muted">외국인특별전형</div></td>
+      <td class="small mono">2027        <div class="muted">3월</div></td>
+      <td class="small">학부        <div class="muted">신입</div></td>
+      <td class="num">3급        <div class="small muted">조건부</div></td>
+      <td class="num small">3,450,000~4,180,000        <div class="muted">¥18,158</div></td>
+      <td class="num">—</td>
+      <td class="small mono">09.30        </td>
+      <td>
+        <span class="badge b-ok">공식 확인 · 2026.08.07</span>                      </td>
+      <td class="right"><a class="btn ghost sm" href="#">편집</a></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+
+  </main>
+</div>
+<script src="../assets/admin.js"></script>
+<script>document.addEventListener("submit",function(e){e.preventDefault();alert("시연용 화면입니다. 실제 저장되지 않습니다.")},true);</script></body>
+</html>

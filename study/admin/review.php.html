@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>검수 큐 · MAXDAY 유학 관리자</title>
+<link rel="stylesheet" href="../assets/admin.css">
+</head>
+<body class=""><div id="demo-bar" style="position:sticky;top:0;z-index:99999;background:#0f1f46;color:#fff;font:600 12px/1.4 system-ui,sans-serif;text-align:center;padding:7px 12px">MAXDAY 유학 · 시연용 보기 전용 화면 (저장·로그인·결제 동작 없음)</div>
+<header class="topbar">
+  <a class="brand" href="index.php.html">MAXDAY 유학<span>ADMIN</span></a>
+  <div class="spacer"></div>
+  <span class="who">운영자</span>
+  <a class="btn ghost sm" href="#">로그아웃</a>
+</header>
+<div class="shell">
+  <aside class="side">
+          <div class="navgroup">대시보드</div>
+              <a class="navitem" href="index.php.html">운영 현황</a>
+                <div class="navgroup">대학 · 전형</div>
+              <a class="navitem" href="universities.php.html">대학 관리</a>
+              <a class="navitem" href="programs.php.html">외국인전형</a>
+                <div class="navgroup">수집 · AI</div>
+              <a class="navitem" href="crawl_sources.php.html">수집 소스</a>
+              <a class="navitem on" href="review.php.html">검수 큐</a>
+              <a class="navitem" href="ai_features.php.html">AI 기능</a>
+                <div class="navgroup">대학 협력</div>
+              <a class="navitem" href="b2b.php.html">파트너십 문의</a>
+                <div class="navgroup">시스템</div>
+              <a class="navitem" href="rules.php.html">기준 데이터</a>
+              <a class="navitem" href="audit.php.html">감사 로그</a>
+            </aside>
+  <main class="main">
+    <div class="pagehead"><div><h1>검수 큐</h1><p class="sub">우선순위 = 마감임박 + 대학규모 + 신뢰도역수 + 변경심각도</p></div><div class="acts"></div></div>
+<div class="chips">
+      <a class="chip on" href="review.php.html">대기 1</a>
+      <a class="chip" href="review.php.html">내 담당</a>
+      <a class="chip" href="review.php.html">승인 0</a>
+      <a class="chip" href="review.php.html">반려 0</a>
+  </div>
+
+<div class="card tight">
+<table class="tbl">
+  <thead><tr><th>우선도</th><th>대학 · 전형</th><th>미검수</th><th>AI 신뢰도</th><th>마감</th><th>담당</th><th>상태</th><th></th></tr></thead>
+  <tbody>
+      <tr>
+      <td class="num"><strong>87</strong></td>
+      <td>
+        고려대학교        <div class="small muted">외국인특별전형           · 2027 3월</div>
+      </td>
+      <td class="num">6 / 6</td>
+      <td class="num">0.82</td>
+      <td class="small mono">09.15        </td>
+      <td class="small"><span class="muted">—</span></td>
+      <td><span class="badge b-muted">대기</span></td>
+      <td class="right"><a class="btn sm" href="#">검수</a></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+
+  </main>
+</div>
+<script src="../assets/admin.js"></script>
+<script>document.addEventListener("submit",function(e){e.preventDefault();alert("시연용 화면입니다. 실제 저장되지 않습니다.")},true);</script></body>
+</html>

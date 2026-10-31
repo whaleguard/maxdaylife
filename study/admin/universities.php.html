@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>대학 관리 · MAXDAY 유학 관리자</title>
+<link rel="stylesheet" href="../assets/admin.css">
+</head>
+<body class=""><div id="demo-bar" style="position:sticky;top:0;z-index:99999;background:#0f1f46;color:#fff;font:600 12px/1.4 system-ui,sans-serif;text-align:center;padding:7px 12px">MAXDAY 유학 · 시연용 보기 전용 화면 (저장·로그인·결제 동작 없음)</div>
+<header class="topbar">
+  <a class="brand" href="index.php.html">MAXDAY 유학<span>ADMIN</span></a>
+  <div class="spacer"></div>
+  <span class="who">운영자</span>
+  <a class="btn ghost sm" href="#">로그아웃</a>
+</header>
+<div class="shell">
+  <aside class="side">
+          <div class="navgroup">대시보드</div>
+              <a class="navitem" href="index.php.html">운영 현황</a>
+                <div class="navgroup">대학 · 전형</div>
+              <a class="navitem on" href="universities.php.html">대학 관리</a>
+              <a class="navitem" href="programs.php.html">외국인전형</a>
+                <div class="navgroup">수집 · AI</div>
+              <a class="navitem" href="crawl_sources.php.html">수집 소스</a>
+              <a class="navitem" href="review.php.html">검수 큐</a>
+              <a class="navitem" href="ai_features.php.html">AI 기능</a>
+                <div class="navgroup">대학 협력</div>
+              <a class="navitem" href="b2b.php.html">파트너십 문의</a>
+                <div class="navgroup">시스템</div>
+              <a class="navitem" href="rules.php.html">기준 데이터</a>
+              <a class="navitem" href="audit.php.html">감사 로그</a>
+            </aside>
+  <main class="main">
+    <div class="pagehead"><div><h1>대학 관리</h1><p class="sub">전체 3곳</p></div><div class="acts"><a class="btn" href="#">＋ 대학 추가</a></div></div>
+<form class="filters" method="get">
+  <div class="field" style="min-width:220px"><label>검색</label>
+    <input type="text" name="q" value="" placeholder="대학명 · slug · 중국어 동의어"></div>
+  <div class="field"><label>인증등급</label>
+    <select name="grade">
+      <option value="">전체</option>
+              <option value="excellent" >우수 인증</option>
+              <option value="certified" >인증</option>
+              <option value="general" >일반</option>
+              <option value="consulting" >컨설팅</option>
+              <option value="restricted" >비자 제한</option>
+          </select></div>
+  <div class="field"><label>지역</label>
+    <select name="region">
+      <option value="">전체</option>
+              <option value="11" >서울특별시</option>
+              <option value="41" >경기도</option>
+              <option value="28" >인천광역시</option>
+              <option value="26" >부산광역시</option>
+              <option value="27" >대구광역시</option>
+              <option value="30" >대전광역시</option>
+              <option value="29" >광주광역시</option>
+          </select></div>
+  <button class="btn ghost" type="submit">검색</button>
+  <a class="btn ghost" href="universities.php.html">초기화</a>
+</form>
+
+<div class="card tight">
+<table class="tbl">
+  <thead><tr>
+    <th>대학</th><th>지역·설립</th><th>인증등급</th><th>전형</th><th>수집</th><th>확인일</th><th>공개</th><th></th>
+  </tr></thead>
+  <tbody>
+      <tr>
+      <td>
+        <a href="#"><strong>고려대학교</strong></a>
+        <div class="small muted mono">korea-university · 高丽大学</div>
+      </td>
+      <td class="small">
+        서울특별시        <div class="muted">사립</div>
+      </td>
+      <td><span class="badge b-ok">우수 인증대학</span></td>
+      <td class="num">1 / 1        <div class="small muted">발행/전체</div></td>
+      <td class="num">0</td>
+      <td class="small mono">2026.08.07</td>
+      <td><span class="badge b-ok">공개</span></td>
+      <td class="right">
+        <a class="btn ghost sm" href="programs.php.html">전형</a>
+        <a class="btn ghost sm" href="#">수정</a>
+      </td>
+    </tr>
+      <tr>
+      <td>
+        <a href="#"><strong>부산대학교</strong></a>
+        <div class="small muted mono">pusan-national · 釜山大学</div>
+      </td>
+      <td class="small">
+        부산광역시        <div class="muted">국립</div>
+      </td>
+      <td><span class="badge b-ok">우수 인증대학</span></td>
+      <td class="num">1 / 1        <div class="small muted">발행/전체</div></td>
+      <td class="num">0</td>
+      <td class="small mono">2026.08.07</td>
+      <td><span class="badge b-ok">공개</span></td>
+      <td class="right">
+        <a class="btn ghost sm" href="programs.php.html">전형</a>
+        <a class="btn ghost sm" href="#">수정</a>
+      </td>
+    </tr>
+      <tr>
+      <td>
+        <a href="#"><strong>샘플대학교</strong></a>
+        <div class="small muted mono">sample-restricted · 样本大学</div>
+      </td>
+      <td class="small">
+        경기도        <div class="muted">사립</div>
+      </td>
+      <td><span class="badge b-alert">비자 발급 제한 · ~2027.08.31</span></td>
+      <td class="num">1 / 1        <div class="small muted">발행/전체</div></td>
+      <td class="num">0</td>
+      <td class="small mono">2026.08.07</td>
+      <td><span class="badge b-ok">공개</span></td>
+      <td class="right">
+        <a class="btn ghost sm" href="programs.php.html">전형</a>
+        <a class="btn ghost sm" href="#">수정</a>
+      </td>
+    </tr>
+    </tbody>
+</table>
+</div>
+
+  </main>
+</div>
+<script src="../assets/admin.js"></script>
+<script>document.addEventListener("submit",function(e){e.preventDefault();alert("시연용 화면입니다. 실제 저장되지 않습니다.")},true);</script></body>
+</html>

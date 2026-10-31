@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>운영 현황 · MAXDAY 유학 관리자</title>
+<link rel="stylesheet" href="../assets/admin.css">
+</head>
+<body class=""><div id="demo-bar" style="position:sticky;top:0;z-index:99999;background:#0f1f46;color:#fff;font:600 12px/1.4 system-ui,sans-serif;text-align:center;padding:7px 12px">MAXDAY 유학 · 시연용 보기 전용 화면 (저장·로그인·결제 동작 없음)</div>
+<header class="topbar">
+  <a class="brand" href="index.php.html">MAXDAY 유학<span>ADMIN</span></a>
+  <div class="spacer"></div>
+  <span class="who">운영자</span>
+  <a class="btn ghost sm" href="#">로그아웃</a>
+</header>
+<div class="shell">
+  <aside class="side">
+          <div class="navgroup">대시보드</div>
+              <a class="navitem on" href="index.php.html">운영 현황</a>
+                <div class="navgroup">대학 · 전형</div>
+              <a class="navitem" href="universities.php.html">대학 관리</a>
+              <a class="navitem" href="programs.php.html">외국인전형</a>
+                <div class="navgroup">수집 · AI</div>
+              <a class="navitem" href="crawl_sources.php.html">수집 소스</a>
+              <a class="navitem" href="review.php.html">검수 큐</a>
+              <a class="navitem" href="ai_features.php.html">AI 기능</a>
+                <div class="navgroup">대학 협력</div>
+              <a class="navitem" href="b2b.php.html">파트너십 문의</a>
+                <div class="navgroup">시스템</div>
+              <a class="navitem" href="rules.php.html">기준 데이터</a>
+              <a class="navitem" href="audit.php.html">감사 로그</a>
+            </aside>
+  <main class="main">
+    <div class="pagehead"><div><h1>운영 현황</h1></div><div class="acts"><a class="btn" href="review.php.html">검수 큐로 →</a></div></div>
+<div class="grid g4" style="margin-bottom:16px">
+      <div class="kpi"><div class="k">등록 대학</div><div class="v">3</div></div>
+      <div class="kpi"><div class="k">발행 전형</div><div class="v">3</div></div>
+      <div class="kpi"><div class="k">검수 대기</div><div class="v">1</div></div>
+      <div class="kpi"><div class="k">미해결 알림</div><div class="v">0</div></div>
+  </div>
+
+
+<div class="grid g2">
+  <div class="card">
+    <h2>마감 임박 전형</h2>
+          <div class="muted small">예정된 마감이 없습니다.</div>
+      </div>
+
+  <div class="card">
+    <h2>검수 대기 <span class="small muted">우선순위순</span></h2>
+        <table class="tbl">
+      <thead><tr><th>대학 · 전형</th><th>미검수</th><th>우선도</th><th></th></tr></thead>
+      <tbody>
+              <tr>
+          <td>고려대학교              <div class="small muted">외국인특별전형</div></td>
+          <td class="num">6</td>
+          <td class="num">87</td>
+          <td class="right"><a class="btn ghost sm" href="#">검수</a></td>
+        </tr>
+            </tbody>
+    </table>
+      </div>
+
+  <div class="card">
+    <h2>수집 상태</h2>
+    <table class="tbl">
+      <tbody>
+        <tr><td>등록 소스</td><td class="num">0</td></tr>
+        <tr><td>활성</td><td class="num">0</td></tr>
+        <tr><td>24시간 내 점검</td><td class="num">0</td></tr>
+        <tr><td>연속 실패(3회+)</td><td class="num">0</td></tr>
+      </tbody>
+    </table>
+    <p style="margin:12px 0 0"><a class="btn ghost sm" href="crawl_sources.php.html">소스 관리</a></p>
+  </div>
+
+  <div class="card">
+    <h2>데이터 품질</h2>
+    <table class="tbl">
+      <tbody>
+        <tr><td><span class="badge b-ok">공식 확인</span></td><td class="num">3</td></tr>
+        <tr><td><span class="badge b-pending">검수 대기</span></td><td class="num">0</td></tr>
+        <tr><td><span class="badge b-warn">갱신 필요</span></td><td class="num">0</td></tr>
+      </tbody>
+    </table>
+    <p class="small muted" style="margin:10px 0 0">검수 완료(공식 확인) 데이터만 공개되고 AI 매니저가 근거로 사용합니다.</p>
+  </div>
+
+  <div class="card">
+    <h2>AI 사용량 <span class="small muted">최근 30일</span></h2>
+          <div class="muted small">기록이 없습니다.</div>
+              <p class="small muted" style="margin:10px 0 0">
+        비활성 기능: 자동 게시, FAQ 자동답변, AI 유학 매니저, 유학 로드맵      </p>
+        <p style="margin:12px 0 0"><a class="btn ghost sm" href="ai_features.php.html">AI 기능 설정</a></p>
+  </div>
+</div>
+
+  </main>
+</div>
+<script src="../assets/admin.js"></script>
+<script>document.addEventListener("submit",function(e){e.preventDefault();alert("시연용 화면입니다. 실제 저장되지 않습니다.")},true);</script></body>
+</html>

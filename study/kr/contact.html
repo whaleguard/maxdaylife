@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>파트너십 문의 · MAXDAY 유학</title>
+<meta name="description" content="한국 대학의 외국인 유학생 모집을 위한 데이터 인프라. 입학 전 검증부터 입국 후 관리까지.">
+<meta property="og:title" content="파트너십 문의 · MAXDAY 유학">
+<meta property="og:description" content="한국 대학의 외국인 유학생 모집을 위한 데이터 인프라. 입학 전 검증부터 입국 후 관리까지.">
+<meta property="og:type" content="website">
+<meta name="robots" content="index,follow">
+<link rel="stylesheet" href="../assets/b2b.css">
+</head>
+<body><div id="demo-bar" style="position:sticky;top:0;z-index:99999;background:#0f1f46;color:#fff;font:600 12px/1.4 system-ui,sans-serif;text-align:center;padding:7px 12px">MAXDAY 유학 · 시연용 보기 전용 화면 (저장·로그인·결제 동작 없음)</div>
+<header class="bhead">
+  <div class="bwrap bhead-in">
+    <a class="blogo" href="index.html">MAXDAY 유학<span>기관용</span></a>
+    <nav class="bnav">
+              <a href="service.html" class="">서비스 소개</a>
+              <a href="partnership.html" class="">대학 파트너십</a>
+              <a href="performance.html" class="">성과 지표</a>
+              <a href="about.html" class="">회사 소개</a>
+              <a href="contact.html" class="on">문의</a>
+          </nav>
+    <div class="bhead-act">
+      <a class="blink-sm" href="../zh/index.html" target="_blank" rel="noopener">학생 서비스 ↗</a>
+      <a class="bbtn bbtn-ghost" href="#">콘솔 로그인</a>
+    </div>
+    <button class="bburger" type="button" aria-label="메뉴" onclick="document.body.classList.toggle('nav-open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="bnav-m">
+          <a href="service.html">서비스 소개</a>
+          <a href="partnership.html">대학 파트너십</a>
+          <a href="performance.html">성과 지표</a>
+          <a href="about.html">회사 소개</a>
+          <a href="contact.html">문의</a>
+        <a href="#">콘솔 로그인</a>
+  </nav>
+</header>
+<main>
+<section class="bhero" style="padding:72px 0 48px">
+  <div class="bwrap">
+    <div class="beyebrow">문의</div>
+    <h1 class="bh1" style="font-size:clamp(28px,3.6vw,42px)">파트너십 문의</h1>
+    <p class="blead">
+      대학명과 담당 부서만 남겨주시면 담당자가 2 영업일 내 회신드립니다.<br>
+      파일럿은 3개월간 별도 비용 없이 진행하며, 종료 시 표본 수를 포함한 결과 보고서를 드립니다.
+    </p>
+  </div>
+</section>
+
+<section class="bsec tight"><div class="bwrap">      
+    <form class="bform" method="post" action="contact.html">
+      <!-- 허니팟 -->
+      <div style="position:absolute;left:-9999px" aria-hidden="true">
+        <label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      </div>
+
+      <div class="bfield">
+        <label for="org_type">기관 유형</label>
+        <select id="org_type" name="org_type">
+          <option value="university" >4년제 대학</option>
+          <option value="college" >전문대학</option>
+          <option value="language_institute" >부설 어학기관</option>
+          <option value="agency" >유학 관련 기관</option>
+          <option value="other" >기타</option>
+        </select>
+      </div>
+
+      <div class="bfield">
+        <label for="org_name">기관명<span class="req">*</span></label>
+        <input id="org_name" name="org_name" required value="" placeholder="○○대학교">
+      </div>
+
+      <div class="bfield">
+        <label for="dept">부서</label>
+        <input id="dept" name="dept" value="" placeholder="국제교류처 / 입학처">
+      </div>
+
+      <div class="bfield">
+        <label for="manager_name">담당자명<span class="req">*</span></label>
+        <input id="manager_name" name="manager_name" required value="">
+      </div>
+
+      <div class="bfield">
+        <label for="position">직위</label>
+        <input id="position" name="position" value="" placeholder="팀장 / 주임">
+      </div>
+
+      <div class="bfield">
+        <label for="email">이메일<span class="req">*</span></label>
+        <input id="email" type="email" name="email" required value="">
+        <span class="hint">회신은 이 주소로 발송됩니다. 기관 메일 주소를 권장합니다.</span>
+      </div>
+
+      <div class="bfield">
+        <label for="tel">연락처</label>
+        <input id="tel" name="tel" value="" placeholder="02-000-0000">
+      </div>
+
+      <div class="bfield">
+        <label for="topic">문의 내용</label>
+        <select id="topic" name="topic">
+          <option value="pilot" >파일럿 참여 문의</option>
+          <option value="partnership" >파트너십 계약 조건</option>
+          <option value="console" >대학 콘솔 기능</option>
+          <option value="pricing" >비용 산정</option>
+          <option value="data" >학교·전형 정보 수정 요청</option>
+          <option value="other" >기타</option>
+        </select>
+      </div>
+
+      <div class="bfield">
+        <label for="message">상세 내용</label>
+        <textarea id="message" name="message" placeholder="모집 규모, 관심 국가, 희망 시기 등을 남겨주시면 회신에 반영하겠습니다."></textarea>
+      </div>
+
+      <label class="bcheck">
+        <input type="checkbox" name="privacy" value="1" required>
+        <span>
+          문의 회신을 위한 개인정보(기관명·담당자명·이메일·연락처) 수집·이용에 동의합니다.
+          수집된 정보는 문의 처리 목적으로만 사용하며, 처리 완료 후 3년간 보관 뒤 파기합니다.
+          동의를 거부하실 수 있으나 이 경우 문의 접수가 제한됩니다.
+          <a href="privacy.html" style="color:var(--primary)">개인정보처리방침</a>
+        </span>
+      </label>
+
+      <div>
+        <button class="bbtn bbtn-lg" type="submit">문의 보내기</button>
+      </div>
+    </form>
+
+    <p class="bnote" style="max-width:620px">
+      학생 개인정보는 이 화면으로 보내지 마십시오.
+      학생 관련 문의는 계약 후 콘솔을 통해 처리됩니다.
+    </p>
+  </div></section>
+</main>
+<footer class="bfoot">
+  <div class="bwrap">
+    <div class="bfoot-grid">
+      <div>
+        <div class="blogo" style="color:#fff;margin-bottom:10px">MAXDAY 유학</div>
+        <p class="bfoot-desc">
+          한국 대학의 외국인 유학생 모집을 위한 데이터 인프라.<br>
+          입학 전 검증부터 입국 후 관리까지 연결합니다.
+        </p>
+      </div>
+      <div>
+        <h4>서비스</h4>
+        <a href="service.html">서비스 소개</a>
+        <a href="partnership.html">대학 파트너십</a>
+        <a href="performance.html">성과 지표</a>
+      </div>
+      <div>
+        <h4>회사</h4>
+        <a href="about.html">회사 소개</a>
+        <a href="contact.html">문의</a>
+        <a href="../zh/index.html" target="_blank" rel="noopener">학생 서비스</a>
+      </div>
+      <div>
+        <h4>정책</h4>
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="terms.html">이용약관</a>
+      </div>
+    </div>
+    <div class="bfoot-btm">
+      <p>
+        케이레디 <span class="sep">·</span> 사업자등록번호 000-00-00000
+        <span class="sep">·</span> 대표 000
+        <span class="sep">·</span> 서울특별시 000
+      </p>
+      <p class="bfoot-legal">
+        MAXDAY 유학는 비자를 발급하지 않으며, 비자 심사·발급은 대한민국 재외공관이 결정합니다.
+        일부 서비스는 해당 자격을 갖춘 사업자가 제공하며 계약 주체는 각 서비스 화면에 명시됩니다.
+      </p>
+      <p class="bfoot-copy">© 2026 MAXDAY 유학. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<script>document.addEventListener("submit",function(e){e.preventDefault();alert("시연용 화면입니다. 실제 저장되지 않습니다.")},true);</script></body>
+</html>

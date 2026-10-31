@@ -1,0 +1,180 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>자격증 안내 · MAXDAY 교육 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--p:#4320C7;--acc:#FB5640;--ink:#241B3C;--mut:#6E6885;--line:#E7E3F2;--bg:#F7F6FB}
+*{box-sizing:border-box}body{margin:0;font-family:'IBM Plex Sans KR',system-ui,sans-serif;background:var(--bg);color:var(--ink);display:flex;min-height:100vh}
+a{color:var(--p);text-decoration:none}
+.side{width:220px;flex:none;background:var(--ink);color:#fff;display:flex;flex-direction:column;padding:20px 12px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.side .lg{padding:2px 4px 16px}
+.side .lg .logobox{background:#fff;border-radius:11px;padding:11px 12px;display:flex;align-items:center;justify-content:center}
+.side .lg .logobox img{height:26px;width:auto;display:block;max-width:100%}
+.side .lg .cap{display:block;text-align:center;color:#9088AE;font-size:11px;letter-spacing:.14em;margin-top:7px}
+.side a.nav{display:block;padding:9px 11px;border-radius:9px;color:#BDB5D4;font-size:13px;margin-bottom:2px}
+.side a.nav:hover{background:rgba(255,255,255,.06);color:#fff}
+.side a.nav.on{background:rgba(255,255,255,.12);color:#fff;font-weight:600}
+/* 대메뉴 펼침(아코디언) */
+.side details.grp{margin-bottom:2px}
+.side details.grp>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:9px 11px;border-radius:9px;color:#CFC8E4;font-size:12px;font-weight:700;letter-spacing:.01em}
+.side details.grp>summary::-webkit-details-marker{display:none}
+.side details.grp>summary::after{content:'⌄';font-size:13px;line-height:1;opacity:.55;transform:translateY(-2px);transition:transform .18s}
+.side details.grp[open]>summary::after{transform:translateY(1px) rotate(180deg)}
+.side details.grp>summary:hover{background:rgba(255,255,255,.06);color:#fff}
+.side a.nav.sub{padding:8px 11px 8px 20px;font-size:12.5px;margin-bottom:1px}
+.side a.nav.sub.on{background:rgba(255,255,255,.14)}
+.side .out{margin-top:auto;padding-top:14px;font-size:12px}
+.main{flex:1;min-width:0;padding:28px 32px 60px}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;flex-wrap:wrap;gap:12px}
+.top h1{font-size:22px;margin:0}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+.kpi .l{font-size:12.5px;color:var(--mut)}.kpi .v{font-size:26px;font-weight:600;margin-top:6px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.card h2{font-size:16px;margin:0 0 14px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:11px 10px;border-bottom:1px solid #F2EFF8}
+th{font-size:11.5px;color:#9A93B0;font-weight:600;background:#FAF9FD}
+tr:hover td{background:#FAF9FD}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 15px;border-radius:9px;background:var(--p);color:#fff;border:0;font-size:13px;font-weight:600;cursor:pointer}
+.btn.ghost{background:#fff;border:1px solid var(--line);color:var(--p)}
+.btn.sm{padding:6px 11px;font-size:12px}
+.btn.danger{background:#C43F26}
+label{display:block;font-size:12.5px;font-weight:600;margin:12px 0 5px}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid #DFDBEC;border-radius:9px;font-size:13.5px;font-family:inherit;color:var(--ink)}
+textarea{min-height:90px}
+.row{display:flex;gap:14px;flex-wrap:wrap}.row>div{flex:1;min-width:160px}
+.badge{padding:3px 9px;border-radius:6px;font-size:11.5px;font-weight:600}
+.b-new{background:#FDEBE6;color:#C43F26}.b-ok{background:#EAF3EE;color:#2E7150}.b-mut{background:#F1EEF9;color:#6E6885}
+.flash{padding:11px 15px;border-radius:9px;font-size:13.5px;margin-bottom:16px}
+.flash.ok{background:#EAF3EE;color:#2E7150}.flash.err{background:#FDEBE6;color:#C43F26}
+.tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.tabs a{padding:8px 13px;border-radius:8px;background:#fff;border:1px solid var(--line);font-size:13px;color:var(--mut)}
+.tabs a.on{background:var(--p);color:#fff;border-color:var(--p)}
+@media(max-width:820px){body{flex-direction:column}.side{width:100%;height:auto;position:static;flex-direction:row;flex-wrap:wrap;gap:4px}.side .lg{width:100%}.side .out{margin:0}.kpis{grid-template-columns:repeat(2,1fr)}}
+</style><style id="demo-fit">html,body{max-width:100%;overflow-x:hidden}img,video{max-width:100%;height:auto}@media(max-width:760px){table{display:block;max-width:100%;overflow-x:auto}}</style></head><body><div id="demo-bar" style="position:sticky;top:0;z-index:99999;background:#0f1f46;color:#fff;font:600 12px/1.4 system-ui,sans-serif;text-align:center;padding:7px 12px">MAXDAY 교육 · 시연용 보기 전용 화면 (저장·로그인·결제 동작 없음)</div>
+<nav class="side">
+  <div class="lg"><div class="logobox"><img src="../assets/img/logo.png" alt="MAXDAY 교육"></div><span class="cap">관리자</span></div>
+            <a class="nav " href="index.php.html">대시보드</a>
+                <details class="grp" >
+        <summary>공고·지원</summary>
+                  <a class="nav sub " href="jobs.php.html">공고 관리</a>
+                  <a class="nav sub " href="collect.php.html">수집 공고</a>
+                  <a class="nav sub " href="collect_sources.php.html">수집처 디렉토리</a>
+                  <a class="nav sub " href="applications.php.html">지원 현황</a>
+              </details>
+                <details class="grp" >
+        <summary>회원·신뢰</summary>
+                  <a class="nav sub " href="members.php.html">회원 관리</a>
+                  <a class="nav sub " href="reviews.php.html">후기·신뢰지표</a>
+                  <a class="nav sub " href="branches.php.html">지사·수익배분</a>
+              </details>
+                <details class="grp" open>
+        <summary>강사 콘텐츠</summary>
+                  <a class="nav sub on" href="certifications.php.html">자격증 안내</a>
+                  <a class="nav sub " href="subsidies.php.html">지원금 안내</a>
+                  <a class="nav sub " href="benefits.php.html">강사 혜택</a>
+                  <a class="nav sub " href="partners.php.html">제휴 할인업체</a>
+              </details>
+                <details class="grp" >
+        <summary>마케팅·노출</summary>
+                  <a class="nav sub " href="#">메인 이미지</a>
+                  <a class="nav sub " href="#">팝업 관리</a>
+                  <a class="nav sub " href="#">SEO 키워드</a>
+                  <a class="nav sub " href="#">pSEO 자동랜딩</a>
+              </details>
+                <details class="grp" >
+        <summary>운영·설정</summary>
+                  <a class="nav sub " href="inquiries.php.html">문의 접수</a>
+                  <a class="nav sub " href="analytics.php.html">통계보기</a>
+                  <a class="nav sub " href="settlement.php.html">수익 정산</a>
+                  <a class="nav sub " href="#">사이트 설정</a>
+              </details>
+        <div class="out"><a class="nav" href="#" target="_blank">사이트 보기</a><a class="nav" href="#">로그아웃</a></div>
+</nav>
+<div class="main">
+<div class="top"><h1>🎓 자격증 안내</h1></div>
+<div class="card">
+  <h2>자격증 등록</h2>
+  <form method="post">
+    <input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="save"><input type="hidden" name="id" value="0">
+    <div class="row">
+      <div><label>자격증명</label><input name="name" value="" required></div>
+      <div><label>발급기관</label><input name="issuer" value=""></div>
+      <div><label>분류</label><input name="category" value=""></div>
+    </div>
+    <div class="row">
+      <div><label>등급/난이도</label><input name="level" value=""></div>
+      <div><label>응시 비용</label><input name="cost" value=""></div>
+      <div><label>취득 기간</label><input name="period" value=""></div>
+    </div>
+    <div class="row">
+      <div><label>관련 URL</label><input name="url" value=""></div>
+      <div><label>강사 혜택</label><input name="benefit" value=""></div>
+      <div><label>정렬</label><input name="sort" type="number" value="0"></div>
+    </div>
+    <label>취득 방법(how_to)</label><textarea name="how_to"></textarea>
+    <label style="font-weight:400;margin-top:8px"><input type="checkbox" name="active" value="1" style="width:auto" checked> 노출 활성</label>
+    <div style="margin-top:14px"><button class="btn">등록</button>
+      </div>
+  </form>
+</div>
+<div class="card">
+  <h2>자격증 목록 (6)</h2>
+  <table><thead><tr><th>자격증명</th><th>발급기관</th><th>분류</th><th>등급</th><th>비용</th><th>기간</th><th>상태</th><th>관리</th></tr></thead><tbody>
+          <tr>
+        <td><b>방과후아동지도사</b><br><span class="muted" style="font-size:11px">방과후·초등 돌봄 공고 우대</span></td>
+        <td>민간자격(등록)</td><td>유아·놀이</td><td>2급</td><td>약 15만원</td><td>1~2개월</td>
+        <td><form method="post"><input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="toggle"><input type="hidden" name="id" value="1"><button class="badge b-ok" style="border:0;cursor:pointer">활성</button></form></td>
+        <td style="white-space:nowrap">
+          <a class="btn ghost sm" href="#">수정</a>
+          <form method="post" style="display:inline" onsubmit="return confirm('삭제할까요?')"><input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="del"><input type="hidden" name="id" value="1"><button class="btn danger sm">삭제</button></form>
+        </td>
+      </tr>
+          <tr>
+        <td><b>평생교육사</b><br><span class="muted" style="font-size:11px">평생학습관·문화재단 강좌 지원 자격</span></td>
+        <td>국가자격</td><td>문화예술</td><td>3급</td><td>과정별 상이</td><td>6~12개월</td>
+        <td><form method="post"><input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="toggle"><input type="hidden" name="id" value="2"><button class="badge b-ok" style="border:0;cursor:pointer">활성</button></form></td>
+        <td style="white-space:nowrap">
+          <a class="btn ghost sm" href="#">수정</a>
+          <form method="post" style="display:inline" onsubmit="return confirm('삭제할까요?')"><input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="del"><input type="hidden" name="id" value="2"><button class="btn danger sm">삭제</button></form>
+        </td>
+      </tr>
+          <tr>
+        <td><b>청소년지도사</b><br><span class="muted" style="font-size:11px">청소년기관·학교 프로그램 우대</span></td>
+        <td>국가자격</td><td>교과·입시</td><td>2·3급</td><td>응시료 별도</td><td>3~6개월</td>
+        <td><form method="post"><input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="toggle"><input type="hidden" name="id" value="3"><button class="badge b-ok" style="border:0;cursor:pointer">활성</button></form></td>
+        <td style="white-space:nowrap">
+          <a class="btn ghost sm" href="#">수정</a>
+          <form method="post" style="display:inline" onsubmit="return confirm('삭제할까요?')"><input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="del"><input type="hidden" name="id" value="3"><button class="btn danger sm">삭제</button></form>
+        </td>
+      </tr>
+          <tr>
+        <td><b>유아체육지도자</b><br><span class="muted" style="font-size:11px">유치원·어린이집 체육수업 우대</span></td>
+        <td>민간자격</td><td>체육·건강</td><td></td><td>약 20만원</td><td>1~2개월</td>
+        <td><form method="post"><input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="toggle"><input type="hidden" name="id" value="4"><button class="badge b-ok" style="border:0;cursor:pointer">활성</button></form></td>
+        <td style="white-space:nowrap">
+          <a class="btn ghost sm" href="#">수정</a>
+          <form method="post" style="display:inline" onsubmit="return confirm('삭제할까요?')"><input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="del"><input type="hidden" name="id" value="4"><button class="btn danger sm">삭제</button></form>
+        </td>
+      </tr>
+          <tr>
+        <td><b>한국어교원</b><br><span class="muted" style="font-size:11px">다문화·한국어교육 시간강사 자격</span></td>
+        <td>국가자격</td><td>외국어</td><td>2·3급</td><td>과정별 상이</td><td>6개월~</td>
+        <td><form method="post"><input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="toggle"><input type="hidden" name="id" value="5"><button class="badge b-ok" style="border:0;cursor:pointer">활성</button></form></td>
+        <td style="white-space:nowrap">
+          <a class="btn ghost sm" href="#">수정</a>
+          <form method="post" style="display:inline" onsubmit="return confirm('삭제할까요?')"><input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="del"><input type="hidden" name="id" value="5"><button class="btn danger sm">삭제</button></form>
+        </td>
+      </tr>
+          <tr>
+        <td><b>코딩지도사</b><br><span class="muted" style="font-size:11px">SW·코딩 방과후 공고 우대</span></td>
+        <td>민간자격</td><td>IT·코딩</td><td></td><td>약 12만원</td><td>1개월</td>
+        <td><form method="post"><input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="toggle"><input type="hidden" name="id" value="6"><button class="badge b-ok" style="border:0;cursor:pointer">활성</button></form></td>
+        <td style="white-space:nowrap">
+          <a class="btn ghost sm" href="#">수정</a>
+          <form method="post" style="display:inline" onsubmit="return confirm('삭제할까요?')"><input type="hidden" name="_csrf" value="3da565e17d139869b57499230a59a728"><input type="hidden" name="act" value="del"><input type="hidden" name="id" value="6"><button class="btn danger sm">삭제</button></form>
+        </td>
+      </tr>
+          </tbody></table>
+</div>
+</div><script>document.addEventListener("submit",function(e){e.preventDefault();alert("시연용 화면입니다. 실제 저장되지 않습니다.")},true);</script></body></html>

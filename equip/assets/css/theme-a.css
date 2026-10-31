@@ -1,0 +1,25 @@
+/* A안 — 브랜드 컬러 액센트형 (시안 A). 최대폭 1240 · 반경 20 · 알약 버튼 · 섹션마다 색 머리글 */
+:root{--kd-maxw:1240px;--kd-r:20px;--kd-r-sm:12px;--kd-fs-h1:clamp(34px,3.8vw,58px);--kd-accent2:#ffc61e;
+  --kd-hero-bg:radial-gradient(900px 480px at 78% 20%,rgba(255,198,30,.12),transparent 60%),linear-gradient(180deg,#fff 0%,#fbfbfd 100%)}
+.theme-a .kd-btn-primary,.theme-a .kd-btn{border-radius:var(--kd-r-pill)}
+.theme-a .kd-hero-eb{color:var(--kd-primary);font-size:18px;font-weight:700;font-style:italic;letter-spacing:-.02em}
+.theme-a .kd-hero .kd-h1 em{color:var(--kd-fg)}
+.theme-a .kd-hero-in{padding-top:56px;padding-bottom:64px}
+.theme-a .kd-sec-biz{background:#fff}
+.theme-a .kd-sec-cat{background:linear-gradient(180deg,#f7f9fc,#fff)}
+.theme-a .kd-sec-case{background:linear-gradient(180deg,#f7f9fc,#fbfcfd)}
+.theme-a .kd-sec-inq{background:linear-gradient(180deg,#fff,#fdf8ee)}
+.theme-a .kd-eyebrow{letter-spacing:.06em}
+.theme-a .kd-sec-cat .kd-eyebrow,.theme-a .kd-sec-proc .kd-eyebrow{color:var(--kd-blue)}
+.theme-a .kd-sec-pop .kd-eyebrow,.theme-a .kd-sec-inq .kd-eyebrow{color:#d99a00}
+.theme-a .kd-sec-case .kd-eyebrow{color:var(--kd-green)}
+.theme-a .kd-bizcard{border:0;box-shadow:0 6px 24px rgba(16,24,40,.08)}
+.theme-a .kd-bizcard-go{background:var(--c);border:0;color:#fff}
+.theme-a .kd-hpc{border:0;box-shadow:0 4px 18px rgba(16,24,40,.07)}
+.theme-a .kd-hpc-grid--c8 .kd-hpc-btns{display:none}
+.theme-a .kd-ccard{border:0;box-shadow:0 6px 24px rgba(16,24,40,.08)}
+.theme-a .kd-step{background:#fff;border-radius:18px;box-shadow:0 4px 18px rgba(16,24,40,.07);padding:22px 20px}
+.theme-a .kd-step:not(:last-child)::after{right:-19px;top:50%}
+.theme-a .kd-inq-form{border:0;box-shadow:0 10px 40px rgba(16,24,40,.08)}
+.theme-a .kd-inq-mascot{width:210px}
+.theme-a{--kd-sec-y:56px}
