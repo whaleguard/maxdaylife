@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MAXDAY 비서 · 비서ON 화면 소개 — Local Collector v0.1</title>
+<style>
+:root{--ink:#1b1f27;--mute:#5d6572;--line:#e2e6ec;--bg:#f6f7f9;--card:#fff;--brand:#2b4c7e;--brand2:#eef3fa;--warn:#b35c00;--warnbg:#fff5e8;--ok:#1d7a46;--okbg:#eaf7ef;--plan:#6a4fb3;--planbg:#f1edfb}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Malgun Gothic","Noto Sans KR","Apple SD Gothic Neo",system-ui,sans-serif;font-size:15px;line-height:1.7}
+header{background:var(--brand);color:#fff;padding:40px 24px 34px}
+header .in{max-width:1080px;margin:0 auto}
+header h1{margin:0 0 6px;font-size:30px;letter-spacing:-.5px}
+header p{margin:0;opacity:.9}
+header .meta{margin-top:14px;font-size:13px;opacity:.8}
+nav{max-width:1080px;margin:-18px auto 0;padding:0 24px}
+nav .box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 22px;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+nav ol{margin:6px 0 0;padding-left:22px;columns:2;column-gap:40px}
+nav li{margin:2px 0}
+nav a{color:var(--brand);text-decoration:none}
+main{max-width:1080px;margin:0 auto;padding:30px 24px 60px}
+section.screen{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:28px 30px;margin:26px 0;scroll-margin-top:12px}
+section.screen h2{margin:0;font-size:22px;display:flex;align-items:center;gap:10px}
+section.screen h2 .no{background:var(--brand);color:#fff;font-size:13px;border-radius:6px;padding:2px 9px;font-weight:600}
+.badge{display:inline-block;font-size:12px;padding:2px 9px;border-radius:999px;font-weight:600;vertical-align:middle}
+.b-real{background:var(--okbg);color:var(--ok)}
+.b-mock{background:var(--brand2);color:var(--brand)}
+.b-plan{background:var(--planbg);color:var(--plan)}
+.b-hist{background:var(--warnbg);color:var(--warn)}
+.lead{color:var(--mute);margin:8px 0 18px}
+figure{margin:18px 0;background:#eef0f3;border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center}
+figure img{max-width:100%;height:auto;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+figure img.sm{max-width:640px}
+figcaption{font-size:13px;color:var(--mute);margin-top:8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:760px){.grid2{grid-template-columns:1fr}nav ol{columns:1}}
+h3{font-size:16px;margin:22px 0 8px;color:var(--brand)}
+table{border-collapse:collapse;width:100%;font-size:14px;margin:8px 0 4px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#f1f3f6;font-weight:600;white-space:nowrap}
+td.k{white-space:nowrap;font-weight:600;color:#333;width:160px}
+code,.mono{font-family:Consolas,"D2Coding",ui-monospace,monospace;font-size:13px;background:#f1f3f6;padding:1px 5px;border-radius:4px}
+.note{border-left:4px solid var(--brand);background:var(--brand2);padding:10px 14px;border-radius:0 8px 8px 0;margin:14px 0;font-size:14px}
+.note.warn{border-color:var(--warn);background:var(--warnbg)}
+.note.plan{border-color:var(--plan);background:var(--planbg)}
+ul{margin:6px 0;padding-left:22px}
+li{margin:3px 0}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0}
+.kpi div{background:#f8f9fb;border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.kpi b{display:block;font-size:22px}
+.kpi span{font-size:12px;color:var(--mute)}
+@media (max-width:760px){.kpi{grid-template-columns:1fr 1fr}}
+footer{text-align:center;color:var(--mute);font-size:13px;padding:20px}
+</style>
+<style id="mxc-css">
+.mxc{font-family:'Pretendard',system-ui,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#fff;color:#0f1f46;border-bottom:1px solid #e6eaf0}
+.mxc .in{max-width:1180px;margin:0 auto;padding:44px 20px 40px;box-sizing:border-box}
+.mxc .eb{font-size:12px;font-weight:800;color:#2454c8;letter-spacing:.06em}
+.mxc h2{font-size:clamp(26px,3.6vw,42px);line-height:1.2;letter-spacing:-.03em;margin:10px 0 12px;font-weight:800;color:#0f1f46}
+.mxc p.l{font-size:15px;line-height:1.75;color:#5b6576;max-width:760px;margin:0}
+.mxc .cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin:26px 0 18px}
+.mxc .cards img{width:100%;display:block;border-radius:6px}
+.mxc .ben{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.mxc .ben div{background:#0f1f46;color:#fff;border-radius:12px;padding:16px 18px}
+.mxc .ben b{display:block;font-size:17px}.mxc .ben span{display:block;font-size:12px;color:#c7d2ea;margin-top:5px}
+.mxc .cta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:20px}
+.mxc .cta a{display:inline-block;background:#2454c8;color:#fff;font-weight:800;text-decoration:none;border-radius:10px;padding:13px 22px;font-size:15px}
+.mxc .cta small{font-size:11.5px;color:#8a94a6}
+.mxs{font-family:system-ui,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#eef3ff;color:#1d3f99;font-size:12.5px;text-align:center;padding:8px 14px;border-bottom:1px solid #dbe5ff}
+.mxs a{color:#1d3f99;font-weight:800;margin-left:8px}
+@media(max-width:760px){.mxc .cards,.mxc .ben{grid-template-columns:repeat(2,minmax(0,1fr))}.mxc .in{padding:32px 16px}}
+</style><style id="mx-mfix">code{word-break:break-all;overflow-wrap:anywhere;white-space:normal}pre{white-space:pre-wrap;overflow-wrap:anywhere}img,img.sm{max-width:100%!important;height:auto}@media(max-width:700px){table,tbody,tr,td,th{display:block;width:100%!important}tr{border-bottom:1px solid #e2e6ec;padding:6px 0}td,th{padding:3px 0!important;border:0!important}nav ol{columns:1}section.screen{padding:20px 16px}main{padding:20px 14px 40px}}</style></head>
+<body><div class="mxtop" style="background:#fff;border-bottom:1px solid #e6eaf0"><div style="max-width:1180px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px"><a href="../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none"><img src="img/logo-h.webp" alt="MAX DAY LIFE" style="height:32px;width:auto"><b style="font-size:13px;color:#0f1f46;border-left:1px solid #dce4f4;padding-left:10px">MAXDAY 비서</b></a><a href="../index.html#biseo" style="font-size:13px;font-weight:800;color:#2454c8;text-decoration:none">맥스데이 라이프 ›</a></div></div><section class="mxc"><div class="in"><div class="eb">MAX DAY LIFE CARD × MAXDAY 비서 · 시안 예시</div><h2>맥스데이 라이프 카드 하나 발급하면<br>업무 비서 구독이 무료</h2><p class="l">카드로 가입하면 MAXDAY 비서(비서ON)의 PC 파일 정리·카카오톡 자료 정리 기능을 구독료 없이 씁니다. 코인을 충전해 바로 결제·출금·이체하고, 쓸 때마다 MAX 코인이 쌓입니다.</p><div class="cards"><img src="mxcard/white.webp" alt="맥스데이 라이프 카드 화이트"><img src="mxcard/blue.webp" alt="맥스데이 라이프 카드 블루"><img src="mxcard/red.webp" alt="맥스데이 라이프 카드 레드"><img src="mxcard/black.webp" alt="맥스데이 라이프 카드 블랙"></div><div class="ben"><div><b>구독료 무료</b><span>비서ON 기본 플랜 1년</span></div><div><b>프리미엄 기능 무료</b><span>카카오톡 자료 정리·첨부 매칭</span></div><div><b>데이터는 내 PC에만</b><span>외부 전송 없음 · AES-256 암호화</span></div><div><b>MAX 코인 증정</b><span>카드 발급 이벤트 + 결제마다 적립</span></div></div><div class="cta"><a href="https://whaleguard.github.io/maxdaylife/#cards" target="_blank" rel="noopener">맥스데이 라이프 카드 신청</a><small>충전·출금·이체는 제휴 발급사 정책과 관련 법령에 따르며, 디지털자산은 가격 변동이 있습니다.</small></div></div></section>
+<header><div class="in">
+<h1>MAXDAY 비서 · 비서ON 화면 소개</h1>
+<p>Local Collector v0.1 — 설치부터 카카오톡 파서 검증까지, 사용자가 실제로 보게 되는 화면을 순서대로 정리했습니다.</p>
+<div class="meta">주식회사 고래등 · 작성 2026-10-31 · 기준 빌드 2026-09-03 (parser KAKAO_EXPORT_KO_V2)</div>
+</div></header>
+
+<nav><div class="box">
+<b>목차</b>
+<ol>
+<li><a href="#s01">설치 화면 (install.cmd)</a></li>
+<li><a href="#s02">동의 화면 — 비서ON 시작하기</a></li>
+<li><a href="#s03">복구 코드 화면</a></li>
+<li><a href="#s04">저장소 잠금 해제 (복구 코드 입력)</a></li>
+<li><a href="#s05">상태 창 — 로컬 수집 상태</a></li>
+<li><a href="#s06">트레이 메뉴</a></li>
+<li><a href="#s07">카카오톡 파서 검증 — 파일 선택</a></li>
+<li><a href="#s08">파서 검증 결과 (요약)</a></li>
+<li><a href="#s09">첨부 매칭 · 진단 블록</a></li>
+<li><a href="#s10">안 붙은 문서 진단 (kakao-docs)</a></li>
+<li><a href="#s11">폴더 구조와 데이터 위치</a></li>
+<li><a href="#s12">다음 버전 — 대화방 카테고리 질문 (설계안)</a></li>
+</ol>
+<div style="margin-top:10px;font-size:13px;color:var(--mute)">
+<span class="badge b-real">실제 캡처</span> 사용자 PC에서 찍은 화면 &nbsp;
+<span class="badge b-mock">재현</span> 소스 코드의 문구·배치 그대로 HTML로 재현해 캡처 &nbsp;
+<span class="badge b-hist">수정 전</span> 이미 고친 버그의 기록 &nbsp;
+<span class="badge b-plan">설계안</span> 아직 구현 전
+</div>
+</div></nav>
+
+<main>
+
+<div class="note">
+<b>이 문서에 대해</b> — 화면에 나오는 숫자(71개 · 180.7MB, 3,420건 · unknown 0, 매칭 6% 등)는 전부 2026-09-03 사용자 PC에서 실측한 값입니다.
+대화 원문, 상대방 이름, 전화번호는 어디에도 넣지 않았고, 실제 캡처의 파일 목록 부분은 흐림 처리했습니다. 외부에 공유해도 되는 상태입니다.
+</div>
+
+<!-- ===== 1 ===== -->
+<section class="screen" id="s01">
+<h2><span class="no">1</span>설치 화면 <span class="badge b-mock">재현</span></h2>
+<p class="lead"><code>install.cmd</code>를 더블클릭하면 뜨는 콘솔. 관리자 권한 없이 사용자 계정 영역에만 설치합니다.</p>
+<figure><img src="img/s01_install_console.png" alt="설치 콘솔"><figcaption>scripts/install.ps1 의 출력. 4단계 진행 후 "설치 완료"와 경로를 보여주고 바로 프로그램을 띄웁니다.</figcaption></figure>
+<h3>무엇을 하는가</h3>
+<table>
+<tr><td class="k">[1/4] .NET 8 SDK</td><td>시스템에 .NET 8 SDK가 없으면 <code>%LOCALAPPDATA%\Microsoft\dotnet</code>에 사용자 전용으로 내려받아 설치. 처음엔 몇 분, 두 번째부터는 건너뜀.</td></tr>
+<tr><td class="k">[2/4] 빌드</td><td><code>bin</code>/<code>obj</code>를 먼저 지우고 <code>dotnet publish -c Release -r win-x64 --self-contained -p:PublishSingleFile=true</code>. 압축 풀린 소스는 타임스탬프가 오래돼 "변경 없음"으로 건너뛰는 사고가 있어 강제 삭제가 들어감. <b>빌드 시각</b> 줄로 새 빌드인지 바로 확인.</td></tr>
+<tr><td class="k">[3/4] 설치</td><td><code>%LOCALAPPDATA%\Programs\BiseoON\BiseoON.exe</code> 단일 파일로 복사, 바탕화면 바로가기 생성.</td></tr>
+<tr><td class="k">[4/4] 실행</td><td>곧바로 비서ON 실행 → 처음이면 동의 화면(2번)으로 이어짐.</td></tr>
+<tr><td class="k">실패 시</td><td>"설치에 실패했습니다" + 예외 메시지 + "이 화면을 캡처해서 알려주시면 원인을 확인하겠습니다". Enter를 눌러야 닫히므로 창이 사라지지 않음.</td></tr>
+</table>
+<div class="note warn"><b>왜 .cmd + .ps1 두 겹인가</b> — <code>.cmd</code>에 한글을 넣으면 CP949 문제로 깨져서 <code>.cmd</code>는 ASCII 실행기 역할만 하고, 모든 로직과 한글 메시지는 UTF-8 BOM <code>.ps1</code>에 있습니다. <code>uninstall.cmd</code>, <code>kakao-test.cmd</code>, <code>kakao-docs.cmd</code>도 같은 구조.</div>
+</section>
+
+<!-- ===== 2 ===== -->
+<section class="screen" id="s02">
+<h2><span class="no">2</span>동의 화면 — 비서ON 시작하기 <span class="badge b-real">실제 캡처</span></h2>
+<p class="lead">최초 실행 시 단 한 번. 무엇을 읽고 어디에 저장하는지 설명하고, 검사할 폴더를 고른 뒤 동의해야 시작됩니다. 소스: <code>ConsentForm.cs</code></p>
+<figure><img src="img/01_consent.png" class="sm" alt="동의 화면"><figcaption>사용자 PC 실제 화면. 기본 폴더 4개(문서·다운로드·사진·바탕화면)가 체크된 채 나오고, 동의 체크 전에는 "동의하고 시작" 버튼이 비활성.</figcaption></figure>
+<h3>화면 구성</h3>
+<table>
+<tr><td class="k">설명 1~5</td><td>① 파일 <b>목록</b>만 읽는다 — 이름·크기·수정 시각·SHA-256 지문. 내용 복사·외부 전송 없음 ② 기록은 이 PC(<code>%LOCALAPPDATA%\BiseoON</code>)에만, AES-256 암호화, 다른 Windows 계정에서 못 엶 ③ 현재 버전은 인터넷 전송 없음, 서버·메일·AI 기능 없음 ④ 대화·메일 연동 시 상대방 이름·메시지가 포함될 수 있어 그때 다시 묻겠다 ⑤ 트레이에서 언제든 중지·삭제 가능</td></tr>
+<tr><td class="k">폴더 목록</td><td>체크박스 리스트. <code>내 문서\카카오톡 받은 파일</code>이 기본 위치에 있으면 자동 감지되어 <b>맨 위</b>에 추가됨(<code>CollectorConfig.DetectKakaoDownloadFolder()</code>). 체크를 풀면 그 폴더는 스캔 안 함.</td></tr>
+<tr><td class="k">폴더 추가…</td><td>FolderBrowserDialog. 카카오톡 다운로드 위치를 바꾼 사용자는 여기서 지정.</td></tr>
+<tr><td class="k">동의 체크박스</td><td>"위 내용을 이해했고, 선택한 폴더의 파일 목록 수집에 동의합니다." 체크해야 버튼 활성.</td></tr>
+<tr><td class="k">동의하고 시작</td><td>폴더 0개면 "폴더를 최소 하나 선택해 주세요." 안내. 통과하면 <code>consent.json</code>(동의 시각·버전) 기록 → 마스터 키 생성 → 3번 복구 코드 화면.</td></tr>
+<tr><td class="k">종료</td><td>아무것도 만들지 않고 프로그램 종료.</td></tr>
+</table>
+<div class="note"><b>설계 의도</b> — 랜딩페이지의 "로컬 우선, 내용 미전송" 약속을 코드가 그대로 말하게 했습니다. 설명문은 마케팅 문구가 아니라 실제 동작 범위이며, 기능이 늘어날 때(카카오 Import, 메일) 이 화면에 항목이 추가되고 다시 동의를 받습니다.</div>
+</section>
+
+<!-- ===== 3 ===== -->
+<section class="screen" id="s03">
+<h2><span class="no">3</span>복구 코드 화면 <span class="badge b-mock">재현</span></h2>
+<p class="lead">동의 직후 한 번만 표시. 암호화 DB를 다른 PC·다른 계정에서 다시 열 수 있는 유일한 열쇠입니다. 소스: <code>ConsentForm.cs</code>(RecoveryCodeForm), <code>SecureStore.cs</code></p>
+<figure><img src="img/s03_recovery_code.png" class="sm" alt="복구 코드 화면"><figcaption>코드는 예시값. 실제 코드는 16자(4-4-4-4)로 무작위 생성.</figcaption></figure>
+<h3>화면 구성과 동작</h3>
+<table>
+<tr><td class="k">코드 표시</td><td>Consolas 18pt 굵게, 읽기 전용. 형식 <code>XXXX-XXXX-XXXX-XXXX</code>.</td></tr>
+<tr><td class="k">복사</td><td>클립보드에 복사, 버튼이 "복사됨"으로 바뀜.</td></tr>
+<tr><td class="k">파일로 저장</td><td><code>BiseoON_복구코드.txt</code> 저장 대화상자. 내용: 코드 + 발급 시각 + "이 파일을 PC 밖(USB, 인쇄물 등)에 보관하세요".</td></tr>
+<tr><td class="k">보관했습니다</td><td>창 닫힘. 이후 어디에도 다시 표시되지 않음.</td></tr>
+</table>
+<h3>뒤에서 일어나는 일</h3>
+<ul>
+<li>마스터 키(32바이트 무작위) 생성 → SQLCipher AES-256 DB 키로 사용</li>
+<li>마스터 키를 <b>DPAPI(CurrentUser)</b>로 감싼 사본 저장 → 같은 Windows 계정에서는 아무 입력 없이 자동 해제</li>
+<li>복구 코드로 <b>PBKDF2 600,000회</b> 파생 키를 만들어 마스터 키를 <b>AES-GCM</b>으로 한 번 더 감싼 사본 저장 → 계정·PC가 바뀌어도 이 코드만 있으면 복구</li>
+<li>코드 자체는 저장하지 않음. 서버에도 없음. 잃어버리면 데이터 복구 불가</li>
+</ul>
+<div class="note warn"><b>운영 교훈</b> — 테스트 중 복구 코드가 대화창에 붙여넣어진 일이 있어 트레이에 <b>"복구 코드 재발급…"</b>(6번)을 추가했습니다. 코드는 채팅·메일·캡처에 절대 올리지 않습니다.</div>
+</section>
+
+<!-- ===== 4 ===== -->
+<section class="screen" id="s04">
+<h2><span class="no">4</span>저장소 잠금 해제 — 복구 코드 입력 <span class="badge b-mock">재현</span></h2>
+<p class="lead">평소에는 보이지 않는 화면. DPAPI 해제가 실패할 때(Windows 계정 변경, PC 재설치, 프로필 이동)만 나옵니다. 소스: <code>Program.cs</code></p>
+<figure><img src="img/s04_unlock_dialog.png" class="sm" alt="잠금 해제 대화상자"><figcaption>위: 예/아니요 질문 → 아래: 코드 입력 프롬프트.</figcaption></figure>
+<table>
+<tr><td class="k">1단계</td><td>"저장소를 열 수 없습니다. … 복구 코드를 입력하시겠습니까?" — <b>아니요</b>면 종료(데이터는 그대로 보존).</td></tr>
+<tr><td class="k">2단계</td><td>코드 입력. 맞으면 <code>SecureStore.UnlockWithRecoveryCode()</code>가 마스터 키를 풀고 <b>현재 계정용 DPAPI 사본을 새로 만들어</b> 다음부터는 묻지 않음.</td></tr>
+<tr><td class="k">틀리면</td><td>"복구 코드가 맞지 않습니다." 후 종료. 시도 횟수 제한은 없음(오프라인 자료라 의미 없음, PBKDF2 60만 회가 무차별 대입 비용).</td></tr>
+<tr><td class="k">그 외 오류</td><td>"로컬 저장소를 열지 못했습니다." + 예외 메시지, 로그에 <code>DB 열기 실패</code> 기록.</td></tr>
+</table>
+<div class="note"><b>시스템 계정 차단</b> — 서비스(LocalSystem)로 실행되면 <code>AppPaths.LooksLikeServiceAccount()</code>가 감지해 "비서ON이 시스템 계정으로 실행되었습니다 … 로그인한 사용자로 실행해 주세요"를 띄우고 종료합니다. V0~V3 원본의 '사용자 폴더 미접근' 문제를 원천 차단한 장치입니다.</div>
+</section>
+
+<!-- ===== 5 ===== -->
+<section class="screen" id="s05">
+<h2><span class="no">5</span>상태 창 — 로컬 수집 상태 <span class="badge b-real">실제 캡처</span> <span class="badge b-mock">재현</span></h2>
+<p class="lead">트레이 아이콘 더블클릭 또는 "상태 열기"로 뜨는 메인 창. 트레이가 아니라 이 창이 <b>"실제로 무엇이 수집됐는지"</b>를 보여줍니다. 소스: <code>MainForm.cs</code>, <code>Db.cs</code></p>
+<figure><img src="img/03_status_ok_blur.png" alt="상태 창 실제 캡처"><figcaption><span class="badge b-real">실제 캡처</span> 재설치 후 첫 검사 중(71개). 최근 파일 목록은 사용자 업무 파일명이라 흐림 처리.</figcaption></figure>
+<figure><img src="img/s05_status_mock.png" alt="상태 창 재현"><figcaption><span class="badge b-mock">재현</span> 검사 완료 상태. 하단 상태줄이 "마지막 검사 · 상태 · 신규 · 주기"로 바뀜.</figcaption></figure>
+<h3>화면 구성</h3>
+<table>
+<tr><td class="k">머리글</td><td>"비서ON" + "이 PC에서 수집된 내용입니다. 인터넷으로 전송되지 않습니다." — 모든 화면에 반복되는 약속.</td></tr>
+<tr><td class="k">KPI 카드 4개</td><td><b>인덱싱된 파일</b>(files 테이블 수) · <b>지문 계산 완료</b>(SHA-256 끝난 수) · <b>총 용량</b> · <b>중복 그룹</b>(같은 해시 2개 이상 묶음 수)</td></tr>
+<tr><td class="k">상태줄</td><td>검사 전 "아직 검사하지 않았습니다." → 진행 중 "검사 진행 중…" → 완료 "마지막 검사 09-03 11:31 · 상태 OK · 신규 0건 · 자동 검사 주기 10분". 오류 시 "화면 갱신 실패: …"</td></tr>
+<tr><td class="k">지금 검사</td><td>즉시 증분 스캔. 누르면 "검사 중…"으로 바뀌고 끝나면 복귀. 스캔은 <code>Agent.cs</code>가 10분 주기로도 자동 실행.</td></tr>
+<tr><td class="k">최근 파일</td><td>수정 시각 내림차순 상위 목록. 열: 파일명 · 크기 · 수정 · 위치. <b>더블클릭</b>하면 탐색기에서 해당 파일 선택(<code>explorer /select</code>).</td></tr>
+<tr><td class="k">종류별</td><td>확장자별 개수 내림차순.</td></tr>
+</table>
+<h3>실측 값</h3>
+<div class="kpi">
+<div><b>3,169개</b><span>첫 설치 전체 스캔 · 9.7 GB</span></div>
+<div><b>71개</b><span>재설치 후 문서 폴더 · 180.7 MB</span></div>
+<div><b>5 그룹</b><span>중복 파일 묶음</span></div>
+<div><b>10분</b><span>자동 검사 주기 · 500건 배치</span></div>
+</div>
+<h3>스캐너가 하는 일 (Scanner.cs)</h3>
+<ul>
+<li><b>증분</b>: 크기+수정 시각이 같으면 재해싱 안 함. V0~V3의 "30초마다 전량 재해싱" 제거</li>
+<li><code>EnumerationOptions.IgnoreInaccessible</code> + ReparsePoint 건너뛰기 → 정션·OneDrive 폴더에서 크래시 루프 없음</li>
+<li>500건마다 트랜잭션 커밋. 중간에 꺼져도 그때까지는 보존</li>
+<li><b>gap_ledger</b>: PC가 꺼져 있던 구간을 기록(종료 시 <code>RecordShutdownGap</code>) → 나중에 "이 기간은 수집 공백"을 표시할 근거</li>
+</ul>
+<h3>고친 버그 2건 (기록용)</h3>
+<div class="grid2">
+<figure><img src="img/03b_status_bug1.png" alt="목록 비어있음"><figcaption><span class="badge b-hist">수정 전</span> 3,169건인데 목록이 비어 있음 — 스캔 트랜잭션 중 UI 조회가 거부됨. <b>수정</b>: DB 접근 lock 직렬화 + 현재 트랜잭션을 모든 명령에 부착, ListView BeginUpdate/EndUpdate try/finally.</figcaption></figure>
+<figure><img src="img/03c_status_bug2.png" alt="RoundtripKind 오류"><figcaption><span class="badge b-hist">수정 전</span> "화면 갱신 실패: DateTimeStyles RoundtripKind…" — <code>RoundtripKind | AdjustToUniversal</code> 조합 불가. <b>수정</b>: RoundtripKind만 사용.</figcaption></figure>
+</div>
+</section>
+
+<!-- ===== 6 ===== -->
+<section class="screen" id="s06">
+<h2><span class="no">6</span>트레이 메뉴 <span class="badge b-mock">재현</span></h2>
+<p class="lead">비서ON은 창이 아니라 트레이에 상주합니다. 상태 창을 닫아도 수집은 계속되고, 모든 조작은 우클릭 메뉴에서. 소스: <code>Program.cs</code></p>
+<figure><img src="img/s06_tray_menu.png" class="sm" alt="트레이 메뉴"><figcaption>메뉴 항목 9개. 더블클릭 = "상태 열기".</figcaption></figure>
+<table>
+<tr><td class="k">상태 열기</td><td>5번 상태 창 표시 + 즉시 갱신</td></tr>
+<tr><td class="k">지금 검사</td><td>증분 스캔 1회 즉시 실행</td></tr>
+<tr><td class="k">Windows 시작 시 실행</td><td>체크 토글. <code>HKCU\…\Run</code>에 <code>BiseoON</code> 등록/해제. 관리자 권한 불필요</td></tr>
+<tr><td class="k">복구 코드 재발급…</td><td>"새 복구 코드를 발급합니다. 이전 코드는 즉시 무효가 됩니다. 계속할까요?" → 예 → 3번 화면이 새 코드로 다시 표시(<code>SecureStore.RotateRecoveryCode()</code>)</td></tr>
+<tr><td class="k">카카오톡 내보내기 폴더 열기</td><td><code>내 문서\비서ON\카카오톡 내보내기</code>를 (없으면 만들고) 탐색기로 엶. 카카오톡 "대화 내용 내보내기" 저장 위치로 쓰는 곳</td></tr>
+<tr><td class="k">데이터 폴더 열기</td><td><code>%LOCALAPPDATA%\BiseoON</code> — 암호화 DB·설정·vault</td></tr>
+<tr><td class="k">로그 열기</td><td><code>%LOCALAPPDATA%\BiseoON\logs</code> 일자별 로그</td></tr>
+<tr><td class="k">종료</td><td>트레이 아이콘 제거, 종료 시각을 gap_ledger에 기록</td></tr>
+</table>
+<div class="note"><b>단일 인스턴스</b> — <code>Local\BiseoON.Collector.SingleInstance</code> 뮤텍스로 두 번 실행을 막습니다. 바탕화면 아이콘을 또 눌러도 새 창이 뜨지 않고 기존 트레이가 유지됩니다.</div>
+</section>
+
+<!-- ===== 7 ===== -->
+<section class="screen" id="s07">
+<h2><span class="no">7</span>카카오톡 파서 검증 — 파일 선택 <span class="badge b-mock">재현</span></h2>
+<p class="lead"><code>kakao-test.cmd</code> 더블클릭 → 파일 선택 창. 아직 Collector에 붙지 않은 파서를 실제 내보내기 파일로 검증하는 개발·검수용 진입점입니다. 소스: <code>scripts/kakao-test.ps1</code></p>
+<figure><img src="img/s10_kakao_picker.png" class="sm" alt="파일 선택 창"><figcaption>기본 위치가 <code>내 문서\비서ON\카카오톡 내보내기</code>라 카카오톡에서 거기로 저장하면 바로 보임.</figcaption></figure>
+<table>
+<tr><td class="k">txt 1개 선택</td><td>파싱 결과 요약(8번)</td></tr>
+<tr><td class="k">txt 2개 선택 (Ctrl)</td><td>두 Export의 <b>재대조</b> 결과 — UNCHANGED / ADDED / REMOTE_DELETION_OBSERVED / MISSING_IN_NEW / AMBIGUOUS 건수</td></tr>
+<tr><td class="k">취소</td><td>내장 검증 <b>47건</b> 실행(fixtures: 모바일형 전/후, PC형, 실제 패턴, 미지 형식)</td></tr>
+<tr><td class="k">옵션</td><td><code>--files "폴더"</code> 받은 파일 폴더 지정 · <code>--full</code> 본문 포함(로그 미기록) · <code>--docs</code> 안 붙은 문서 진단(로그 미기록)</td></tr>
+</table>
+<div class="note warn"><b>드래그&amp;드롭이 아니라 선택 창인 이유</b> — <code>.cmd</code>에 파일을 끌어다 놓으면 터미널이 즉시 닫히거나 <code>dotnet run</code>이 <code>--nologo</code>를 프로그램 인자로 넘기는 문제가 있어, 빌드 후 <code>dotnet &lt;dll&gt;</code> 직접 실행 + OpenFileDialog로 바꿨습니다. 시스템에 .NET 6만 있어도 <code>DOTNET_ROOT</code>를 사용자 설치본으로 잡아 동작합니다.</div>
+</section>
+
+<!-- ===== 8 ===== -->
+<section class="screen" id="s08">
+<h2><span class="no">8</span>파서 검증 결과 (요약) <span class="badge b-mock">재현</span></h2>
+<p class="lead">22개월짜리 업무 단톡방 Export 1개를 넣었을 때의 실제 출력. 숫자는 실측, 본문은 기본적으로 표시하지 않습니다. 소스: <code>KakaoExportParser.cs</code>, <code>ContentClassifier.cs</code>, <code>BiseoON.Kakao.Test/Program.cs</code></p>
+<figure><img src="img/s07_kakao_test_summary.png" alt="파서 요약 출력"><figcaption>첫 줄 <code>parser=KAKAO_EXPORT_KO_V2 … unknown=0</code>이 "새 빌드로, 전부 해석됐다"는 뜻.</figcaption></figure>
+<h3>읽는 법</h3>
+<table>
+<tr><td class="k">parser / format</td><td>파서 버전 · 자동 판별된 형식(<code>PcKo</code> PC형 / <code>MobileKo</code> 모바일형). 미지 형식은 <code>IMPORT_FORMAT_UNKNOWN</code>으로 <b>중지</b>(fail-closed) — 반쯤 틀린 데이터를 저장하지 않음</td></tr>
+<tr><td class="k">lines / msgs / unknown</td><td>6,288줄 → 3,420건 메시지, 해석 못 한 줄 <b>0</b>. 여러 줄 메시지 425건이 한 건으로 합쳐짐</td></tr>
+<tr><td class="k">방 제목 길이 4자</td><td>제목 자체는 출력하지 않고 길이만 — 개인정보 원칙</td></tr>
+<tr><td class="k">종류별</td><td>TEXT 2,340 · ATTACHMENT_MARKER 905(사진/파일/동영상 표시) · LINK_LIKE 100 · DELETED_MARKER 48("메시지가 삭제되었습니다") · SYSTEM_MARKER 27(입장·퇴장·톡게시판·페이스톡 부재중)</td></tr>
+<tr><td class="k">첨부 추정</td><td>마커 문구에서 유형 추론 + confidence. "사진 N장"은 매수를 합산(646건 → 1,053장)</td></tr>
+<tr><td class="k">같은 분 중복본문 122건</td><td>카카오 Export는 <b>분 단위</b>라 같은 분에 같은 본문이 반복됨 → dedup 키에 <code>occurrence_index</code>를 넣어야 하는 근거</td></tr>
+</table>
+<h3>실제 파일로 확정된 PC형 규칙</h3>
+<ul>
+<li>헤더 <code>[이름] [오전 11:21] 본문</code>, 날짜 구분선 <code>--------------- 2026년 9월 2일 수요일 ---------------</code></li>
+<li>삭제 메시지·입장·퇴장·톡게시판 줄은 <b>헤더 없이</b> 단독으로 나옴 → <code>IsBareSystemLine</code>으로 앞 메시지에 붙지 않게 독립 처리(이 수정으로 unknown 7 → 0)</li>
+<li>발신자는 표시명뿐, 안정적 ID 없음. 같은 사람이 이름을 바꾸는 사례 있음 → Entity Resolution 필요(다음 과제)</li>
+</ul>
+<div class="note warn"><b>개인정보 원칙</b> — 요약 모드만 Transcript 로그에 남고, <code>--full</code>·<code>--docs</code>는 로그에 기록하지 않습니다. 파싱 전체 결과를 대화창·메신저에 붙여넣지 않고 요약 블록만 공유합니다.</div>
+</section>
+
+<!-- ===== 9 ===== -->
+<section class="screen" id="s09">
+<h2><span class="no">9</span>첨부 매칭 · 진단 블록 <span class="badge b-mock">재현</span></h2>
+<p class="lead">"사진 3장", "파일: 견적서.pdf" 같은 메시지를 <code>카카오톡 받은 파일</code> 폴더의 실제 파일과 연결한 결과. 8번 출력 아래에 이어서 나옵니다. 소스: <code>AttachmentMatcher.cs</code></p>
+<figure><img src="img/s08_attachment_match.png" alt="첨부 매칭 출력"><figcaption>연결 6%가 낮아 보이지만, 진단 블록이 "코드 문제가 아니라 파일이 PC에 없어서"임을 숫자로 보여줍니다.</figcaption></figure>
+<h3>매칭 방법 (MatchMethod)</h3>
+<table>
+<tr><td class="k">NAME_EXACT</td><td>문서: 메시지의 파일명과 폴더 파일명이 정확히 일치. 중복 접미사 3종 <code>이름 (1).ext</code>(Windows) / <code>이름-1.ext</code>(카카오PC) / <code>이름(1).ext</code>(보낸 쪽) 제거 후 비교</td></tr>
+<tr><td class="k">NAME_EXACT_AMBIGUOUS</td><td>같은 이름 후보가 2개 이상 — 연결은 하되 확신 낮음으로 표시</td></tr>
+<tr><td class="k">BUNDLE_EXACT / NEAR</td><td>"사진 N장" ↔ <code>KakaoTalk_YYYYMMDD_HHMMSSmmm.jpg</code> + <code>_01…_(N-1)</code> 묶음. 시각과 개수가 맞으면 EXACT, 근접이면 NEAR</td></tr>
+<tr><td class="k">MEDIA_MINUTE / NEAR / POOL</td><td>단일 사진·영상: 파일명 시각이 메시지 분과 같음 / 근접 / 같은 날 남은 파일 풀에서 배정</td></tr>
+<tr><td class="k">NONE</td><td>연결 실패 → 진단 블록으로 원인 분류</td></tr>
+</table>
+<h3>진단 블록이 말해주는 것</h3>
+<ul>
+<li><b>내가 보낸 것 487건</b> — 받은 파일 폴더에는 <b>내가 보낸 파일이 없다</b>(실제 폴더 구조로 확인). 매칭 대상 자체가 아님</li>
+<li><b>그 날짜에 파일 자체가 없음 492건 / 비슷한 파일도 없음 83건</b> — 미다운로드 또는 다운로드 기한 만료</li>
+<li><b>그 날짜에 카톡 미디어 있음 241건</b> — 매칭 실패 의심. 대부분 같은 날 여러 묶음이 있어 분 단위로 못 가른 경우</li>
+<li><b>이름 앞부분 같음 19건</b> — 10번 <code>--docs</code>로 하나씩 확인</li>
+</ul>
+<div class="note"><b>실험으로 확정</b> — 9월 1일 사진을 다시 내려받았더니 파일명이 <code>KakaoTalk_20260901_113756756.png</code>: 파일명의 시각은 <b>다운로드 시각이 아니라 메시지 시각</b>입니다. 반대로 탐색기 "날짜" 열은 사진은 EXIF, 오피스는 내부 저장일이라 신뢰할 수 없어 문서는 <b>이름으로만</b> 매칭합니다.</div>
+</section>
+
+<!-- ===== 10 ===== -->
+<section class="screen" id="s10">
+<h2><span class="no">10</span>안 붙은 문서 진단 — kakao-docs.cmd <span class="badge b-mock">재현</span></h2>
+<p class="lead">연결 안 된 문서 메시지마다 "폴더에 이름 앞부분·확장자가 같은 후보"를 나열합니다. 매칭 규칙을 더 넣을지, 그냥 다른 파일인지 사람이 판단하는 화면. (예시의 파일명은 가려 썼습니다)</p>
+<figure><img src="img/s09_kakao_docs.png" alt="문서 진단 출력"><figcaption>19건 중 규칙 추가로 해결된 건 2건(<code>-1</code>, 공백 없는 <code>(1)</code>), 나머지 17건은 실제로 다른 파일(버전·다른 서류).</figcaption></figure>
+<table>
+<tr><td class="k">한 줄 형식</td><td><code>[yy-MM-dd HH:mm] 메시지의 파일명</code> → 아래 <code>≈ 후보 파일명</code> 여러 개</td></tr>
+<tr><td class="k">판단 기준</td><td>후보가 원본의 중복 접미사 변형이면 규칙 추가 대상. "통장사본 → 법인통장사본", "캡슐토이 → 프리미엄캡슐토이"처럼 내용이 다르면 다른 파일로 두고 건드리지 않음</td></tr>
+<tr><td class="k">로그</td><td>파일명에 거래처·서류 이름이 들어가므로 <code>--docs</code> 출력은 로그에 남기지 않음</td></tr>
+</table>
+</section>
+
+<!-- ===== 11 ===== -->
+<section class="screen" id="s11">
+<h2><span class="no">11</span>폴더 구조와 데이터 위치</h2>
+<p class="lead">화면은 아니지만 사용자가 탐색기에서 마주치는 장소들. README와 트레이 메뉴가 가리키는 곳입니다.</p>
+<table>
+<tr><th>폴더</th><th>경로</th><th>역할</th></tr>
+<tr><td class="k">카카오톡 받은 파일</td><td><code>내 문서\카카오톡 받은 파일</code></td><td>카카오톡 첨부가 떨어지는 곳. 모든 방 공용, 하위 폴더 있음, <b>내가 보낸 파일은 없음</b>. 비서ON은 <b>읽기만</b>. 기본 위치면 동의 화면에 자동 등록</td></tr>
+<tr><td class="k">카카오톡 내보내기</td><td><code>내 문서\비서ON\카카오톡 내보내기</code></td><td>카카오톡 "대화 내용 내보내기 → 텍스트 저장" 파일을 넣는 곳. 비서ON이 만들어 둠. 다음 버전에서 여기 들어온 txt를 자동 감지(12번)</td></tr>
+<tr><td class="k">데이터</td><td><code>%LOCALAPPDATA%\BiseoON</code></td><td><code>collector.db</code>(SQLCipher AES-256) · <code>consent.json</code> · 키 사본(DPAPI/복구코드 래핑) · <code>vault\</code> 암호화 사본 보관소 · <code>logs\</code> 일자별 로그</td></tr>
+<tr><td class="k">프로그램</td><td><code>%LOCALAPPDATA%\Programs\BiseoON</code></td><td><code>BiseoON.exe</code> 단일 파일(self-contained). 관리자 권한 불필요</td></tr>
+</table>
+<h3>DB 테이블 (현재)</h3>
+<ul>
+<li><code>files</code> — 경로·크기·mtime·SHA-256·마지막 확인 시각</li>
+<li><code>scan_runs</code> — 검사 시작/종료·상태·신규 건수</li>
+<li><code>gap_ledger</code> — PC 꺼져 있던 구간</li>
+<li><code>app_state</code> — 키·값 설정</li>
+</ul>
+<p style="color:var(--mute);font-size:14px">다음 버전에서 추가 예정: <code>kakao_rooms</code>, <code>kakao_messages</code>, <code>message_attachment_links</code>, <code>message_state_events</code>, <code>import_sessions</code></p>
+</section>
+
+<!-- ===== 12 ===== -->
+<section class="screen" id="s12">
+<h2><span class="no">12</span>다음 버전 — 대화방 카테고리 질문 <span class="badge b-plan">설계안</span></h2>
+<p class="lead">"개인이랑 업무랑 섞이면 헷갈린다"는 요구에서 나온 화면. 내보내기 폴더에 처음 보는 방의 txt가 들어오면 한 번 묻고, 답에 따라 저장·분석 범위가 달라집니다. 아직 구현 전.</p>
+<figure><img src="img/s11_room_category_plan.png" class="sm" alt="카테고리 질문 설계안"><figcaption>방 정보는 파서 요약(건수·기간·발신자 수)만 보여주고 본문은 노출하지 않음.</figcaption></figure>
+<table>
+<tr><th>카테고리</th><th>저장</th><th>분석(약속·미회신·파일)</th><th>외부 AI</th></tr>
+<tr><td class="k">업무</td><td>O</td><td>O</td><td>Privacy Mode에 따름 (STRICT=없음 / MASKED / STANDARD / CLOUD ASSIST)</td></tr>
+<tr><td class="k">개인</td><td>O (암호화)</td><td>X</td><td><b>절대 없음</b></td></tr>
+<tr><td class="k">혼합</td><td>O</td><td>업무 관련만 선별</td><td>선별분만, Privacy Mode에 따름</td></tr>
+<tr><td class="k">수집 안 함</td><td>X</td><td>X</td><td>X — 파일 무시, 다시 묻지 않음</td></tr>
+</table>
+<h3>Import 흐름 (설계)</h3>
+<ol>
+<li><code>내 문서\비서ON\카카오톡 내보내기</code>에 txt 감지</li>
+<li>파서로 요약 → 처음 보는 방이면 이 화면으로 카테고리 질문</li>
+<li>파싱 → 이전 Import와 재대조(Reconciler: 삭제 관측 시 원문 미덮어쓰기) → 첨부 매칭</li>
+<li>SQLCipher에 저장(<code>kakao_rooms</code>, <code>kakao_messages</code>, <code>message_attachment_links</code>, <code>message_state_events</code>, <code>import_sessions</code>)</li>
+<li>상태 창에 "대화방 · 메시지 · 연결된 첨부 · PC에 없는 첨부" 카드 추가</li>
+</ol>
+<div class="note plan"><b>아키텍처 전제</b> — Cloud는 Control Plane(라이선스·기기·연동 상태·사용량)만, Local이 Data Plane(원문·인덱스·임베딩). 서버에는 <code>messages</code>/<code>attachments</code> 테이블이 없고 건수 통계만 올라갑니다. 카카오톡은 Export Import 방식만 사용하며 DB 해독·UI Automation은 하지 않습니다.</div>
+</section>
+
+</main>
+<footer>비서ON Local Collector v0.1 · 주식회사 고래등 · 이 문서의 수치는 2026-09-03 실측값이며 개인정보(대화 원문·이름·연락처)는 포함하지 않습니다.</footer>
+</body>
+</html>
