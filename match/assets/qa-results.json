@@ -1,0 +1,353 @@
+[
+  {
+    "width": 375,
+    "route": "home",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 375,
+    "route": "request",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 375,
+    "route": "compare",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 375,
+    "route": "activity",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 375,
+    "route": "equipment",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 375,
+    "route": "stay",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 375,
+    "route": "partner",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 375,
+    "route": "pricing",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 375,
+    "route": "about",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 375,
+    "route": "programs",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 375,
+    "route": "rates",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 375,
+    "route": "sources",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 375,
+    "route": "privacy",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 768,
+    "route": "home",
+    "scrollWidth": 753,
+    "clientWidth": 753,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 768,
+    "route": "request",
+    "scrollWidth": 753,
+    "clientWidth": 753,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 768,
+    "route": "compare",
+    "scrollWidth": 753,
+    "clientWidth": 753,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 768,
+    "route": "activity",
+    "scrollWidth": 753,
+    "clientWidth": 753,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 768,
+    "route": "equipment",
+    "scrollWidth": 753,
+    "clientWidth": 753,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 768,
+    "route": "stay",
+    "scrollWidth": 753,
+    "clientWidth": 753,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 768,
+    "route": "partner",
+    "scrollWidth": 753,
+    "clientWidth": 753,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 768,
+    "route": "pricing",
+    "scrollWidth": 753,
+    "clientWidth": 753,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 768,
+    "route": "about",
+    "scrollWidth": 753,
+    "clientWidth": 753,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 768,
+    "route": "programs",
+    "scrollWidth": 753,
+    "clientWidth": 753,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 768,
+    "route": "rates",
+    "scrollWidth": 753,
+    "clientWidth": 753,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 768,
+    "route": "sources",
+    "scrollWidth": 753,
+    "clientWidth": 753,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 768,
+    "route": "privacy",
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 1240,
+    "route": "home",
+    "scrollWidth": 1225,
+    "clientWidth": 1225,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 1240,
+    "route": "request",
+    "scrollWidth": 1225,
+    "clientWidth": 1225,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 1240,
+    "route": "compare",
+    "scrollWidth": 1225,
+    "clientWidth": 1225,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 1240,
+    "route": "activity",
+    "scrollWidth": 1225,
+    "clientWidth": 1225,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 1240,
+    "route": "equipment",
+    "scrollWidth": 1225,
+    "clientWidth": 1225,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 1240,
+    "route": "stay",
+    "scrollWidth": 1225,
+    "clientWidth": 1225,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 1240,
+    "route": "partner",
+    "scrollWidth": 1225,
+    "clientWidth": 1225,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 1240,
+    "route": "pricing",
+    "scrollWidth": 1225,
+    "clientWidth": 1225,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 1240,
+    "route": "about",
+    "scrollWidth": 1225,
+    "clientWidth": 1225,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 1240,
+    "route": "programs",
+    "scrollWidth": 1225,
+    "clientWidth": 1225,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 1240,
+    "route": "rates",
+    "scrollWidth": 1225,
+    "clientWidth": 1225,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 1240,
+    "route": "sources",
+    "scrollWidth": 1225,
+    "clientWidth": 1225,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  },
+  {
+    "width": 1240,
+    "route": "privacy",
+    "scrollWidth": 1225,
+    "clientWidth": 1225,
+    "horizontal": false,
+    "brokenImages": [],
+    "overflow": []
+  }
+]
