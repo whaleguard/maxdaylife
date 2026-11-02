@@ -462,6 +462,7 @@ function navFix(r,id=''){
 /* ---------- 맥스데이 플랫폼 ---------- */
 function platformPage(){
   const S=[
+   ['MAXDAY 3D 라이프','캐릭터로 입장하는 3D 마을 · 함께 기도·영상·강의',()=> 'assets/plat/space3d.jpg','#space',"window.open('https://whaleguard.github.io/maxday-life/','_blank','noopener')"],
    ['MAXDAY 유학','한국 대학 전형 비교부터 비자·입국 정착까지',()=> 'assets/study-real/university-b2b-home.jpg','#study',''],
    ['MAXDAY 교육','강사 구인구직 · 공공기관 공고 자동 수집 · 기관 콘솔',()=> 'assets/tutor-real/main.jpg','#tutor',''],
    ['MAXDAY 행사 비교견적','행사 견적 요청 → 파트너 제안 비교 → 장비 대여',()=> 'assets/plat/match.jpg','#events',''],
@@ -779,6 +780,7 @@ function biseoPage(){
   <section class="section">${H2('ROADMAP','다음 단계')}<div class="mxp-steps">${[['NEXT','대화방 분류','업무 · 개인 · 혼합 · 수집 안 함 선택'],['NEXT','AI 요약','Privacy Mode 안에서 업무 대화만 요약'],['PLAN','메일 연동','메일 첨부까지 같은 목록으로'],['PLAN','MAX 카드 연동','구독·결제를 맥스데이 라이프 카드로']].map(([n,t,d])=>`<div class="card pad"><small class="mxp-n">${n}</small><b>${t}</b><p class="muted tiny">${d}</p></div>`).join('')}</div></section></div>`;
 }
 const HOME_PLAT=[
+  ['space','MAXDAY 3D 라이프','캐릭터로 들어가 함께 머무는 3D 마을. 절·교회·성당·놀이터·카페·식당·자동차 극장에서 함께 기도하고, 보고, 배웁니다.',()=> 'assets/plat/space3d.jpg','https://whaleguard.github.io/maxday-life/',['3D 마을 입장','함께 보기·함께 듣기','브랜드별 공간 제작']],
   ['study','MAXDAY 유학','외화 송금 없이 USDT 충전으로 학비·생활비 카드 결제. 대학 전형 비교부터 비자·정착까지.',()=> 'assets/study-real/university-b2b-home.jpg','study/index.html',['대학·전형 비교','유학생 앱 한·中·EN','정착 패키지']],
   ['tutor','MAXDAY 교육','강사와 학원·기관을 잇는 구인구직. 공공기관 공고 자동 수집과 기관 콘솔.',()=> 'assets/tutor-real/main.jpg','edu/index.html',['공고·공채 달력','기관 콘솔','카드 발급 시 전부 무료']],
   ['events','MAXDAY 행사 비교견적','기업·학교·단체 행사 견적을 올리면 파트너 3~5곳의 제안을 나란히 비교합니다.',()=> 'assets/plat/match.jpg','match/index.html',['견적 요청','제안 비교','장비 231종 대여']],
@@ -801,6 +803,21 @@ function addHomePlatforms(app){
   <a class="mxp-inv" href="#invite"><span class="tag warm">친구초대 리워드</span><b>친구를 초대하면, 친구가 쓸 때마다 나에게 적립</b><span class="muted tiny">매장에 초대 QR을 걸면 손님의 랜덤박스·운세 이용금액까지 매장에 적립됩니다 →</span></a><div class="mxp-all"><a class="btn" href="#platform">플랫폼·서비스 전체 보기</a></div></section></div>`;
   if(hero)hero.insertAdjacentHTML('afterend',html);else app.insertAdjacentHTML('afterbegin',html);
 }
+
+/* ---------- MAXDAY 3D 라이프 (whaleguard.github.io/maxday-life) ---------- */
+const SPACE_URL='https://whaleguard.github.io/maxday-life/';
+const SPACE_ZONES=[['맥스데이사','불교 법당 · 12지신 석상 길 · 촛불 공양'],['맥스데이교회','개신교 예배당 · 찬송 · 말씀 읽기'],['맥스데이성당','천주교 성당 · 묵주기도 · 성가'],['맥스데이 놀이터','운세·뽑기·게임 23종 바로 체험'],['맥스데이 카페·식당','실사 인테리어 · 자리 예약'],['자동차 극장','대형 전광판 · 맥스데이 라이프 카드 영상']];
+const SPACE_CASES=[
+ ['용마미식거리 3D 마을','강릉 포남동 용마미식거리 방문자용 — 먹거리 골목·놀이터·카페·식당·자동차 극장','assets/plat/space-yongma.jpg','https://2026yongma.com/3d/',['지역 축제','부스 20곳','방문자용']],
+ ['용마 점주 아카데미','점주 전용 온라인 강의실 — 로그인·수강신청·이어보기·수료증·관리자 대시보드','assets/plat/space-academy.jpg','https://2026yongma.com/academy/',['교육','진도·수료 관리','교육 주관 표기']]
+];
+function spacePage(){return shero('assets/plat/space3d.jpg','MAXDAY 3D LIFE','캐릭터로 들어가<br>함께 머무는 3D 마을.','절·교회·성당·놀이터·카페·식당·자동차 극장까지. 같은 공간에 들어온 사람들과 함께 기도하고, 영상을 보고, 강의를 듣습니다.')+`<div class="page">
+ <section class="section banner" id="mlx-space-go"><div><span class="eyebrow">LIVE</span><h3>지금 바로 3D 공간에 들어가 보세요</h3><p class="tiny muted">설치 없이 휴대폰·PC 브라우저에서 바로 열립니다. 캐릭터 이름만 정하면 입장.</p></div><a class="btn primary" href="${SPACE_URL}" target="_blank" rel="noopener">3D 공간 입장 ↗</a></section>
+ <section class="section">${H2('SPACES','마을 안의 공간','공간마다 함께 할 수 있는 일이 다릅니다.')}<div class="mxp-svc4">${SPACE_ZONES.map(([t,d])=>`<a class="card mxp-sc" href="${SPACE_URL}" target="_blank" rel="noopener"><div><b>${t}</b><span class="muted tiny">${d}</span></div></a>`).join('')}</div></section>
+ <section class="section two"><div class="card pad"><span class="tag">TOGETHER</span><h2 style="margin-top:12px">혼자가 아니라 함께</h2>${ROW('실시간 입장','같은 방 사람들과 자리·촛불 공유')}${ROW('함께 보기','영상·강의를 같은 시점으로 함께 재생')}${ROW('계정','강의 진도·수료가 계정에 저장')}${ROW('모바일','드래그로 이동 · 터치 조작')}</div>
+ <div class="card pad"><span class="tag warm">FOR BRANDS</span><h2 style="margin-top:12px">브랜드별 공간 제작</h2>${ROW('이름·로고','브랜드 이름과 로고로 마을 전체 교체')}${ROW('공간 선택','축제 골목·강의실·카페 등 필요한 공간만')}${ROW('영상','전광판·강의실에 자체 영상 연결')}${ROW('관리자','회원·진도·미가입 점포 대시보드')}<a class="btn primary" href="#business" style="margin-top:16px">제작 문의</a></div></section>
+ <section class="section">${H2('CASES','제작 사례','같은 엔진으로 만든 브랜드 공간입니다. 눌러서 직접 들어가 보세요.')}<div class="mxp-grid">${SPACE_CASES.map(([t,d,img,url,tags])=>`<article class="card mxp-pc"><a class="mxp-img" href="${url}" target="_blank" rel="noopener"><img src="${img}" alt="${t} 화면" loading="lazy"><span class="mxp-live">운영 사이트</span></a><div class="pad"><h3>${t}</h3><p class="muted tiny">${d}</p><div class="mxp-tags">${tags.map(x=>`<span>${x}</span>`).join('')}</div><div class="mxp-btns"><a class="btn primary" href="${url}" target="_blank" rel="noopener">사이트 보기 ↗</a></div></div></article>`).join('')}</div></section>
+</div>`}
 /* ---------- 친구초대 리워드 (전 서비스 공통) ---------- */
 const MXR={
   box:['MAXDAY 랜덤박스','랜덤박스를 열 때마다',3,'30,000원'],
@@ -865,7 +882,7 @@ function patch(){
   const [r,id]=(location.hash.slice(1)||'home').split('/');
   navFix(r,id);
   if(r==='home')try{addHomePlatforms(app)}catch(e){console.error(e)}
-  const PG={platform:[platformPage,'맥스데이 플랫폼'],box:[boxPage,'MAXDAY 랜덤박스'],kiosk:[()=>kioskPage(id),'키오스크·POS'],tutor:[tutorPage,'MAXDAY 교육'],study:[studyPage,'MAXDAY 유학'],market:[marketPage,'MAXDAY 행사 비교견적'],events:[marketPage,'MAXDAY 행사 비교견적'],stay:[stayPage,'MAXDAY 스테이'],biseo:[biseoPage,'MAXDAY 비서'],invite:[invitePage,'친구초대 리워드']};
+  const PG={space:[spacePage,'MAXDAY 3D 라이프'],platform:[platformPage,'맥스데이 플랫폼'],box:[boxPage,'MAXDAY 랜덤박스'],kiosk:[()=>kioskPage(id),'키오스크·POS'],tutor:[tutorPage,'MAXDAY 교육'],study:[studyPage,'MAXDAY 유학'],market:[marketPage,'MAXDAY 행사 비교견적'],events:[marketPage,'MAXDAY 행사 비교견적'],stay:[stayPage,'MAXDAY 스테이'],biseo:[biseoPage,'MAXDAY 비서'],invite:[invitePage,'친구초대 리워드']};
   if(PG[r]){app.innerHTML=PG[r][0]();tblLabels();document.title='MAX DAY LIFE · '+PG[r][1];if(r==='tutor')addTutorScreens(app);if(r==='platform')addCardJoin(app,'platform');if(r==='stay'||r==='biseo')addCardJoin(app,r);if(r==='invite')addCardJoin(app,'platform');if(r==='market'||r==='events')addCardJoin(app,'market');if(['market','events','study'].includes(r))addServiceScreensV2(app,r,id);if(r==='kiosk'){initPOSGallery(app);addGalleryDetails(app);const pos=app.querySelector('#mlx-pos');if(pos)pos.querySelectorAll('.mlx-gal figure').forEach(fig=>{if(fig.querySelector('.mlx-screen-detail'))return;const im=fig.querySelector('img'),src=im?.getAttribute('src'),k=Object.keys(IMG).find(x=>IMG[x]===src),p=document.createElement('p');p.className='mlx-screen-detail';p.textContent=SCREEN_DETAIL[k]||'POS 주문·운영·정산 화면을 확인합니다.';fig.appendChild(p)});addCardJoin(app,id==='pos'?'pos':'kiosk')}if(r==='box'){addGalleryDetails(app);addCardJoin(app,'box')}if(id!=='pos')scrollTo(0,0);try{vids()}catch(e){}return}
   if(r==='business'){app.innerHTML=bizPage();bizExtra(app);addBusinessEvents(app);tblLabels();document.title='MAX DAY LIFE · 비즈니스';scrollTo(0,0);try{vids()}catch(e){}return}
   if(r==='fortune'){try{fortuneExtra(app)}catch(e){}}
