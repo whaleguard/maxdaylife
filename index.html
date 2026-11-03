@@ -1159,6 +1159,22 @@ function orgPage(){
  <section class="section">${H2('PATH','이렇게 올라갑니다')}<div class="mxp-steps">${[['STEP 1','플랫폼 배분 투자','관심 플랫폼에 투자 · 배분 수익'],['STEP 2','지점장','교육 이수 · 매장 20곳 운영'],['STEP 3','지사장','지점 3곳 · 행사 수주·수행'],['STEP 4','본부장','IR 지분 투자 주주 · 광역 총괄']].map(([n,t,d])=>`<div class="card pad"><small class="mxp-n">${n}</small><b>${t}</b><p class="muted tiny">${d}</p></div>`).join('')}</div>
   <div class="val-act"><a class="btn primary" href="#center">센터장 신청</a><a class="btn" href="#ir">IR 지분 투자</a><a class="btn" href="#share">플랫폼 배분 투자</a></div></section></div>`}
 
+/* ---------- 서브 페이지 상단 탭 ---------- */
+const SUBT={
+ platform:[['platform','전체'],['study','MAXDAY 유학'],['tutor','MAXDAY 교육'],['events','MAXDAY 행사 비교견적'],['stay','MAXDAY 스테이'],['biseo','MAXDAY 비서'],['tv','MAXDAY TV']],
+ content:[['fortune','MAXDAY 운세'],['play','MAXDAY 게임'],['connect','MAXDAY 인연'],['funding','MAXDAY 제작 후원']],
+ kiosk:[['kiosk','MAXDAY 키오스크'],['kiosk/pos','MAXDAY POS'],['device','MAXDAY 기기 제조·판매']],
+ business:[['business','비즈니스 모델'],['ir','IR 투자'],['share','플랫폼 수익 배분 투자'],['revenue','전체 수익 구조표'],['org','조직·직급 수익표'],['center','지사·지점 센터장'],['invite','친구초대 리워드']]
+};
+const SUBT_MAP={platform:'platform',study:'platform',tutor:'platform',events:'platform',market:'platform',stay:'platform',biseo:'platform',tv:'platform',fortune:'content',play:'content',connect:'content',funding:'content',kiosk:'kiosk','kiosk/pos':'kiosk',device:'kiosk',business:'business',ir:'business',share:'business',revenue:'business',org:'business',center:'business',invite:'business',val:'business',subscribe:'business','ir-admin':'business'};
+function subTabsRun(){const app=document.getElementById('app');if(!app)return;const h=location.hash.slice(1)||'home';const [r,id]=h.split('/');
+ const key=(r==='kiosk'&&id==='pos')?'kiosk/pos':r;const g=SUBT_MAP[key];app.querySelectorAll('.mx-subtabs').forEach(e=>e.remove());if(!g)return;
+ let cur=key;if(r==='market')cur='events';if((r==='ir'&&id)||(r==='share'))cur='share';if(['val','subscribe','ir-admin'].includes(r))cur='ir';
+ const el=document.createElement('nav');el.className='mx-subtabs';el.setAttribute('aria-label','하위 메뉴');el.innerHTML='<div class="in">'+SUBT[g].map(([k,n])=>`<a href="#${k}" class="${k===cur?'on':''}">${n}</a>`).join('')+'</div>';
+ app.insertAdjacentElement('afterbegin',el);const on=el.querySelector('.on');if(on){const c=el.querySelector('.in');c.scrollLeft=Math.max(0,on.offsetLeft-c.clientWidth/2+on.clientWidth/2)}}
+addEventListener('hashchange',()=>{setTimeout(subTabsRun,30);setTimeout(subTabsRun,400)});
+if(document.readyState==='loading')addEventListener('DOMContentLoaded',()=>setTimeout(subTabsRun,150));else setTimeout(subTabsRun,150);
+
 function patch(){
   try{vids()}catch(e){}
   if(pl.classList.contains('on'))close();
@@ -1484,6 +1500,11 @@ addEventListener('hashchange',()=>setTimeout(fix,150));hook();})();</script><sty
 .og-rows>div{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #f0f2f7}.og-rows>div:last-child{border:0}.og-rows small{display:block;font-size:12px;color:#68738a}.og-rows .inv b{color:#2454c8}.og-rows .op b{color:#b35c00}
 .og-tot{background:#0f1f46;color:#fff;border-radius:16px;padding:22px;display:flex;flex-direction:column;justify-content:center}.og-tot span{color:#c7d2ea;font-size:13px}.og-tot b{font-size:clamp(28px,3.4vw,40px);letter-spacing:-.04em}.og-tot small{color:#9fb8ff;font-size:13px}
 @media(max-width:900px){.og-lv{flex-direction:column}.og-arr{transform:rotate(90deg)}.og-side,.og-ex{grid-template-columns:1fr}}
+</style><style id="mx-subtabs-css">.mx-subtabs{position:sticky;top:73px;z-index:45;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid #e6eaf0;box-shadow:0 4px 14px rgba(15,31,70,.05)}
+.mx-subtabs .in{max-width:1240px;margin:0 auto;padding:0 32px;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}.mx-subtabs .in::-webkit-scrollbar{display:none}
+.mx-subtabs a{flex:none;font-size:14.5px;font-weight:700;color:#5b6576;text-decoration:none;padding:15px 14px 13px;border-bottom:3px solid transparent;white-space:nowrap}
+.mx-subtabs a:hover{color:#0f1f46}.mx-subtabs a.on{color:#2454c8;border-bottom-color:#2454c8}
+@media(max-width:760px){.mx-subtabs{top:67px}.mx-subtabs .in{padding:0 12px}.mx-subtabs a{font-size:13.5px;padding:12px 10px 10px}}
 </style><style id="mlx-live-css">.mlx-live{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;background:#0f1f46;color:#fff;border-radius:16px;padding:22px 26px;margin:28px 0 8px}.mlx-live b{display:block;font-size:19px;letter-spacing:-.02em}.mlx-live span{font-size:13px;color:#c7d2ea}.mlx-live a{background:#fff;color:#0f1f46;font-weight:800;border-radius:10px;padding:13px 20px;text-decoration:none;white-space:nowrap}</style>
 <script>(function(){const L={tutor:['MAXDAY 교육','지금 운영 중인 강사 구인구직 사이트를 직접 둘러보세요. 공고·달력·기관 콘솔·관리자까지.','edu/index.html'],study:['MAXDAY 유학','대학용 사이트·유학생 앱(한·中·EN)·운영 관리자 실제 화면을 직접 둘러보세요.','study/index.html'],kiosk:['MAXDAY 행사 비교견적','행사 견적 요청 → 파트너 업체 입찰·제안 비교 → 키오스크·포토부스 장비 대여까지 직접 둘러보세요.','match/index.html#equipment'],events:['MAXDAY 행사 비교견적','기업·학교·단체 행사 견적을 올리면 여러 파트너 업체의 제안을 비교합니다. 직접 둘러보세요.','match/index.html'],stay:['MAXDAY 스테이','제휴 수련원 3곳과 행사 운영·장비를 함께 견적받는 화면을 직접 둘러보세요.','match/index.html#stay'],biseo:['MAXDAY 비서','설치부터 카카오톡 자료 정리까지, 실제 프로그램 화면 소개 문서를 직접 둘러보세요.','biseo/index.html']};
 function run(){const r=(location.hash.slice(1)||'home').split('/')[0];const c=L[r];const app=document.getElementById('app');if(!c||!app||app.querySelector('.mlx-live'))return;const d=document.createElement('div');d.className='page';d.innerHTML='<div class="mlx-live"><div><b>'+c[0]+' 실제 사이트 보기</b><span>'+c[1]+'</span></div><a href="'+c[2]+'" target="_blank" rel="noopener">사이트 열기</a></div>';const top=app.querySelector('.mlx-card-join.top');if(top)top.parentNode.insertBefore(d,top.nextSibling);else{const h=app.querySelector('.subhero,.hero');h?h.after(d):app.prepend(d)}}
