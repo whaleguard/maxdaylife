@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes">
+<meta name="theme-color" content="#00306F">
+<meta name="robots" content="noindex,nofollow,noarchive"><title>공고 수정 | MAXDAY 로드세이프티 협력사 시스템</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="../assets/style.css">
+
+<link rel="icon" href="../assets/icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="../assets/icon-192.png">
+</head><body class="role-admin" data-base="/road/"><div style="position:relative;z-index:99999;background:#0f1f46;color:#fff;font:600 12px/1.4 sans-serif;padding:6px 12px;text-align:center">MAXDAY 로드세이프티 · 브리핑용 데모 (예시 데이터) · <a href="../../#road" style="color:#9fb8ff">MAX DAY LIFE</a></div>
+<div class="shell">
+  <header class="pc-head">
+    <a class="logo" href="../a/home.html" style="display:flex;align-items:center;gap:10px">
+      <img src="../assets/logo-w.png" alt="MAXDAY 로드세이프티">
+      <b style="font-size:15px;font-weight:800;color:var(--hazard)">관리자</b></a>
+    <span class="sp"></span>
+    <span class="who">MAXDAY 로드세이프티 · 맥스데이 대표</span>
+    <a class="out" href="../auth/login.html">로그아웃</a>
+  </header>
+
+  <div class="appbar">
+    <a class="back" href="../a/notices.html">‹</a>    <div class="abrand">
+            <h1>공고 수정</h1>
+    </div>
+    <div class="ab-r">
+      <a class="ab-btn" href="../a/logs.html">🔔<span class="dot">1</span></a>
+    </div>
+  </div>
+
+  <div class="pc-wrap">
+    <nav class="pc-side">
+      <div class="sv">관리자 메뉴</div>
+              <a class="" href="../a/home.html"><span class="ic">🏠</span>대시보드</a>
+              <a class="" href="../a/notices.html"><span class="ic">📣</span>공고 관리</a>
+              <a class="" href="../a/bids.html"><span class="ic">🏆</span>입찰 관리</a>
+              <a class="" href="../a/pays.html"><span class="ic">💳</span>수수료 결제·환불</a>
+              <a class="" href="../a/settle.html"><span class="ic">💰</span>공사대금 지급</a>
+              <a class="" href="../a/resched.html"><span class="ic">⚠️</span>일정변경(전체)</a>
+              <a class="" href="../a/workdays.html"><span class="ic">🌧</span>취소·연기된 날짜</a>
+              <a class="" href="../a/partners.html"><span class="ic">🏢</span>협력사 관리</a>
+              <a class="" href="../a/clients.html"><span class="ic">🏛</span>등록업체 관리</a>
+              <a class="" href="../a/ads.html"><span class="ic">📣</span>광고 관리</a>
+              <a class="" href="../app_download.html"><span class="ic">📱</span>앱 배포</a>
+              <a class="" href="../a/logs.html"><span class="ic">📜</span>기록</a>
+              <a class="" href="../a/more.html"><span class="ic">⚙️</span>설정</a>
+            <div class="side-foot">
+        <a href="../a/more.html"><span class="ic">⚙️</span>정보변경</a>
+        <a href="../auth/login.html"><span class="ic">⏻</span>로그아웃</a>
+      </div>
+    </nav>
+    <main class="pc-main"><div class="screen">
+    <div class="wrap">
+  
+      <div class="card"><div class="card-b">
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px"><span class="bdg b-open">○ 입찰중</span>        <span class="bdg b-urgent">⚡ 긴급</span>        </div>
+      <h2 style="margin:0 0 8px;font-size:20px;font-weight:800">중부내륙선 야간 포장보수</h2>
+      <div class="calc">
+        <div class="cr">공사금액<span class="v">15,400,000원</span></div>
+        <div class="cr fee">수수료 (3%)<span class="v">462,000원</span></div>
+      </div>
+      <div style="height:12px"></div>
+            <div class="btn-row" style="margin-top:10px">
+        <a class="btn btn-line" href="../a/bids--id-1.html">입찰 보기
+          (0)</a>
+        <form method="post" action="../a/notice_edit.html" id="f537abed5" style="margin:0"><input type="hidden" name="_csrf" value="d0584b700e1b31b4eb9484360dbf2280"><input type="hidden" name="id" value="1"><input type="hidden" name="act" value="cancel"><input type="hidden" name="reason_code" value="client"><button type="button" class="btn btn-danger" data-ask="f537abed5" data-title="이 공사를 취소할까요?" data-body="취소하면 협력사에게 알림이 가고, 이미 낸 수수료는 &lt;b&gt;전액 환불 대기&lt;/b&gt;로 올라갑니다.&lt;br&gt;&lt;br&gt;되돌릴 수 없습니다." data-ok="공사 취소하기" data-danger="1">공사 취소</button></form>      </div>
+    </div></div>
+
+      
+  <form method="post" data-check>
+    <input type="hidden" name="_csrf" value="d0584b700e1b31b4eb9484360dbf2280"><input type="hidden" name="id" value="1">
+    <div class="card"><div class="card-h"><h2>공사 내용</h2></div><div class="card-b">
+      <div class="fld"><label>공고 이름<span class="req">*</span></label>
+        <input class="inp" name="title" required value="중부내륙선 야간 포장보수"></div>
+            <div class="fld"><label>도로 구분</label>
+        <div class="chk-row">
+                  <label class="chk on"><input type="radio" name="road_type" value="highway" checked>
+            <span class="box">✔</span> 고속도로</label>
+                  <label class="chk "><input type="radio" name="road_type" value="local" >
+            <span class="box">✔</span> 국도</label>
+        </div></div>
+      <div class="fld"><label>노선명 / 위치</label><input class="inp" name="road_name" value="중부내륙선"
+        placeholder="예) 호남고속도로 · 국도 7호선"></div>
+      <div class="fld"><label>길 구분</label>
+        <select class="inp" name="lane_type"><option selected>본선</option><option >램프</option><option >영업소</option><option >휴게소</option><option >터널</option><option >교량</option><option >지하차도</option></select></div>
+      <div class="f2">
+        <div class="fld"><label>관할지사</label><input class="inp" name="branch" value="창원지사"></div>
+        <div class="fld"><label>방향</label><input class="inp" name="direction" value="양평방향"></div>
+      </div>
+      <div class="fld"><label>공사지점</label><input class="inp" name="spot" value="105.6k~105.9k"></div>
+      <div class="fld"><label>권역 (여러 곳 선택 가능)</label>
+        <p class="desc">고른 권역의 협력사에게만 이 공고가 보입니다. 지사가 걸쳐 있으면 여러 곳을 고르세요.</p>
+        <div class="chk-wrap">
+                  <label class="chk "><input type="checkbox" name="areas[]" value="서울경기" >
+            <span class="box">✔</span> 서울경기</label>
+                  <label class="chk "><input type="checkbox" name="areas[]" value="강원" >
+            <span class="box">✔</span> 강원</label>
+                  <label class="chk "><input type="checkbox" name="areas[]" value="충북" >
+            <span class="box">✔</span> 충북</label>
+                  <label class="chk "><input type="checkbox" name="areas[]" value="대전충남" >
+            <span class="box">✔</span> 대전충남</label>
+                  <label class="chk "><input type="checkbox" name="areas[]" value="전북" >
+            <span class="box">✔</span> 전북</label>
+                  <label class="chk "><input type="checkbox" name="areas[]" value="광주전남" >
+            <span class="box">✔</span> 광주전남</label>
+                  <label class="chk on"><input type="checkbox" name="areas[]" value="대구경북" checked>
+            <span class="box">✔</span> 대구경북</label>
+                  <label class="chk on"><input type="checkbox" name="areas[]" value="부산경남" checked>
+            <span class="box">✔</span> 부산경남</label>
+        </div></div>
+      <div class="f2">
+        <div class="fld"><label>담당자</label><input class="inp" name="mgr_name" value="이순신 부장"></div>
+        <div class="fld" style="margin-bottom:0"><label>담당자 연락처</label><input class="inp" name="mgr_tel" value="010-2345-6789"></div>
+      </div>
+    </div></div>
+
+    <div class="card"><div class="card-h"><h2>기간 · 시간</h2></div><div class="card-b">
+      <div class="f2">
+        <div class="fld"><label>시작일<span class="req">*</span></label>
+          <input class="inp" type="date" name="date_from" required value="2026-11-16"></div>
+        <div class="fld"><label>끝나는 날<span class="req">*</span></label>
+          <input class="inp" type="date" name="date_to" required value="2026-11-19"></div>
+      </div>
+      <div class="fld"><label>실제 차단하는 날 (금액 계산 기준)</label>
+        <p class="desc">시작일~끝나는 날 사이에서 <b>진짜 차단하는 날만</b> 체크하세요.
+          중간에 쉬는 날이 있으면 빼면 됩니다. 체크한 날 수만큼 금액이 계산됩니다.</p>
+                    <div class="chk-wrap">
+                      <label class="chk on" style="min-height:52px">
+                <input type="checkbox" name="work_dates[]" value="2026-11-16" checked>
+                <span class="box">✔</span> 11월 16일 (월)</label>
+                      <label class="chk on" style="min-height:52px">
+                <input type="checkbox" name="work_dates[]" value="2026-11-17" checked>
+                <span class="box">✔</span> 11월 17일 (화)</label>
+                      <label class="chk on" style="min-height:52px">
+                <input type="checkbox" name="work_dates[]" value="2026-11-18" checked>
+                <span class="box">✔</span> 11월 18일 (수)</label>
+                      <label class="chk on" style="min-height:52px">
+                <input type="checkbox" name="work_dates[]" value="2026-11-19" checked>
+                <span class="box">✔</span> 11월 19일 (목)</label>
+                    </div>
+        </div>
+      <div class="f2">
+        <div class="fld"><label>주간/야간</label>
+          <select class="inp" name="time_type" onchange="fillPrice(this.value)">
+            <option value="day" >주간</option>
+            <option value="night" selected>야간</option>
+          </select></div>
+        <div class="fld"><label>차단 시작 시각</label>
+          <select class="inp" name="start_hour">            <option value="0" >0시</option>            <option value="1" >1시</option>            <option value="2" >2시</option>            <option value="3" >3시</option>            <option value="4" >4시</option>            <option value="5" >5시</option>            <option value="6" >6시</option>            <option value="7" >7시</option>            <option value="8" >8시</option>            <option value="9" >9시</option>            <option value="10" >10시</option>            <option value="11" >11시</option>            <option value="12" >12시</option>            <option value="13" >13시</option>            <option value="14" >14시</option>            <option value="15" >15시</option>            <option value="16" >16시</option>            <option value="17" >17시</option>            <option value="18" >18시</option>            <option value="19" >19시</option>            <option value="20" >20시</option>            <option value="21" selected>21시</option>            <option value="22" >22시</option>            <option value="23" >23시</option></select></div>
+      </div>
+      <div class="fld" style="margin-bottom:0"><label>입찰 마감 일시<span class="req">*</span></label>
+        <p class="desc">이 시각이 지나면 자동으로 낙찰자를 정합니다 (선착순은 즉시 낙찰)</p>
+        <input class="inp" type="datetime-local" name="deadline_at"
+               value="2026-11-13T14:59"></div>
+    </div></div>
+
+    <div class="card"><div class="card-h"><h2>필요 장비 · 단가</h2>
+      <button type="button" class="more" onclick="fillPrice(document.querySelector('[name=time_type]').value)">기본단가 넣기</button></div>
+      <div class="card-b">
+              <div class="f2" style="margin-bottom:12px">
+          <div class="fld" style="margin:0"><label>TMA-1 수량</label>
+            <select class="inp" name="need_tma1">              <option value="0" >
+                0대</option>              <option value="1" >
+                1대</option>              <option value="2" >
+                2대</option>              <option value="3" >
+                3대</option>              <option value="4" selected>
+                4대</option>              <option value="5" >
+                5대</option>              <option value="6" >
+                6대</option>              <option value="7" >
+                7대</option>              <option value="8" >
+                8대</option>              <option value="9" >
+                9대</option>              <option value="10" >
+                10대</option>              <option value="11" >
+                11대</option>              <option value="12" >
+                12대</option>              <option value="13" >
+                13대</option>              <option value="14" >
+                14대</option>              <option value="15" >
+                15대</option>              <option value="16" >
+                16대</option>              <option value="17" >
+                17대</option>              <option value="18" >
+                18대</option>              <option value="19" >
+                19대</option>              <option value="20" >
+                20대</option></select></div>
+          <div class="fld" style="margin:0"><label>TMA-1 단가</label>
+            <input class="inp" type="number" inputmode="numeric" name="price_tma1" id="pr_tma1"
+                   value="550000"></div>
+        </div>
+              <div class="f2" style="margin-bottom:12px">
+          <div class="fld" style="margin:0"><label>TMA-3 수량</label>
+            <select class="inp" name="need_tma3">              <option value="0" >
+                0대</option>              <option value="1" selected>
+                1대</option>              <option value="2" >
+                2대</option>              <option value="3" >
+                3대</option>              <option value="4" >
+                4대</option>              <option value="5" >
+                5대</option>              <option value="6" >
+                6대</option>              <option value="7" >
+                7대</option>              <option value="8" >
+                8대</option>              <option value="9" >
+                9대</option>              <option value="10" >
+                10대</option>              <option value="11" >
+                11대</option>              <option value="12" >
+                12대</option>              <option value="13" >
+                13대</option>              <option value="14" >
+                14대</option>              <option value="15" >
+                15대</option>              <option value="16" >
+                16대</option>              <option value="17" >
+                17대</option>              <option value="18" >
+                18대</option>              <option value="19" >
+                19대</option>              <option value="20" >
+                20대</option></select></div>
+          <div class="fld" style="margin:0"><label>TMA-3 단가</label>
+            <input class="inp" type="number" inputmode="numeric" name="price_tma3" id="pr_tma3"
+                   value="900000"></div>
+        </div>
+              <div class="f2" style="margin-bottom:12px">
+          <div class="fld" style="margin:0"><label>PLCS 수량</label>
+            <select class="inp" name="need_plcs">              <option value="0" >
+                0대</option>              <option value="1" selected>
+                1대</option>              <option value="2" >
+                2대</option>              <option value="3" >
+                3대</option>              <option value="4" >
+                4대</option>              <option value="5" >
+                5대</option>              <option value="6" >
+                6대</option>              <option value="7" >
+                7대</option>              <option value="8" >
+                8대</option>              <option value="9" >
+                9대</option>              <option value="10" >
+                10대</option>              <option value="11" >
+                11대</option>              <option value="12" >
+                12대</option>              <option value="13" >
+                13대</option>              <option value="14" >
+                14대</option>              <option value="15" >
+                15대</option>              <option value="16" >
+                16대</option>              <option value="17" >
+                17대</option>              <option value="18" >
+                18대</option>              <option value="19" >
+                19대</option>              <option value="20" >
+                20대</option></select></div>
+          <div class="fld" style="margin:0"><label>PLCS 단가</label>
+            <input class="inp" type="number" inputmode="numeric" name="price_plcs" id="pr_plcs"
+                   value="750000"></div>
+        </div>
+              <div class="f2" style="margin-bottom:12px">
+          <div class="fld" style="margin:0"><label>신호수 수량</label>
+            <select class="inp" name="need_sig">              <option value="0" selected>
+                0명</option>              <option value="1" >
+                1명</option>              <option value="2" >
+                2명</option>              <option value="3" >
+                3명</option>              <option value="4" >
+                4명</option>              <option value="5" >
+                5명</option>              <option value="6" >
+                6명</option>              <option value="7" >
+                7명</option>              <option value="8" >
+                8명</option>              <option value="9" >
+                9명</option>              <option value="10" >
+                10명</option>              <option value="11" >
+                11명</option>              <option value="12" >
+                12명</option>              <option value="13" >
+                13명</option>              <option value="14" >
+                14명</option>              <option value="15" >
+                15명</option>              <option value="16" >
+                16명</option>              <option value="17" >
+                17명</option>              <option value="18" >
+                18명</option>              <option value="19" >
+                19명</option>              <option value="20" >
+                20명</option></select></div>
+          <div class="fld" style="margin:0"><label>신호수 단가</label>
+            <input class="inp" type="number" inputmode="numeric" name="price_sig" id="pr_sig"
+                   value="0"></div>
+        </div>
+          </div></div>
+
+    <div class="card"><div class="card-h"><h2>입찰 · 수수료 조건</h2></div><div class="card-b">
+      <div class="fld"><label>낙찰 방식</label>
+                  <label class="chk "><input type="radio" name="method" value="first" >
+            <span class="box">✔</span> 선착순 — 먼저 입찰한 업체가 바로 낙찰</label>
+                  <label class="chk on"><input type="radio" name="method" value="lowest" checked>
+            <span class="box">✔</span> 최저가 — 마감 시각에 자동 선정</label>
+                  <label class="chk "><input type="radio" name="method" value="review" >
+            <span class="box">✔</span> 본사 심사 — 마감 후 직접 고름</label>
+        </div>
+      <div class="f2">
+        <div class="fld"><label>수수료율 (%)</label>
+          <input class="inp" type="number" step="0.1" name="fee_rate" value="3.00"></div>
+        <div class="fld"><label>결제 제한시간</label>
+          <select class="inp" name="pay_hours">            <option value="6" >6시간</option>            <option value="12" selected>12시간</option>            <option value="24" >24시간</option>            <option value="48" >48시간</option></select></div>
+      </div>
+      <div class="fld"><label>수수료 받는 방식</label>
+        <p class="desc">법률 검토 결과에 따라 코드 수정 없이 바꿀 수 있는 스위치입니다.</p>
+                  <label class="chk on"><input type="radio" name="fee_mode" value="prepay" checked>
+            <span class="box">✔</span> 선납형 — 낙찰 후 제한시간 안에 결제해야 확정</label>
+                  <label class="chk "><input type="radio" name="fee_mode" value="deduct" >
+            <span class="box">✔</span> 정산차감형 — 결제 없이 확정, 공사대금에서 차감</label>
+        </div>
+      <label class="chk on">
+        <input type="checkbox" name="urgent" value="1" checked>
+        <span class="box">✔</span> 긴급 공고 (목록 맨 위에 빨갛게 표시)</label>
+      <div class="fld" style="margin-bottom:0"><label>메모</label>
+        <textarea class="inp" name="note"></textarea></div>
+    </div></div>
+
+    <button class="btn btn-main">저장하기</button>
+    
+  <a class="btn btn-line" href="../a/notices.html">목록으로</a>
+  </form>
+  <div style="height:24px"></div>
+</div>
+<script>
+var PRICES = {"day":{"tma1":450000,"tma3":800000,"plcs":650000,"sig":150000},"night":{"tma1":550000,"tma3":900000,"plcs":750000,"sig":200000}};
+function fillPrice(t){
+  var p = PRICES[t] || PRICES.day;
+  for (var k in p) { var el = document.getElementById('pr_'+k); if (el) el.value = p[k]; }
+  toast((t==='night'?'야간':'주간')+' 기본단가를 넣었습니다');
+}
+</script>
+    <div class="sitefoot"><p class="sf-links"><a href="../terms.html">이용약관</a> · <a href="../privacy.html">개인정보처리방침</a> · <a href="../terms.html#refund">취소·환불 규정</a></p><p>MAXDAY 로드세이프티 · 대표 맥스데이 · 부산광역시</p><p>사업자등록번호 000-00-00000 · 통신판매업신고 <span style="color:var(--red)">신고 준비중</span></p><p>대표전화 <a href="tel:0510000000">051-000-0000</a> · help@maxdaylife.kr</p><p class="sf-c">COPYRIGHT © 2026 MAXDAY 로드세이프티. ALL RIGHTS RESERVED.</p></div>    </div></main>
+        </div>
+    <nav class="tabbar">
+              <a class="" href="../a/home.html"><span class="ic">🏠</span>홈</a>
+              <a class="" href="../a/notices.html"><span class="ic">📣</span>공고</a>
+              <a class="" href="../a/settle.html"><span class="ic">💰</span>지급</a>
+              <a class="" href="../a/partners.html"><span class="ic">🏢</span>회원</a>
+              <a class="" href="../a/more.html"><span class="ic">☰</span>더보기</a>
+          </nav>
+    </div>
+<div id="a2hs" class="a2hs" hidden>
+  <img src="../assets/icon-192.png" alt="">
+  <div class="a2hs-t">
+    <b>바탕화면에 바로가기를 만들까요?</b>
+    <p id="a2hs-sub">한 번 만들어 두면 주소를 치지 않고 바로 열립니다.</p>
+  </div>
+  <div class="a2hs-b">
+    <button type="button" id="a2hs-go" class="btn btn-main">만들기</button>
+    <button type="button" id="a2hs-no" class="btn btn-line">나중에</button>
+  </div>
+  <button type="button" id="a2hs-x" class="a2hs-x" aria-label="닫기">✕</button>
+</div>
+
+<div id="mask" onclick="if(event.target===this)closeModal()"><div class="modal" id="modal"></div></div>
+<div id="toast"></div>
+<script src="../assets/app.js"></script>
+<script>document.addEventListener('submit',function(e){var f=e.target,q=f.querySelector('input[name=quick]');e.preventDefault();if(q){var m={"0":"p/home.html","1":"a/home.html","2":"c/home.html","3":"p/home.html"};var t=m[q.value];if(t){location.href='../'+t}else{alert('승인 대기 중인 계정입니다. (데모)')}return}alert('브리핑용 데모 화면입니다. 실제 저장·결제는 되지 않습니다.')},true);document.addEventListener('click',function(e){var a=e.target.closest('[data-demo]');if(a){e.preventDefault();alert('브리핑용 데모 화면입니다.')}});</script></body></html>

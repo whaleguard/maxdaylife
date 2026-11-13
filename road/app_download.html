@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes">
+<meta name="theme-color" content="#00306F">
+<meta name="robots" content="noindex,nofollow,noarchive"><title>앱 내려받기 | MAXDAY 로드세이프티 협력사 시스템</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="assets/style.css">
+
+<link rel="icon" href="assets/icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+</head><body class="role-partner" data-base="/road/"><div style="position:relative;z-index:99999;background:#0f1f46;color:#fff;font:600 12px/1.4 sans-serif;padding:6px 12px;text-align:center">MAXDAY 로드세이프티 · 브리핑용 데모 (예시 데이터) · <a href="../#road" style="color:#9fb8ff">MAX DAY LIFE</a></div>
+<div class="shell guest"><main class="pc-main"><div class="screen">
+    <div class="wrap" style="max-width:520px;margin:0 auto">
+
+  <div class="card" style="border:0;overflow:hidden">
+    <div class="stripe"></div>
+    <div class="card-b" style="text-align:center;padding:22px 20px 26px">
+      <img src="assets/icon-192.png" alt="" style="width:84px;height:84px;border-radius:20px;margin:6px auto 14px;box-shadow:0 6px 18px rgba(0,48,111,.22)">
+      <h2 style="margin:0 0 6px;font-size:22px;font-weight:800">MAXDAY 로드세이프티 협력사</h2>
+      <p style="margin:0;font-size:16px;color:var(--ink2);font-weight:600">
+        <b>한 번만 깔면</b> 그다음부터는<br>바탕화면 아이콘만 누르면 바로 열립니다.</p>
+              <p style="margin:12px 0 0;font-size:14.5px;color:var(--ink3);font-weight:700">
+          설치파일 1.4MB · 2026년 11월 13일 올림</p>
+          </div>
+  </div>
+
+
+  <div class="card"><div class="card-h"><h2>💻 지금은 컴퓨터로 보고 계십니다</h2></div><div class="card-b">
+    <p style="margin:0 0 14px;font-size:16.5px;line-height:1.7;color:var(--ink2);font-weight:600">
+      휴대폰으로 아래 주소를 열면 그 기종에 맞는 방법이 나옵니다.<br>
+      문자로 보내주시면 협력사에서 그대로 따라 하실 수 있습니다.</p>
+    <div class="acct"><p class="al">협력사에 보낼 주소</p>
+      <p class="an" style="font-size:17px;letter-spacing:0">https://whaleguard.github.io/maxdaylife/road/app_download.php</p>
+      <button type="button" class="btn btn-main" style="min-height:52px;font-size:16.5px;margin:0"
+        onclick="copyText('https://whaleguard.github.io/maxdaylife/road/app_download.php')">주소 복사하기</button></div>
+  </div></div>
+
+  <div class="card"><div class="card-h"><h2>문자로 보낼 문구</h2></div><div class="card-b">
+    <div class="smsbox" id="sms">[MAXDAY 로드세이프티]
+협력사 입찰 앱입니다.
+아래 주소를 눌러 안내대로 하시면
+휴대폰 바탕화면에 앱이 생깁니다.
+
+https://whaleguard.github.io/maxdaylife/road/app_download.php
+문의 051-000-0000</div>
+    <button type="button" class="btn btn-line" style="margin:12px 0 0"
+      onclick="copyText(document.getElementById('sms').innerText)">문구 복사하기</button>
+  </div></div>
+
+    <div class="card" style="border:2px solid var(--brand)">
+    <div class="card-h" style="background:var(--brand-l)"><h2 style="color:var(--brand)">🔧 관리자용 — 설치파일 올리는 법</h2></div>
+    <div class="card-b">
+      <div class="calc" style="margin-bottom:14px">
+        <div class="cr"><span class="cl2">설치파일 상태</span>
+          <span class="v" style="color:var(--green);font-size:16px">
+            올라가 있음 (1.4MB)</span></div>
+        <div class="cr"><span class="cl2">SSL(https)</span>
+          <span class="v" style="color:var(--red);font-size:16px">
+            아직 없음</span></div>
+      </div>
+      <ol class="steps">
+        <li>카페24에서 <b>SSL 신청</b>
+          <span>이게 안 되면 APK 를 만들 수 없습니다</span></li>
+        <li><b>pwabuilder.com</b> 에서 APK 만들기
+          <span>주소 칸에 <b>https://whaleguard.github.io/maxdaylife/road/manifest.php</b> 를 넣고 Android → Generate Package</span></li>
+        <li>받은 파일 이름을 <b>roadblock.apk</b> 로 바꾸기</li>
+        <li>FTP 로 <b>/www/app/download/</b> 폴더에 올리기
+          <span>올리는 순간 이 화면에 내려받기 버튼이 자동으로 생깁니다. 코드는 안 고쳐도 됩니다</span></li>
+      </ol>
+      <div class="msg" style="margin:14px 0 0;background:#FFF9E8;border-color:#F2D98A;color:#5B4708">
+        <b>assetlinks.json</b> 은 <b>/www/.well-known/</b> 에 올려주세요.
+        (app 폴더가 아니라 <b>홈페이지 최상위</b>입니다)<br>
+        이 파일이 있어야 앱을 열었을 때 위쪽 주소창이 사라집니다.
+        <span style="display:block;margin-top:6px">
+          확인 : <b>https://whaleguard.github.io/maxdaylife/road/.well-known/assetlinks.json</b></span></div>
+    </div>
+  </div>
+  
+
+  <div class="card"><div class="card-b" style="background:#F7F9FB">
+    <p style="margin:0;font-size:15px;line-height:1.75;color:var(--ink2);font-weight:600">
+      <b>플레이스토어·앱스토어에는 없습니다.</b><br>
+      MAXDAY 로드세이프티 협력사만 쓰는 앱이라 스토어에 올리지 않았습니다.
+      기능이 바뀌어도 <b>따로 업데이트를 받지 않아도</b> 최신 상태로 열립니다.</p>
+  </div></div>
+
+  <a class="btn btn-dark" href="qr.html">🖨 QR 안내문 인쇄하기 (협력사 배포용)</a>
+  <a class="btn btn-line" href="public.html">돌아가기</a>
+  <div style="height:24px"></div>
+</div>
+
+<style>
+.steps{counter-reset:s;list-style:none;margin:0;padding:0}
+.steps li{counter-increment:s;position:relative;padding:0 0 18px 46px;font-size:17px;font-weight:700;line-height:1.55}
+.steps li:last-child{padding-bottom:0}
+.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:32px;height:32px;
+  background:var(--brand);color:#fff;border-radius:50%;display:grid;place-items:center;font-size:16px;font-weight:800}
+.steps li span{display:block;margin-top:5px;font-size:14.5px;color:var(--ink3);font-weight:600;line-height:1.6}
+.smsbox{background:#F7F9FB;border:1.5px solid var(--line);border-radius:12px;padding:15px;
+  font-size:15.5px;line-height:1.7;white-space:pre-wrap;font-weight:600;color:var(--ink2)}
+</style>
+    <div class="sitefoot"><p class="sf-links"><a href="terms.html">이용약관</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html#refund">취소·환불 규정</a></p><p>MAXDAY 로드세이프티 · 대표 맥스데이 · 부산광역시</p><p>사업자등록번호 000-00-00000 · 통신판매업신고 <span style="color:var(--red)">신고 준비중</span></p><p>대표전화 <a href="tel:0510000000">051-000-0000</a> · help@maxdaylife.kr</p><p class="sf-c">COPYRIGHT © 2026 MAXDAY 로드세이프티. ALL RIGHTS RESERVED.</p></div>    </div></main>
+    </div>
+
+<div id="mask" onclick="if(event.target===this)closeModal()"><div class="modal" id="modal"></div></div>
+<div id="toast"></div>
+<script src="assets/app.js"></script>
+<script>document.addEventListener('submit',function(e){var f=e.target,q=f.querySelector('input[name=quick]');e.preventDefault();if(q){var m={"0":"p/home.html","1":"a/home.html","2":"c/home.html","3":"p/home.html"};var t=m[q.value];if(t){location.href=''+t}else{alert('승인 대기 중인 계정입니다. (데모)')}return}alert('브리핑용 데모 화면입니다. 실제 저장·결제는 되지 않습니다.')},true);document.addEventListener('click',function(e){var a=e.target.closest('[data-demo]');if(a){e.preventDefault();alert('브리핑용 데모 화면입니다.')}});</script></body></html>

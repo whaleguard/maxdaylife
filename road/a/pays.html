@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes">
+<meta name="theme-color" content="#00306F">
+<meta name="robots" content="noindex,nofollow,noarchive"><title>결제 · 환불 | MAXDAY 로드세이프티 협력사 시스템</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="../assets/style.css">
+
+<link rel="icon" href="../assets/icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="../assets/icon-192.png">
+</head><body class="role-admin" data-base="/road/"><div style="position:relative;z-index:99999;background:#0f1f46;color:#fff;font:600 12px/1.4 sans-serif;padding:6px 12px;text-align:center">MAXDAY 로드세이프티 · 브리핑용 데모 (예시 데이터) · <a href="../../#road" style="color:#9fb8ff">MAX DAY LIFE</a></div>
+<div class="shell">
+  <header class="pc-head">
+    <a class="logo" href="../a/home.html" style="display:flex;align-items:center;gap:10px">
+      <img src="../assets/logo-w.png" alt="MAXDAY 로드세이프티">
+      <b style="font-size:15px;font-weight:800;color:var(--hazard)">관리자</b></a>
+    <span class="sp"></span>
+    <span class="who">MAXDAY 로드세이프티 · 맥스데이 대표</span>
+    <a class="out" href="../auth/login.html">로그아웃</a>
+  </header>
+
+  <div class="appbar">
+        <div class="abrand">
+      <img src="../assets/symbol.png" alt="">      <h1>결제 · 환불</h1>
+    </div>
+    <div class="ab-r">
+      <a class="ab-btn" href="../a/logs.html">🔔<span class="dot">1</span></a>
+    </div>
+  </div>
+
+  <div class="pc-wrap">
+    <nav class="pc-side">
+      <div class="sv">관리자 메뉴</div>
+              <a class="" href="../a/home.html"><span class="ic">🏠</span>대시보드</a>
+              <a class="" href="../a/notices.html"><span class="ic">📣</span>공고 관리</a>
+              <a class="" href="../a/bids.html"><span class="ic">🏆</span>입찰 관리</a>
+              <a class="on" href="../a/pays.html"><span class="ic">💳</span>수수료 결제·환불</a>
+              <a class="" href="../a/settle.html"><span class="ic">💰</span>공사대금 지급</a>
+              <a class="" href="../a/resched.html"><span class="ic">⚠️</span>일정변경(전체)</a>
+              <a class="" href="../a/workdays.html"><span class="ic">🌧</span>취소·연기된 날짜</a>
+              <a class="" href="../a/partners.html"><span class="ic">🏢</span>협력사 관리</a>
+              <a class="" href="../a/clients.html"><span class="ic">🏛</span>등록업체 관리</a>
+              <a class="" href="../a/ads.html"><span class="ic">📣</span>광고 관리</a>
+              <a class="" href="../app_download.html"><span class="ic">📱</span>앱 배포</a>
+              <a class="" href="../a/logs.html"><span class="ic">📜</span>기록</a>
+              <a class="" href="../a/more.html"><span class="ic">⚙️</span>설정</a>
+            <div class="side-foot">
+        <a href="../a/more.html"><span class="ic">⚙️</span>정보변경</a>
+        <a href="../auth/login.html"><span class="ic">⏻</span>로그아웃</a>
+      </div>
+    </nav>
+    <main class="pc-main"><div class="screen">
+    <div class="wrap">
+  <div class="card"><div class="card-b"><div class="calc">
+    <div class="cr">11월 수수료 수입<span class="v">384,000원</span></div>
+    <div class="cr fee">11월 환불<span class="v">△73,500원</span></div>
+    <div class="cr sum">순수입<span class="v">310,500원</span></div>
+  </div>
+      <p style="margin:12px 0 0;font-size:15px;font-weight:700;color:#5B4708;background:#FFF9E8;
+       border:1.5px solid #F2D98A;border-radius:10px;padding:12px 14px">
+      🧪 KIS 테스트 모드입니다. 실제 결제·취소는 일어나지 않습니다.
+      MID 발급 후 <code>config.php</code>의 <b>KIS_TEST=false</b>로 바꾸세요.</p>
+    </div></div>
+
+  <div class="card"><div class="card-h"><h2>환불 처리</h2>
+    <span class="bdg b-urgent">
+      대기 1건</span></div>
+              <div style="padding:16px;border-bottom:1px solid var(--line2)">
+        <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:8px">
+          <span class="bdg b-urgent">
+            처리 대기</span>
+          <span style="font-size:14px;color:var(--ink3);font-weight:600">2026-11-12 11:59</span></div>
+        <p style="margin:0 0 3px;font-size:17px;font-weight:800">부산도로안전 · 35,100원</p>
+        <p style="margin:0;font-size:15px;color:var(--ink2);font-weight:600">김해 국도 14호선 측구공사 — 발주처 사정으로 하루 축소 — 차액 환불 요청</p>
+                  <div class="btn-row" style="margin-top:12px">
+            <form method="post" action="../a/pays.html" id="f39aa79f0" style="margin:0"><input type="hidden" name="_csrf" value="d0584b700e1b31b4eb9484360dbf2280"><input type="hidden" name="act" value="refund_ok"><input type="hidden" name="id" value="2"><button type="button" class="btn btn-main" data-ask="f39aa79f0" data-title="35,100원을 돌려줄까요?" data-body="&lt;b&gt;부산도로안전&lt;/b&gt;에게 환불 처리하고 알림을 보냅니다.&lt;br&gt;&lt;br&gt;※ 테스트 모드라 실제 결제 취소는 되지 않고, 기록만 남습니다." data-ok="환불하기" data-danger="0">환불 실행</button></form><form method="post" action="../a/pays.html" id="fbe04e435" style="margin:0"><input type="hidden" name="_csrf" value="d0584b700e1b31b4eb9484360dbf2280"><input type="hidden" name="act" value="refund_no"><input type="hidden" name="id" value="2"><button type="button" class="btn btn-danger" data-ask="fbe04e435" data-title="환불을 거절할까요?" data-body="협력사에게는 거절로 표시됩니다. 사유는 따로 연락해 주세요." data-ok="거절하기" data-danger="1">거절</button></form>          </div>
+              </div>
+          <div style="padding:16px;border-bottom:1px solid var(--line2)">
+        <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:8px">
+          <span class="bdg b-done">
+            환불 완료</span>
+          <span style="font-size:14px;color:var(--ink3);font-weight:600">2026-11-05 11:59</span></div>
+        <p style="margin:0 0 3px;font-size:17px;font-weight:800">부산도로안전 · 73,500원</p>
+        <p style="margin:0;font-size:15px;color:var(--ink2);font-weight:600">새만금선 포장공사 — 기상(우천)으로 하루 취소 — 재산정 차액</p>
+                  <p style="margin:8px 0 0;font-size:14.5px;color:var(--ink3);font-weight:600">계좌 송금 완료</p>
+              </div>
+      </div>
+
+  <div class="card"><div class="card-h"><h2>결제 내역</h2><span class="more">4건</span></div>
+        <ul class="lst">      <li><div class="row"><span class="rt">
+        <span style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+          <span class="bdg b-done">
+            납부완료</span>
+          <span class="bdg">카드</span>
+          <span style="font-size:14px;color:var(--ink3);font-weight:600">2026-11-04 11:59</span></span>
+        <p class="t1" style="margin-top:7px">전북로드안전</p>
+        <p class="t2">거제 국도 58호선 배수공사<br><span style="font-size:13.5px">RS26110411591600008 · TEST20261104115916</span></p>
+      </span>
+      <span style="text-align:right">
+        <span style="font-size:18px;font-weight:800;display:block">87,000원</span>
+              </span></div></li>
+          <li><div class="row"><span class="rt">
+        <span style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+          <span class="bdg b-done">
+            납부완료</span>
+          <span class="bdg">가상계좌</span>
+          <span style="font-size:14px;color:var(--ink3);font-weight:600">2026-10-28 11:59</span></span>
+        <p class="t1" style="margin-top:7px">부산도로안전</p>
+        <p class="t2">새만금선 포장공사<br><span style="font-size:13.5px">RS26102811591600007 · TEST20261028115916</span></p>
+      </span>
+      <span style="text-align:right">
+        <span style="font-size:18px;font-weight:800;display:block">294,000원</span>
+              </span></div></li>
+          <li><div class="row"><span class="rt">
+        <span style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+          <span class="bdg b-done">
+            납부완료</span>
+          <span class="bdg">카드</span>
+          <span style="font-size:14px;color:var(--ink3);font-weight:600">2026-11-07 11:59</span></span>
+        <p class="t1" style="margin-top:7px">부산도로안전</p>
+        <p class="t2">양산 물금 확장구간 차단<br><span style="font-size:13.5px">RS26110711591600006 · TEST20261107115916</span></p>
+      </span>
+      <span style="text-align:right">
+        <span style="font-size:18px;font-weight:800;display:block">180,000원</span>
+              </span></div></li>
+          <li><div class="row"><span class="rt">
+        <span style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+          <span class="bdg b-done">
+            납부완료</span>
+          <span class="bdg">가상계좌</span>
+          <span style="font-size:14px;color:var(--ink3);font-weight:600">2026-11-09 11:59</span></span>
+        <p class="t1" style="margin-top:7px">부산도로안전</p>
+        <p class="t2">김해 국도 14호선 측구공사<br><span style="font-size:13.5px">RS26110911591600005 · TEST20261109115916</span></p>
+      </span>
+      <span style="text-align:right">
+        <span style="font-size:18px;font-weight:800;display:block">117,000원</span>
+              </span></div></li>
+    </ul>
+  </div>
+</div>
+    <div class="sitefoot"><p class="sf-links"><a href="../terms.html">이용약관</a> · <a href="../privacy.html">개인정보처리방침</a> · <a href="../terms.html#refund">취소·환불 규정</a></p><p>MAXDAY 로드세이프티 · 대표 맥스데이 · 부산광역시</p><p>사업자등록번호 000-00-00000 · 통신판매업신고 <span style="color:var(--red)">신고 준비중</span></p><p>대표전화 <a href="tel:0510000000">051-000-0000</a> · help@maxdaylife.kr</p><p class="sf-c">COPYRIGHT © 2026 MAXDAY 로드세이프티. ALL RIGHTS RESERVED.</p></div>    </div></main>
+        </div>
+    <nav class="tabbar">
+              <a class="" href="../a/home.html"><span class="ic">🏠</span>홈</a>
+              <a class="" href="../a/notices.html"><span class="ic">📣</span>공고</a>
+              <a class="" href="../a/settle.html"><span class="ic">💰</span>지급</a>
+              <a class="" href="../a/partners.html"><span class="ic">🏢</span>회원</a>
+              <a class="" href="../a/more.html"><span class="ic">☰</span>더보기</a>
+          </nav>
+    </div>
+<div id="a2hs" class="a2hs" hidden>
+  <img src="../assets/icon-192.png" alt="">
+  <div class="a2hs-t">
+    <b>바탕화면에 바로가기를 만들까요?</b>
+    <p id="a2hs-sub">한 번 만들어 두면 주소를 치지 않고 바로 열립니다.</p>
+  </div>
+  <div class="a2hs-b">
+    <button type="button" id="a2hs-go" class="btn btn-main">만들기</button>
+    <button type="button" id="a2hs-no" class="btn btn-line">나중에</button>
+  </div>
+  <button type="button" id="a2hs-x" class="a2hs-x" aria-label="닫기">✕</button>
+</div>
+
+<div id="mask" onclick="if(event.target===this)closeModal()"><div class="modal" id="modal"></div></div>
+<div id="toast"></div>
+<script src="../assets/app.js"></script>
+<script>document.addEventListener('submit',function(e){var f=e.target,q=f.querySelector('input[name=quick]');e.preventDefault();if(q){var m={"0":"p/home.html","1":"a/home.html","2":"c/home.html","3":"p/home.html"};var t=m[q.value];if(t){location.href='../'+t}else{alert('승인 대기 중인 계정입니다. (데모)')}return}alert('브리핑용 데모 화면입니다. 실제 저장·결제는 되지 않습니다.')},true);document.addEventListener('click',function(e){var a=e.target.closest('[data-demo]');if(a){e.preventDefault();alert('브리핑용 데모 화면입니다.')}});</script></body></html>

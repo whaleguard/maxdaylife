@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes">
+<meta name="theme-color" content="#00306F">
+<meta name="robots" content="noindex,nofollow,noarchive"><title>공사 수정 | MAXDAY 로드세이프티 협력사 시스템</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="../assets/style.css">
+
+<link rel="icon" href="../assets/icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="../assets/icon-192.png">
+</head><body class="role-client" data-base="/road/"><div style="position:relative;z-index:99999;background:#0f1f46;color:#fff;font:600 12px/1.4 sans-serif;padding:6px 12px;text-align:center">MAXDAY 로드세이프티 · 브리핑용 데모 (예시 데이터) · <a href="../../#road" style="color:#9fb8ff">MAX DAY LIFE</a></div>
+<div class="shell">
+  <header class="pc-head">
+    <a class="logo" href="../c/home.html" style="display:flex;align-items:center;gap:10px">
+      <img src="../assets/logo-w.png" alt="MAXDAY 로드세이프티">
+      <b style="font-size:15px;font-weight:800;color:var(--hazard)">등록업체</b></a>
+    <span class="sp"></span>
+    <span class="who">한국건설 · 정도현 대표</span>
+    <a class="out" href="../auth/login.html">로그아웃</a>
+  </header>
+
+  <div class="appbar">
+    <a class="back" href="../c/view--id-10.html">‹</a>    <div class="abrand">
+            <h1>공사 수정</h1>
+    </div>
+    <div class="ab-r">
+      <a class="ab-btn" href="../c/noti.html">🔔</a>
+    </div>
+  </div>
+
+  <div class="pc-wrap">
+    <nav class="pc-side">
+      <div class="sv">등록업체 메뉴</div>
+              <a class="" href="../c/home.html"><span class="ic">🏠</span>홈</a>
+              <a class="" href="../c/new.html"><span class="ic">➕</span>공사 등록 요청</a>
+              <a class="" href="../c/list.html"><span class="ic">📋</span>내 공사 목록</a>
+              <a class="" href="../c/noti.html"><span class="ic">🔔</span>알림</a>
+              <a class="" href="../c/more.html"><span class="ic">⚙️</span>내 정보</a>
+            <div class="side-foot">
+        <a href="../c/more.html"><span class="ic">⚙️</span>정보변경</a>
+        <a href="../auth/login.html"><span class="ic">⏻</span>로그아웃</a>
+      </div>
+    </nav>
+    <main class="pc-main"><div class="screen">
+    <div class="wrap" style="max-width:560px;margin:0 auto">
+  <div class="hint"><span class="hi">✏️</span><p>
+    아직 <b>공고가 나가기 전</b>이라 고치실 수 있습니다.<br>
+    본사가 공고로 올린 뒤에는 <b>직접 고칠 수 없습니다.</b> 그때는 본사로 연락 주세요.<br>
+    <span style="font-size:14.5px">※ 고치신 내용은 <b>전·후가 기록으로 남습니다.</b></span></p></div>
+
+  
+  <form method="post" data-check>
+    <input type="hidden" name="_csrf" value="0a33abce07de32216b82d3d074403095">    <input type="hidden" name="id" value="10">
+    <input type="hidden" name="act" value="save">
+
+    <div class="card"><div class="card-h"><h2>어떤 공사인가요?</h2></div><div class="card-b">
+      <div class="fld"><label>공사 이름<span class="req">*</span></label>
+        <input class="inp" name="title" required value="영종대교 하부대로 점검대차 보수"></div>
+      <div class="fld"><label>도로 구분<span class="req">*</span></label>
+        <div class="chk-row">
+                  <label class="chk "><input type="radio" name="road_type" value="highway" >
+            <span class="box">✔</span> 고속도로</label>
+                  <label class="chk on"><input type="radio" name="road_type" value="local" checked>
+            <span class="box">✔</span> 국도</label>
+        </div></div>
+      <div class="fld"><label>노선 이름 / 공사 위치</label>
+        <input class="inp" name="road_name" value="영종대교 하부대로"></div>
+      <div class="f2">
+        <div class="fld"><label>관할지사</label><input class="inp" name="branch" value=""></div>
+        <div class="fld"><label>방향</label><input class="inp" name="direction" value="공항방향"></div>
+      </div>
+      <div class="fld"><label>공사 지점</label><input class="inp" name="spot" value="인천시 중구"></div>
+      <div class="fld" style="margin-bottom:0"><label>지역<span class="req">*</span></label>
+        <select class="inp" name="area"><option selected>서울경기</option><option >강원</option><option >충북</option><option >대전충남</option><option >전북</option><option >광주전남</option><option >대구경북</option><option >부산경남</option>        </select></div>
+    </div></div>
+
+    <div class="card"><div class="card-h"><h2>언제 하나요?</h2></div><div class="card-b">
+      <div class="f2">
+        <div class="fld"><label>시작일<span class="req">*</span></label>
+          <input class="inp" type="date" name="date_from" required value="2026-12-08"></div>
+        <div class="fld"><label>끝나는 날<span class="req">*</span></label>
+          <input class="inp" type="date" name="date_to" required value="2026-12-08"></div>
+      </div>
+      <div class="fld"><label>실제로 차단하는 날이 며칠인가요?<span class="req">*</span></label>
+        <select class="inp" name="work_days"><option value="1" selected>1일</option><option value="2" >2일</option><option value="3" >3일</option><option value="4" >4일</option><option value="5" >5일</option><option value="6" >6일</option><option value="7" >7일</option><option value="8" >8일</option><option value="9" >9일</option><option value="10" >10일</option><option value="11" >11일</option><option value="12" >12일</option><option value="13" >13일</option><option value="14" >14일</option><option value="15" >15일</option><option value="16" >16일</option><option value="17" >17일</option><option value="18" >18일</option><option value="19" >19일</option><option value="20" >20일</option><option value="21" >21일</option><option value="22" >22일</option><option value="23" >23일</option><option value="24" >24일</option><option value="25" >25일</option><option value="26" >26일</option><option value="27" >27일</option><option value="28" >28일</option><option value="29" >29일</option><option value="30" >30일</option><option value="31" >31일</option><option value="32" >32일</option><option value="33" >33일</option><option value="34" >34일</option><option value="35" >35일</option><option value="36" >36일</option><option value="37" >37일</option><option value="38" >38일</option><option value="39" >39일</option><option value="40" >40일</option><option value="41" >41일</option><option value="42" >42일</option><option value="43" >43일</option><option value="44" >44일</option><option value="45" >45일</option><option value="46" >46일</option><option value="47" >47일</option><option value="48" >48일</option><option value="49" >49일</option><option value="50" >50일</option><option value="51" >51일</option><option value="52" >52일</option><option value="53" >53일</option><option value="54" >54일</option><option value="55" >55일</option><option value="56" >56일</option><option value="57" >57일</option><option value="58" >58일</option><option value="59" >59일</option><option value="60" >60일</option>        </select></div>
+      <div class="fld"><label>주간인가요 야간인가요?<span class="req">*</span></label>
+        <div class="chk-row">
+                  <label class="chk on"><input type="radio" name="time_type" value="day" checked>
+            <span class="box">✔</span> 주간</label>
+                  <label class="chk "><input type="radio" name="time_type" value="night" >
+            <span class="box">✔</span> 야간</label>
+        </div></div>
+      <div class="fld" style="margin-bottom:0"><label>몇 시에 차단을 시작하나요?</label>
+        <select class="inp" name="start_hour"><option value="0" >0시</option><option value="1" >1시</option><option value="2" >2시</option><option value="3" >3시</option><option value="4" >4시</option><option value="5" >5시</option><option value="6" >6시</option><option value="7" >7시</option><option value="8" >8시</option><option value="9" selected>9시</option><option value="10" >10시</option><option value="11" >11시</option><option value="12" >12시</option><option value="13" >13시</option><option value="14" >14시</option><option value="15" >15시</option><option value="16" >16시</option><option value="17" >17시</option><option value="18" >18시</option><option value="19" >19시</option><option value="20" >20시</option><option value="21" >21시</option><option value="22" >22시</option><option value="23" >23시</option>        </select></div>
+    </div></div>
+
+    <div class="card"><div class="card-h"><h2>무엇이 필요한가요?</h2></div><div class="card-b">
+              <div class="fld" style="margin-bottom:14px"><label>TMA-1</label>
+          <select class="inp" name="need_tma1"><option value="0" >
+              0대</option><option value="1" >
+              1대</option><option value="2" >
+              2대</option><option value="3" selected>
+              3대</option><option value="4" >
+              4대</option><option value="5" >
+              5대</option><option value="6" >
+              6대</option><option value="7" >
+              7대</option><option value="8" >
+              8대</option><option value="9" >
+              9대</option><option value="10" >
+              10대</option><option value="11" >
+              11대</option><option value="12" >
+              12대</option><option value="13" >
+              13대</option><option value="14" >
+              14대</option><option value="15" >
+              15대</option><option value="16" >
+              16대</option><option value="17" >
+              17대</option><option value="18" >
+              18대</option><option value="19" >
+              19대</option><option value="20" >
+              20대</option></select></div>
+              <div class="fld" style="margin-bottom:14px"><label>TMA-3</label>
+          <select class="inp" name="need_tma3"><option value="0" >
+              0대</option><option value="1" selected>
+              1대</option><option value="2" >
+              2대</option><option value="3" >
+              3대</option><option value="4" >
+              4대</option><option value="5" >
+              5대</option><option value="6" >
+              6대</option><option value="7" >
+              7대</option><option value="8" >
+              8대</option><option value="9" >
+              9대</option><option value="10" >
+              10대</option><option value="11" >
+              11대</option><option value="12" >
+              12대</option><option value="13" >
+              13대</option><option value="14" >
+              14대</option><option value="15" >
+              15대</option><option value="16" >
+              16대</option><option value="17" >
+              17대</option><option value="18" >
+              18대</option><option value="19" >
+              19대</option><option value="20" >
+              20대</option></select></div>
+              <div class="fld" style="margin-bottom:14px"><label>PLCS</label>
+          <select class="inp" name="need_plcs"><option value="0" selected>
+              0대</option><option value="1" >
+              1대</option><option value="2" >
+              2대</option><option value="3" >
+              3대</option><option value="4" >
+              4대</option><option value="5" >
+              5대</option><option value="6" >
+              6대</option><option value="7" >
+              7대</option><option value="8" >
+              8대</option><option value="9" >
+              9대</option><option value="10" >
+              10대</option><option value="11" >
+              11대</option><option value="12" >
+              12대</option><option value="13" >
+              13대</option><option value="14" >
+              14대</option><option value="15" >
+              15대</option><option value="16" >
+              16대</option><option value="17" >
+              17대</option><option value="18" >
+              18대</option><option value="19" >
+              19대</option><option value="20" >
+              20대</option></select></div>
+              <div class="fld" style="margin-bottom:14px"><label>신호수</label>
+          <select class="inp" name="need_sig"><option value="0" selected>
+              0명</option><option value="1" >
+              1명</option><option value="2" >
+              2명</option><option value="3" >
+              3명</option><option value="4" >
+              4명</option><option value="5" >
+              5명</option><option value="6" >
+              6명</option><option value="7" >
+              7명</option><option value="8" >
+              8명</option><option value="9" >
+              9명</option><option value="10" >
+              10명</option><option value="11" >
+              11명</option><option value="12" >
+              12명</option><option value="13" >
+              13명</option><option value="14" >
+              14명</option><option value="15" >
+              15명</option><option value="16" >
+              16명</option><option value="17" >
+              17명</option><option value="18" >
+              18명</option><option value="19" >
+              19명</option><option value="20" >
+              20명</option></select></div>
+          </div></div>
+
+    <div class="card"><div class="card-h"><h2>담당자 · 그 밖의 내용</h2></div><div class="card-b">
+      <div class="f2">
+        <div class="fld"><label>담당자 이름</label><input class="inp" name="mgr_name" value="이순신 부장"></div>
+        <div class="fld"><label>담당자 연락처</label>
+          <input class="inp" name="mgr_tel" type="tel" inputmode="numeric" value="010-2345-6789"></div>
+      </div>
+      <div class="fld" style="margin-bottom:0"><label>본사에 남길 말</label>
+        <textarea class="inp" name="note">등록업체가 올린 요청입니다. 단가와 마감시각을 정한 뒤 공개해 주세요.</textarea></div>
+    </div></div>
+
+    <button class="btn btn-main">수정 저장하기</button>
+    <a class="btn btn-line" href="../c/view--id-10.html">그만두기</a>
+  </form>
+
+  <div class="card" style="margin-top:8px"><div class="card-h"><h2>이 공사를 없앨까요?</h2></div><div class="card-b">
+    <p style="margin:0 0 12px;font-size:15.5px;line-height:1.7;color:var(--ink2);font-weight:600">
+      잘못 올리셨다면 삭제하시고 새로 등록하시는 편이 낫습니다.<br>
+      아직 공고가 안 나갔으니 협력사에게는 영향이 없습니다.</p>
+    <form method="post" action="../c/edit.html" id="fdc478891" style="margin:0"><input type="hidden" name="_csrf" value="0a33abce07de32216b82d3d074403095"><input type="hidden" name="id" value="10"><input type="hidden" name="act" value="delete"><button type="button" class="btn btn-danger" data-ask="fdc478891" data-title="이 공사를 삭제할까요?" data-body="&lt;b&gt;영종대교 하부대로 점검대차 보수&lt;/b&gt;&lt;br&gt;&lt;br&gt;삭제하면 본사에도 알림이 갑니다. 되돌릴 수 없습니다." data-ok="삭제하기" data-danger="1">이 공사 삭제하기</button></form>  </div></div>
+  <div style="height:24px"></div>
+</div>
+    <div class="sitefoot"><p class="sf-links"><a href="../terms.html">이용약관</a> · <a href="../privacy.html">개인정보처리방침</a> · <a href="../terms.html#refund">취소·환불 규정</a></p><p>MAXDAY 로드세이프티 · 대표 맥스데이 · 부산광역시</p><p>사업자등록번호 000-00-00000 · 통신판매업신고 <span style="color:var(--red)">신고 준비중</span></p><p>대표전화 <a href="tel:0510000000">051-000-0000</a> · help@maxdaylife.kr</p><p class="sf-c">COPYRIGHT © 2026 MAXDAY 로드세이프티. ALL RIGHTS RESERVED.</p></div>    </div></main>
+        </div>
+    <nav class="tabbar">
+              <a class="" href="../c/home.html"><span class="ic">🏠</span>홈</a>
+              <a class="" href="../c/new.html"><span class="ic">➕</span>공사 등록</a>
+              <a class="" href="../c/list.html"><span class="ic">📋</span>내 공사</a>
+              <a class="" href="../c/more.html"><span class="ic">☰</span>더보기</a>
+          </nav>
+    </div>
+<div id="a2hs" class="a2hs" hidden>
+  <img src="../assets/icon-192.png" alt="">
+  <div class="a2hs-t">
+    <b>바탕화면에 바로가기를 만들까요?</b>
+    <p id="a2hs-sub">한 번 만들어 두면 주소를 치지 않고 바로 열립니다.</p>
+  </div>
+  <div class="a2hs-b">
+    <button type="button" id="a2hs-go" class="btn btn-main">만들기</button>
+    <button type="button" id="a2hs-no" class="btn btn-line">나중에</button>
+  </div>
+  <button type="button" id="a2hs-x" class="a2hs-x" aria-label="닫기">✕</button>
+</div>
+
+<div id="mask" onclick="if(event.target===this)closeModal()"><div class="modal" id="modal"></div></div>
+<div id="toast"></div>
+<script src="../assets/app.js"></script>
+<script>document.addEventListener('submit',function(e){var f=e.target,q=f.querySelector('input[name=quick]');e.preventDefault();if(q){var m={"0":"p/home.html","1":"a/home.html","2":"c/home.html","3":"p/home.html"};var t=m[q.value];if(t){location.href='../'+t}else{alert('승인 대기 중인 계정입니다. (데모)')}return}alert('브리핑용 데모 화면입니다. 실제 저장·결제는 되지 않습니다.')},true);document.addEventListener('click',function(e){var a=e.target.closest('[data-demo]');if(a){e.preventDefault();alert('브리핑용 데모 화면입니다.')}});</script></body></html>

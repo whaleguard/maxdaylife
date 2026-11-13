@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes">
+<meta name="theme-color" content="#00306F">
+<meta name="robots" content="noindex,nofollow,noarchive"><title>협력사 가입 | MAXDAY 로드세이프티 협력사 시스템</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="../assets/style.css">
+
+<link rel="icon" href="../assets/icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="../assets/icon-192.png">
+</head><body class="role-partner" data-base="/road/"><div style="position:relative;z-index:99999;background:#0f1f46;color:#fff;font:600 12px/1.4 sans-serif;padding:6px 12px;text-align:center">MAXDAY 로드세이프티 · 브리핑용 데모 (예시 데이터) · <a href="../../#road" style="color:#9fb8ff">MAX DAY LIFE</a></div>
+<div class="shell guest"><main class="pc-main"><div class="screen">
+    <div class="wrap" style="max-width:520px;margin:0 auto">
+  <div class="hint"><span class="hi">✍️</span><p><b>1단계 · 간편가입</b><br>
+    아래 몇 가지만 적으시면 됩니다. <b>서류는 다음 화면에서 사진으로 찍어</b> 올리시면 됩니다.</p></div>
+
+  
+  <form method="post" data-check>
+    <input type="hidden" name="_csrf" value="44ded97e7d4bf1ca0ef5b6044e6e08fb">    <div class="card"><div class="card-b">
+      <div class="fld"><label>아이디<span class="req">*</span></label>
+        <p class="desc">영문·숫자 4~20자</p>
+        <input class="inp" name="login_id" required value="" placeholder="예) busanroad"></div>
+      <div class="fld"><label>비밀번호<span class="req">*</span></label>
+        <p class="desc">8자 이상</p>
+        <input class="inp" name="pw" type="password" required></div>
+      <div class="fld"><label>비밀번호 다시<span class="req">*</span></label>
+        <input class="inp" name="pw2" type="password" required></div>
+    </div></div>
+
+    <div class="card"><div class="card-h"><h2>회사 정보</h2></div><div class="card-b">
+      <div class="fld"><label>회사 이름 (상호)<span class="req">*</span></label>
+        <input class="inp" name="corp" required value="" placeholder="예) 부산도로안전"></div>
+      <div class="fld"><label>대표자 이름<span class="req">*</span></label>
+        <input class="inp" name="ceo" required value=""></div>
+      <div class="fld"><label>휴대폰 번호<span class="req">*</span></label>
+        <p class="desc">낙찰·결제 알림을 이 번호로 보내드립니다</p>
+        <input class="inp" name="phone" type="tel" inputmode="numeric" required
+               value="" placeholder="010-0000-0000"></div>
+      <div class="fld"><label>사업자등록번호</label>
+        <p class="desc">모르시면 비워두고 나중에 적으셔도 됩니다</p>
+        <input class="inp" name="biz_no" inputmode="numeric" value="" placeholder="000-00-00000"></div>
+      <div class="fld"><label>이메일</label>
+        <input class="inp" name="email" type="email" value=""></div>
+      <div class="fld" style="margin-bottom:0"><label>사업장 주소</label>
+        <input class="inp" name="addr" value="" placeholder="예) 부산시 진구 ..."></div>
+    </div></div>
+
+    <div class="card"><div class="card-h"><h2>일하실 지역</h2><span class="more">최대 3곳</span></div>
+      <div class="card-b">
+        <p class="desc" style="margin-top:-6px">고르신 지역의 공고만 보여드립니다.</p>
+                  <label class="chk ">
+            <input type="checkbox" name="areas[]" value="서울경기" >
+            <span class="box">✔</span> 서울경기          </label>
+                  <label class="chk ">
+            <input type="checkbox" name="areas[]" value="강원" >
+            <span class="box">✔</span> 강원          </label>
+                  <label class="chk ">
+            <input type="checkbox" name="areas[]" value="충북" >
+            <span class="box">✔</span> 충북          </label>
+                  <label class="chk ">
+            <input type="checkbox" name="areas[]" value="대전충남" >
+            <span class="box">✔</span> 대전충남          </label>
+                  <label class="chk ">
+            <input type="checkbox" name="areas[]" value="전북" >
+            <span class="box">✔</span> 전북          </label>
+                  <label class="chk ">
+            <input type="checkbox" name="areas[]" value="광주전남" >
+            <span class="box">✔</span> 광주전남          </label>
+                  <label class="chk ">
+            <input type="checkbox" name="areas[]" value="대구경북" >
+            <span class="box">✔</span> 대구경북          </label>
+                  <label class="chk ">
+            <input type="checkbox" name="areas[]" value="부산경남" >
+            <span class="box">✔</span> 부산경남          </label>
+              </div></div>
+
+    <button class="btn btn-main">다음 (서류 올리기)</button>
+    <a class="btn btn-line" href="../auth/login.html">그만두기</a>
+  </form>
+  <div style="height:24px"></div>
+</div>
+    <div class="sitefoot"><p class="sf-links"><a href="../terms.html">이용약관</a> · <a href="../privacy.html">개인정보처리방침</a> · <a href="../terms.html#refund">취소·환불 규정</a></p><p>MAXDAY 로드세이프티 · 대표 맥스데이 · 부산광역시</p><p>사업자등록번호 000-00-00000 · 통신판매업신고 <span style="color:var(--red)">신고 준비중</span></p><p>대표전화 <a href="tel:0510000000">051-000-0000</a> · help@maxdaylife.kr</p><p class="sf-c">COPYRIGHT © 2026 MAXDAY 로드세이프티. ALL RIGHTS RESERVED.</p></div>    </div></main>
+    </div>
+<div id="a2hs" class="a2hs" hidden>
+  <img src="../assets/icon-192.png" alt="">
+  <div class="a2hs-t">
+    <b>바탕화면에 바로가기를 만들까요?</b>
+    <p id="a2hs-sub">한 번 만들어 두면 주소를 치지 않고 바로 열립니다.</p>
+  </div>
+  <div class="a2hs-b">
+    <button type="button" id="a2hs-go" class="btn btn-main">만들기</button>
+    <button type="button" id="a2hs-no" class="btn btn-line">나중에</button>
+  </div>
+  <button type="button" id="a2hs-x" class="a2hs-x" aria-label="닫기">✕</button>
+</div>
+
+<div id="mask" onclick="if(event.target===this)closeModal()"><div class="modal" id="modal"></div></div>
+<div id="toast"></div>
+<script src="../assets/app.js"></script>
+<script>document.addEventListener('submit',function(e){var f=e.target,q=f.querySelector('input[name=quick]');e.preventDefault();if(q){var m={"0":"p/home.html","1":"a/home.html","2":"c/home.html","3":"p/home.html"};var t=m[q.value];if(t){location.href='../'+t}else{alert('승인 대기 중인 계정입니다. (데모)')}return}alert('브리핑용 데모 화면입니다. 실제 저장·결제는 되지 않습니다.')},true);document.addEventListener('click',function(e){var a=e.target.closest('[data-demo]');if(a){e.preventDefault();alert('브리핑용 데모 화면입니다.')}});</script></body></html>

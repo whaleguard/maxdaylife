@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes">
+<meta name="theme-color" content="#00306F">
+<meta name="robots" content="noindex,nofollow,noarchive"><title>입찰하기 | MAXDAY 로드세이프티 협력사 시스템</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="../assets/style.css">
+
+<link rel="icon" href="../assets/icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="../assets/icon-192.png">
+</head><body class="role-partner" data-base="/road/"><div style="position:relative;z-index:99999;background:#0f1f46;color:#fff;font:600 12px/1.4 sans-serif;padding:6px 12px;text-align:center">MAXDAY 로드세이프티 · 브리핑용 데모 (예시 데이터) · <a href="../../#road" style="color:#9fb8ff">MAX DAY LIFE</a></div>
+<div class="shell">
+  <header class="pc-head">
+    <a class="logo" href="../p/home.html" style="display:flex;align-items:center;gap:10px">
+      <img src="../assets/logo-w.png" alt="MAXDAY 로드세이프티">
+      <b style="font-size:15px;font-weight:800;color:var(--hazard)">협력사</b></a>
+    <span class="sp"></span>
+    <span class="who">부산도로안전 · 김상철 대표</span>
+    <a class="out" href="../auth/login.html">로그아웃</a>
+  </header>
+
+  <div class="appbar">
+    <a class="back" href="../p/notice--id-2.html">‹</a>    <div class="abrand">
+            <h1>입찰하기</h1>
+    </div>
+    <div class="ab-r">
+      <a class="ab-btn" href="../p/noti.html">🔔</a>
+    </div>
+  </div>
+
+  <div class="pc-wrap">
+    <nav class="pc-side">
+      <div class="sv">협력사 메뉴</div>
+              <a class="" href="../p/home.html"><span class="ic">🏠</span>홈</a>
+              <a class="" href="../p/notices.html"><span class="ic">📣</span>차단 공고</a>
+              <a class="" href="../p/mybids.html"><span class="ic">🏆</span>내 입찰 현황</a>
+              <a class="" href="../p/jobs.html"><span class="ic">📋</span>내 공사현황</a>
+              <a class="" href="../p/pays.html"><span class="ic">💳</span>결제·환불 내역</a>
+              <a class="" href="../p/tma.html"><span class="ic">🚚</span>TMA 카드 관리</a>
+              <a class="" href="../p/docs.html"><span class="ic">📎</span>서류 제출</a>
+              <a class="" href="../p/noti.html"><span class="ic">🔔</span>알림</a>
+              <a class="" href="../p/more.html"><span class="ic">⚙️</span>내 정보</a>
+            <div class="side-foot">
+        <a href="../p/more.html"><span class="ic">⚙️</span>정보변경</a>
+        <a href="../auth/login.html"><span class="ic">⏻</span>로그아웃</a>
+      </div>
+    </nav>
+    <main class="pc-main"><div class="screen">
+    <div class="wrap">
+  <div class="hint"><span class="hi">✍️</span><p><b>차단할 차량을 필요한 대수만큼 골라주세요.</b><br>
+    개수가 맞지 않으면 입찰이 되지 않습니다.</p></div>
+
+  
+  <div class="card"><div class="card-b">
+    <p style="margin:0 0 4px;font-size:14.5px;color:var(--ink3);font-weight:700">입찰할 공고</p>
+    <p style="margin:0;font-size:19px;font-weight:800">남해선 배수로 정비공사</p>
+    <p class="meta"><span>📅 <b>11.21(토) ~ 11.24(화)</b></span>
+      <span>🚚 <b>TMA-1 2대 · PLCS 1대 · 신호수 2명</b></span></p>
+    <div class="calc" style="margin-top:12px">
+      <div class="cr">예상 공사금액<span class="v">5,550,000원</span></div>
+      <div class="cr fee">낙찰 시 수수료<span class="v">△166,500원</span></div>
+      <div class="cr sum">남는 금액<span class="v">5,383,500원</span></div>
+    </div>
+  </div></div>
+
+  
+  <form method="post">
+    <input type="hidden" name="_csrf" value="885160377bf3e02be64ff6a18e446bfc"><input type="hidden" name="id" value="2">
+
+    <div class="card"><div class="card-b">
+      <div class="fld"><label>차단 구간<span class="req">*</span></label>
+        <p class="desc">예) 65.7k ~ 66.5k</p>
+        <input class="inp" name="sect" required value="" placeholder="차단 구간을 적어주세요"></div>
+
+              <div class="fld">
+          <label>TMA-1 차량<span class="req">*</span></label>
+                      <p class="desc">필요 <b style="color:var(--signal-d)">2대</b> — 딱 2대만 골라주세요</p>
+                                      <label class="chk ">
+                <input type="checkbox" name="cars[]" value="1" >
+                <span class="box">✔</span> 11누1111                <span class="tail">카드파일 없음</span>
+              </label>
+                          <label class="chk ">
+                <input type="checkbox" name="cars[]" value="2" >
+                <span class="box">✔</span> 11라2222                <span class="tail">카드파일 없음</span>
+              </label>
+                          <label class="chk ">
+                <input type="checkbox" name="cars[]" value="3" >
+                <span class="box">✔</span> 11머3333                <span class="tail">카드파일 없음</span>
+              </label>
+                          <label class="chk ">
+                <input type="checkbox" name="cars[]" value="4" >
+                <span class="box">✔</span> 11하4444                <span class="tail">카드파일 없음</span>
+              </label>
+                          <label class="chk ">
+                <input type="checkbox" name="cars[]" value="5" >
+                <span class="box">✔</span> 11호5555                <span class="tail">카드파일 없음</span>
+              </label>
+                                          </div>
+              <div class="fld">
+          <label>TMA-3 차량</label>
+                      <div class="chk dis"><span class="box">✔</span> 이 공사에는 필요 없습니다</div>
+                  </div>
+              <div class="fld">
+          <label>PLCS 차량<span class="req">*</span></label>
+                      <p class="desc">필요 <b style="color:var(--signal-d)">1대</b> — 딱 1대만 골라주세요</p>
+                                      <label class="chk ">
+                <input type="checkbox" name="cars[]" value="7" >
+                <span class="box">✔</span> 99라7777                <span class="tail">카드파일 없음</span>
+              </label>
+                                      <label class="chk ">
+                <input type="checkbox" name="sep[plcs]" value="1" >
+                <span class="box">✔</span> 별도 제출하겠습니다<span class="tail">파일 없이</span>
+              </label>
+                              </div>
+      
+              <div class="fld"><label>신호수<span class="req">*</span></label>
+          <p class="desc">필요 <b style="color:var(--signal-d)">2명</b></p>
+          <select class="inp" name="sig">
+                          <option value="0" selected>0명</option>
+                          <option value="1" >1명</option>
+                          <option value="2" >2명</option>
+                          <option value="3" >3명</option>
+                          <option value="4" >4명</option>
+                          <option value="5" >5명</option>
+                          <option value="6" >6명</option>
+                          <option value="7" >7명</option>
+                          <option value="8" >8명</option>
+                      </select></div>
+      
+      <div class="fld" style="margin-bottom:0"><label>본사에 남길 말 <span style="color:var(--ink3);font-weight:600;font-size:14px">(안 적으셔도 됩니다)</span></label>
+        <textarea class="inp" name="memo" placeholder="예) 14일은 오전 6시부터 진입 가능합니다"></textarea></div>
+    </div></div>
+
+    <div class="card"><div class="card-h"><h2>입찰하면 어떻게 되나요?</h2></div><div class="card-b">
+            <div class="nextbox" style="margin-top:0">
+        <b>낙찰 방식 : 선착순</b>
+        <p>입찰하면 <b>바로 낙찰</b>됩니다. 곧장 수수료 납부 화면으로 넘어갑니다.</p>
+        <p class="nb-step">입찰 → 낙찰 → <b>수수료 166,500원 납부(12시간)</b> → 공사 확정</p>
+      </div>
+      <p style="margin:14px 0 6px;font-size:15.5px;font-weight:800">수수료 내는 방법 (낙찰 후 고르시면 됩니다)</p>
+      <div class="paylogo"><span>💳 신용카드</span><span>🏦 무통장 입금 (가상계좌)</span></div>
+    </div></div>
+
+    <div class="card"><div class="card-h"><h2>입찰 전 확인 (꼭 읽어주세요)</h2></div><div class="card-b">
+      <label class="chk " style="align-items:flex-start">
+        <input type="checkbox" name="ag1" value="1" >
+        <span class="box" style="margin-top:2px">✔</span>
+        <span>낙찰되면 <b>12시간 안에 수수료 166,500원</b>를 냅니다
+          <small>내지 않으면 입찰이 자동 취소되고 다른 업체가 가져갑니다</small></span></label>
+      <label class="chk " style="align-items:flex-start">
+        <input type="checkbox" name="ag2" value="1" >
+        <span class="box" style="margin-top:2px">✔</span>
+        <span>취소·환불 규정을 확인했습니다
+          <small>공사가 줄거나 취소되면 수수료를 다시 계산해 돌려받습니다</small></span></label>
+      <button type="button" class="btn btn-line" style="margin:4px 0 0" onclick="infoBox('취소·환불 규정',
+        '<b>발주처·본사 사정으로 취소</b> → 수수료 전액 환불<br>'+
+        '<b>비·바람 등 현장 사정</b> → 줄어든 공사금액 기준으로 다시 계산해 차액 환불<br>'+
+        '<b>일부만 하고 중단</b> → 실제 한 날짜 기준으로 다시 계산해 차액 환불<br>'+
+        '<b>공사 날짜가 바뀐 경우</b> → 그대로 하실지 고르실 수 있고, 안 하시면 전액 환불<br>'+
+        '<b>협력사가 공사를 못 하게 된 경우</b> → 환불 없음<br>'+
+        '<b>낙찰 후 포기</b> → 환불 없음<br><br>환불은 <b>3영업일 이내</b>에 처리됩니다.')">환불 규정 자세히 보기</button>
+    </div></div>
+
+    <button class="btn btn-main">입찰하기 (바로 낙찰됩니다)</button>
+    <a class="btn btn-line" href="../p/notice--id-2.html">그만두고 돌아가기</a>
+  </form>
+    <div style="height:20px"></div>
+</div>
+    <div class="sitefoot"><p class="sf-links"><a href="../terms.html">이용약관</a> · <a href="../privacy.html">개인정보처리방침</a> · <a href="../terms.html#refund">취소·환불 규정</a></p><p>MAXDAY 로드세이프티 · 대표 맥스데이 · 부산광역시</p><p>사업자등록번호 000-00-00000 · 통신판매업신고 <span style="color:var(--red)">신고 준비중</span></p><p>대표전화 <a href="tel:0510000000">051-000-0000</a> · help@maxdaylife.kr</p><p class="sf-c">COPYRIGHT © 2026 MAXDAY 로드세이프티. ALL RIGHTS RESERVED.</p></div>    </div></main>
+        </div>
+    <nav class="tabbar">
+              <a class="" href="../p/home.html"><span class="ic">🏠</span>홈</a>
+              <a class="" href="../p/notices.html"><span class="ic">📣</span>공고</a>
+              <a class="" href="../p/mybids.html"><span class="ic">🏆</span>내 입찰</a>
+              <a class="" href="../p/jobs.html"><span class="ic">📋</span>내 공사</a>
+              <a class="" href="../p/more.html"><span class="ic">☰</span>더보기</a>
+          </nav>
+    </div>
+<div id="a2hs" class="a2hs" hidden>
+  <img src="../assets/icon-192.png" alt="">
+  <div class="a2hs-t">
+    <b>바탕화면에 바로가기를 만들까요?</b>
+    <p id="a2hs-sub">한 번 만들어 두면 주소를 치지 않고 바로 열립니다.</p>
+  </div>
+  <div class="a2hs-b">
+    <button type="button" id="a2hs-go" class="btn btn-main">만들기</button>
+    <button type="button" id="a2hs-no" class="btn btn-line">나중에</button>
+  </div>
+  <button type="button" id="a2hs-x" class="a2hs-x" aria-label="닫기">✕</button>
+</div>
+
+<div id="mask" onclick="if(event.target===this)closeModal()"><div class="modal" id="modal"></div></div>
+<div id="toast"></div>
+<script src="../assets/app.js"></script>
+<script>document.addEventListener('submit',function(e){var f=e.target,q=f.querySelector('input[name=quick]');e.preventDefault();if(q){var m={"0":"p/home.html","1":"a/home.html","2":"c/home.html","3":"p/home.html"};var t=m[q.value];if(t){location.href='../'+t}else{alert('승인 대기 중인 계정입니다. (데모)')}return}alert('브리핑용 데모 화면입니다. 실제 저장·결제는 되지 않습니다.')},true);document.addEventListener('click',function(e){var a=e.target.closest('[data-demo]');if(a){e.preventDefault();alert('브리핑용 데모 화면입니다.')}});</script></body></html>

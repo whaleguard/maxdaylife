@@ -1,0 +1,7 @@
+# 업로드 폴더 — PHP 실행 절대 금지 (웹셸 방지)
+<FilesMatch "\.(php|php3|php4|php5|php7|php8|phtml|pht|shtml|cgi|pl|py|jsp|asp|htaccess)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+Options -Indexes -ExecCGI
+AddType text/plain .php .php3 .php4 .php5 .php7 .php8 .phtml
