@@ -787,7 +787,7 @@ const HOME_PLAT=[
   ['biseo','MAXDAY 비서','카카오톡·PC 업무 자료를 내 PC 안에서만 정리하는 로컬 업무 비서.',()=> 'biseo/img/k2_kakao.png','biseo/index.html',['카카오톡 자료 정리','외부 전송 없음','AES-256 암호화']],
   ['road','MAXDAY 로드세이프티','도로 공사 차단 작업을 협력사에게 나누는 입찰 시스템. 공고·입찰·낙찰·수수료 납부까지.',()=> 'assets/plat/road-public.jpg','road/auth/login.html',['협력사 입찰','발주처 공사 등록','3% 중개수수료']],
   ['lang','MAXDAY 언어의 마술사','내 말로 쓰면 상대 언어로. 카카오톡·위챗·LINE 그대로 외국 친구와 대화하는 도우미.',()=> 'assets/plat/lang-chat.jpg','https://whaleguard.github.io/language-magician/',['5개 언어','8개 메신저','관계·일정 관리']],
-  ['stock','MAX라이프 주식','실제 장 시세로 매수·매도를 연습하는 가상 모의투자 교육. 홈페이지와 전용 HTS 프로그램.',()=> 'assets/plat/stock-hero.jpg','',['실제 시세 연동','가상 계좌','투자 교육 리딩']],
+  ['stock','MAX라이프 주식','실제 장 시세로 매수·매도를 연습하는 가상 모의투자 교육. 홈페이지와 전용 HTS 프로그램.',()=> 'assets/plat/stock-pc-stock.jpg','https://whaleguard.github.io/maxlife-stock/',['실제 시세 연동','가상 계좌','투자 교육 리딩']],
   ['tv','MAXDAY TV','오리지널 영상 단건 시청과 월간 패스. 카드 발급 시 패스 무료.',()=>art('poster-1'),'',['오리지널','월간 패스','제작 후원']]
 ];
 const HOME_SVC=[
@@ -1242,16 +1242,18 @@ function langPage(){
  <section class="section"><div class="val-act"><a class="btn primary" href="${LANG_SITE}" target="_blank" rel="noopener">언어의 마술사 열기 ↗</a><a class="btn" href="#platform">플랫폼 전체 보기</a></div></section></div>`}
 
 /* ---------- MAX라이프 주식 (가상 모의투자 교육) ---------- */
-const STOCK_SITE='',STOCK_HTS='';
+const STOCK_SITE='',STOCK_HTS='https://whaleguard.github.io/maxlife-stock/',STOCK_ADMIN='https://whaleguard.github.io/maxlife-stock/admin.html';
 function stockPage(){
  const R='assets/plat/stock-';
- const go=(STOCK_SITE?`<a class="btn primary" href="${STOCK_SITE}" target="_blank" rel="noopener">홈페이지 ↗</a>`:`<span class="btn primary" style="opacity:.6;cursor:default">홈페이지 오픈 준비 중</span>`)+(STOCK_HTS?`<a class="btn" href="${STOCK_HTS}" target="_blank" rel="noopener">HTS 프로그램 받기 ↗</a>`:`<span class="btn" style="opacity:.6;cursor:default">HTS 프로그램 배포 준비 중</span>`);
+ const goSite=(STOCK_SITE?`<a class="btn primary" href="${STOCK_SITE}" target="_blank" rel="noopener">홈페이지 ↗</a>`:`<span class="btn primary" style="opacity:.6;cursor:default">홈페이지 오픈 준비 중</span>`),go=(STOCK_HTS?`<a class="btn primary" href="${STOCK_HTS}" target="_blank" rel="noopener">HTS 실행 (수강생) ↗</a><a class="btn" href="${STOCK_ADMIN}" target="_blank" rel="noopener">관리자 화면 ↗</a>`:`<span class="btn" style="opacity:.6;cursor:default">HTS 프로그램 배포 준비 중</span>`)+goSite;
  const K=[['실제 시세','국내 · 미국 주식 시세 연동 (지연 시세)'],['가상 예수금','실제 돈이 오가지 않는 연습용 계좌'],['실전과 같은 주문','시장가 · 지정가 · 정정 · 취소 · 호가 단위'],['투자 교육 리딩','매매 원리와 차트 읽는 법 해설'],['홈페이지 · HTS 분리','가입·충전·리딩은 홈페이지 · 매매는 전용 HTS 프로그램']];
  const STEP=[['01','홈페이지 가입','닉네임으로 가입 · 모의투자 계좌 개설 · HTS 프로그램 설치'],['02','체험 머니 충전','MAX 포인트 또는 현금(카드)으로 체험 머니 구매'],['03','HTS로 매매','HTS 프로그램에서 실제 장 시세로 주문 · 체결 연습'],['04','잔고 · 수익률','보유 종목 · 평가 손익 · 거래 내역 확인'],['05','리딩룸 · 랭킹','교육 리딩으로 배우고 수익률 랭킹 도전']];
  const U=[['홈','관심 종목 · 지수 · 내 계좌 요약'],['주문','현재가 · 호가 · 차트 · 시장가/지정가 주문'],['잔고','보유 종목 · 평균 단가 · 평가 손익 · 수익률'],['거래 내역','체결 · 미체결 · 정정 · 취소 기록'],['입출금','체험 머니 입금 · 출금 신청 (가상)'],['리딩룸','투자 교육 리딩 · 공지 · 댓글'],['랭킹','기간별 수익률 순위'],['마이','계좌 정보 · 알림 · 설정']];
  const A=[['대시보드','회원 수 · 거래 대금 · 체험 머니 충전 · 매입/매출 현황'],['회원 관리','회원별 보유 종목 · 수익률 · 매매 기록 · 이용 정지'],['입출금 승인','체험 머니 입금·출금 요청 승인 · 잔고 조정'],['리딩 · 공지','교육 리딩 작성 · 공지 · 댓글 관리'],['종목 · 수수료','거래 종목 관리 · 수수료·세금 설정'],['데이터','회원 · 거래 기록 내보내기']];
- return shero(R+'hero.jpg','MAX LIFE STOCK · 가상 모의투자','실제 장 시세로,<br>돈 걱정 없이 투자를 연습하세요.','MAX라이프 주식은 실제 주식 프로그램과 같은 화면에서 가상 계좌로 매수·매도를 연습하는 모의투자 교육 서비스입니다. 실제 돈은 오가지 않고, 수익률·보유 종목·거래 내역까지 실전처럼 관리됩니다.','ir-hero')+`<div class="page">
- <section class="section">${H2('AT A GLANCE','서비스 한눈에 보기','모든 매매는 가상으로 체결되는 연습용입니다. 실제 주문이나 실제 입출금은 이뤄지지 않습니다.')}<div class="mxp-kpi">${K.map(([a,b])=>`<div class="card pad"><b>${a}</b><span class="muted tiny">${b}</span></div>`).join('')}</div><div class="val-act">${go}</div></section>
+ return shero(R+'art.jpg','MAX LIFE STOCK · 가상 모의투자','실전과 똑같이.<br>돈은 걸지 않고.','MAX라이프 주식은 실제 주식 프로그램과 같은 화면에서 가상 계좌로 매수·매도를 연습하는 모의투자 교육 서비스입니다. 실제 돈은 오가지 않고, 수익률·보유 종목·거래 내역까지 실전처럼 관리됩니다.')+`<div class="page">
+ <section class="section">${H2('AT A GLANCE','서비스 한눈에 보기','모든 매매는 가상으로 체결되는 연습용입니다. 실제 주문이나 실제 입출금은 이뤄지지 않습니다.')}<div class="mxp-kpi">${K.map(([a,b])=>`<div class="card pad"><b>${a}</b><span class="muted tiny">${b}</span></div>`).join('')}</div><div class="val-act">${go}</div><p class="muted tiny" style="margin-top:10px">데모 계정 — 수강생 demo / demo1234 · 강사 teacher / teacher1234 · 관리자 admin / admin1234</p></section>
+ <section class="section">${H2('HTS SCREENS','HTS 실제 화면 (수강생)','캔들 차트 · 10단계 호가 · 지정가/시장가 주문 · 정정/취소까지 증권사 HTS와 같은 구성입니다.')}<div class="mxp-gal">${MXP_FIG(R+'pc-home.jpg','홈 · 총 자산 · 지수 · 관심종목 · 실시간 랭킹')}${MXP_FIG(R+'pc-stock.jpg','종목·주문 · 캔들 차트 · 10단계 호가 · 매수/매도')}${MXP_FIG(R+'pc-balance.jpg','잔고 · 평가 손익 · 수익률 추이 · 보유 종목')}${MXP_FIG(R+'pc-history.jpg','거래 내역 · 체결 · 미체결')}${MXP_FIG(R+'pc-cash.jpg','입출금 · 체험 머니 입금·출금 신청')}${MXP_FIG(R+'pc-lead.jpg','리딩룸 · 강사의 교육용 매매 시연')}${MXP_FIG(R+'pc-rank.jpg','랭킹 · 수익률 순위')}${MXP_FIG(R+'m-stock.jpg','모바일 · 종목 주문')}</div></section>
+ <section class="section">${H2('ADMIN SCREENS','관리자 실제 화면','전체 회원의 가상투자 현황, 입출금 승인, 리딩·공지, 수수료 설정을 관리합니다.')}<div class="mxp-gal">${MXP_FIG(R+'ad-dash.jpg','대시보드 · 회원 · 거래대금 · 일별 매매 추이')}${MXP_FIG(R+'ad-members.jpg','회원관리 · 총자산 · 수익률 · 보유 · 체결')}${MXP_FIG(R+'ad-acash.jpg','입출금 승인')}${MXP_FIG(R+'ad-settings.jpg','수수료·세금·운영 설정')}</div></section>
  <section class="section">${H2('HOW IT WORKS','이렇게 이용합니다')}<div class="mxp-steps">${STEP.map(([n,t,d])=>`<div class="card pad"><small class="mxp-n">STEP ${n}</small><b>${t}</b><p class="muted tiny">${d}</p></div>`).join('')}</div></section>
  <section class="section two"><div class="card pad"><span class="tag">HTS PROGRAM</span><h2 style="margin-top:12px">HTS 프로그램 (매매 전용)</h2><p class="muted tiny">홈페이지와 별도로 실행되는 전용 프로그램입니다. 실제 증권사 HTS와 같은 화면 구성으로 연습합니다.</p>${U.map(([a,b])=>ROW(a,b)).join('')}</div>
  <div class="card pad"><span class="tag warm">ADMIN</span><h2 style="margin-top:12px">관리자 화면 (홈페이지)</h2>${A.map(([a,b])=>ROW(a,b)).join('')}</div></section>
